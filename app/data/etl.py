@@ -43,6 +43,8 @@ def load_users(users_df):
 
 def load_accounts(accounts_df):
     accounts_loaded = 0
+    account_mapping = {}
+    
     for _, row in accounts_df.iterrows():
         account_number = insert_account(
             user_id=row['user_id'],
@@ -53,22 +55,34 @@ def load_accounts(accounts_df):
             interest_rate=row.get('interest_rate', 0)
         )
         if account_number:
+            # Store mapping between original and new account numbers
+            account_mapping[row['number']] = account_number
             accounts_loaded += 1
-    return accounts_loaded
+    
+    return accounts_loaded, account_mapping
 
-def load_transactions(transactions_df):
+def load_transactions(transactions_df, account_mapping):
     transactions_loaded = 0
     for _, row in transactions_df.iterrows():
+        # Use mapped account number if available
+        mapped_account_id = account_mapping.get(row['account_id'])
+        mapped_recipient = account_mapping.get(row['recipient_account']) if pd.notna(row['recipient_account']) else None
+        
+        if not mapped_account_id:
+            print(f"Warning: No mapped account for {row['account_id']}")
+            continue
+        
         transaction_id = insert_transaction(
-            account_id=row['account_id'],
+            account_id=mapped_account_id,
             type=row['type'],
             amount=row['amount'],
-            recipient_account=row['recipient_account'],
+            recipient_account=mapped_recipient,
             description=row['description'],
             date=row['date']
         )
         if transaction_id:
             transactions_loaded += 1
+    
     return transactions_loaded
 
 def process_data(users_path, accounts_path, transactions_path):
@@ -87,11 +101,11 @@ def process_data(users_path, accounts_path, transactions_path):
     print(f"Loaded {users_loaded} users")
     
     print("Loading accounts...")
-    accounts_loaded = load_accounts(accounts_df)
+    accounts_loaded, account_mapping = load_accounts(accounts_df)
     print(f"Loaded {accounts_loaded} accounts")
     
     print("Loading transactions...")
-    transactions_loaded = load_transactions(transactions_df)
+    transactions_loaded = load_transactions(transactions_df, account_mapping)
     print(f"Loaded {transactions_loaded} transactions")
     
     return users_loaded > 0 and accounts_loaded > 0 and transactions_loaded > 0
