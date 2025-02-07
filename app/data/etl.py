@@ -46,7 +46,6 @@ def load_accounts(accounts_df):
     for _, row in accounts_df.iterrows():
         account_number = insert_account(
             user_id=row['user_id'],
-            number=row['number'],
             type=row['type'],
             balance=row['balance'],
             status=row['status'],
@@ -60,14 +59,15 @@ def load_accounts(accounts_df):
 def load_transactions(transactions_df):
     transactions_loaded = 0
     for _, row in transactions_df.iterrows():
-        if insert_transaction(
+        transaction_id = insert_transaction(
             account_id=row['account_id'],
             type=row['type'],
             amount=row['amount'],
             recipient_account=row['recipient_account'],
             description=row['description'],
             date=row['date']
-        ):
+        )
+        if transaction_id:
             transactions_loaded += 1
     return transactions_loaded
 

@@ -30,25 +30,15 @@ def insert_user(first_name, last_name, email, phone, address, date_of_birth, gen
             sql_logger.error(f"Error inserting user: {e}")
             return None
 
-def insert_account(user_id, type, balance, status, created_at, interest_rate=0, number=None):
+def insert_account(user_id, type, balance, status, created_at, interest_rate=0):
     with get_cursor() as cur:
         try:
-            # If number is provided (from CSV), include it in the insertion
-            if number:
-                cur.execute("""
-                    INSERT INTO accounts 
-                    (number, user_id, type, balance, status, created_at, interest_rate)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
-                    RETURNING number
-                """, (number, user_id, type, balance, status, created_at, interest_rate))
-            else:
-                # If no number provided, let database auto-generate
-                cur.execute("""
-                    INSERT INTO accounts 
-                    (user_id, type, balance, status, created_at, interest_rate)
-                    VALUES (%s, %s, %s, %s, %s, %s)
-                    RETURNING number
-                """, (user_id, type, balance, status, created_at, interest_rate))
+            cur.execute("""
+                INSERT INTO accounts 
+                (user_id, type, balance, status, created_at, interest_rate)
+                VALUES (%s, %s, %s, %s, %s, %s)
+                RETURNING number
+            """, (user_id, type, balance, status, created_at, interest_rate))
             
             account_number = cur.fetchone()[0]
             sql_logger.info(f"Inserted account with number: {account_number}")
@@ -67,12 +57,15 @@ def insert_transaction(account_id, type, amount, recipient_account=None, descrip
                 INSERT INTO transactions 
                 (account_id, type, amount, recipient_account, description, date)
                 VALUES (%s, %s, %s, %s, %s, %s)
+                RETURNING id
             """, (account_id, type, amount, recipient_account, description, date))
-            sql_logger.info(f"Inserted transaction for account ID: {account_id}")
-            return True
+            
+            transaction_id = cur.fetchone()[0]
+            sql_logger.info(f"Inserted transaction with ID: {transaction_id}")
+            return transaction_id
         except Exception as e:
             sql_logger.error(f"Error inserting transaction: {e}")
-            return False
+            return None
 
 if __name__ == "__main__":
     # Test insert functions
@@ -100,22 +93,12 @@ if __name__ == "__main__":
     print(f"Account number: {account_number}")
     
     if account_number:
-        if insert_transaction(
+        transaction_id = insert_transaction(
             account_id=account_number, 
             type='DEPOSIT', 
             amount=500.00, 
             recipient_account=None, 
             description='Initial deposit', 
             date='2022-01-01'
-        ):
-            print("Transaction inserted successfully.")
-        
-        if insert_transaction(
-            account_id=account_number, 
-            type='WITHDRAW', 
-            amount=200.00, 
-            recipient_account=None, 
-            description='Monthly payment', 
-            date='2022-02-01'
-        ):
-            print("Transaction inserted successfully.")
+        )
+        print(f"Transaction ID: {transaction_id}")
