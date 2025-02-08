@@ -62,3 +62,69 @@
 2025-02-08 01:19:10,573 - app.logger.app_logging - INFO - Admin admin logged in successfully
 2025-02-08 01:19:10,577 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:19:10] "[32mPOST /login HTTP/1.1[0m" 302 -
 2025-02-08 01:19:10,586 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:19:10] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 01:23:09,891 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\logger\\sql_logging.py', reloading
+2025-02-08 01:23:09,981 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 01:23:10,611 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 01:23:10,627 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 01:23:43,123 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:23:43] "GET / HTTP/1.1" 200 -
+2025-02-08 01:23:43,214 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:23:43] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-08 01:23:46,229 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:23:46] "GET /login HTTP/1.1" 200 -
+2025-02-08 01:23:53,944 - app.dal.admin_dao - INFO - SELECT * FROM admins WHERE username = %s
+2025-02-08 01:23:53,954 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 01:23:53,956 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:23:53] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 01:23:53,964 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:23:53] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 01:23:59,705 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-08 01:23:59,708 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:23:59] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 01:23:59,722 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:23:59] "GET / HTTP/1.1" 200 -
+2025-02-08 01:24:00,455 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:24:00] "GET /login HTTP/1.1" 200 -
+2025-02-08 01:24:01,762 - app.dal.admin_dao - INFO - SELECT * FROM admins WHERE username = %s
+2025-02-08 01:24:01,767 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 01:24:01,769 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:24:01] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 01:24:01,775 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:24:01] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 01:26:01,960 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\logger\\sql_logging.py', reloading
+2025-02-08 01:26:02,032 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 01:26:02,719 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 01:26:02,730 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 01:26:55,280 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:26:55] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 01:26:55,298 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:26:55] "GET / HTTP/1.1" 200 -
+2025-02-08 01:26:56,515 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:26:56] "GET /login HTTP/1.1" 200 -
+2025-02-08 01:26:58,461 - app.dal.admin_dao - INFO - SELECT * FROM admins WHERE username = %s
+2025-02-08 01:26:58,470 - app.logger.app_logging - WARNING - Failed login attempt for username: adminxw
+2025-02-08 01:26:58,472 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:26:58] "POST /login HTTP/1.1" 200 -
+2025-02-08 01:27:29,015 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\admin_dao.py', reloading
+2025-02-08 01:27:29,077 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 01:27:29,651 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 01:27:29,660 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 01:27:50,005 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\admin_dao.py', reloading
+2025-02-08 01:27:50,081 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 01:27:50,609 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 01:27:50,623 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 01:27:52,675 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\admin_dao.py', reloading
+2025-02-08 01:27:52,729 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 01:27:53,355 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 01:27:53,364 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 01:28:10,626 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\admin_dao.py', reloading
+2025-02-08 01:28:10,672 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 01:28:11,240 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 01:28:11,251 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 01:28:21,812 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 01:28:21,821 - sql - INFO - Found admin record for username: admin
+2025-02-08 01:28:21,825 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 01:28:21,826 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:21] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 01:28:21,837 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:21] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 01:28:24,999 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-08 01:28:25,001 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:25] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 01:28:25,013 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:25] "GET / HTTP/1.1" 200 -
+2025-02-08 01:28:25,891 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:25] "GET /login HTTP/1.1" 200 -
+2025-02-08 01:28:28,270 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: adminxw
+2025-02-08 01:28:28,278 - sql - WARNING - No admin record found for username: adminxw
+2025-02-08 01:28:28,281 - app.logger.app_logging - WARNING - Failed login attempt for username: adminxw
+2025-02-08 01:28:28,283 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:28] "POST /login HTTP/1.1" 200 -
+2025-02-08 01:28:29,742 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 01:28:29,749 - sql - INFO - Found admin record for username: admin
+2025-02-08 01:28:29,751 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 01:28:29,752 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:29] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 01:28:29,758 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:29] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 01:28:32,562 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-08 01:28:32,564 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:32] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 01:28:32,572 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:32] "GET / HTTP/1.1" 200 -

@@ -1,0 +1,9 @@
+2025-02-08 01:23:12,442 - SQL - INFO - Query: This is a test message
+2025-02-08 01:23:12,443 - SQL - ERROR - Query: This is an error message
+2025-02-08 01:23:12,443 - SQL - WARNING - Query: This is a warning message
+2025-02-08 01:28:21,812 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 01:28:21,821 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 01:28:28,270 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: adminxw
+2025-02-08 01:28:28,278 - SQL - WARNING - Query: No admin record found for username: adminxw
+2025-02-08 01:28:29,742 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 01:28:29,749 - SQL - INFO - Query: Found admin record for username: admin
