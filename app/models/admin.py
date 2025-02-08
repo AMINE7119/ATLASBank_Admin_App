@@ -1,4 +1,3 @@
-# app/models/admin.py
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -6,6 +5,7 @@ from datetime import datetime
 class Admin:
     id: int
     username: str
+    password: str
     email: str
     role: str
     is_active: bool

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to Admin Dashboard</h1>
+    {% if not session.get('admin_id') %}
+        <p>Please <a href="{{ url_for('auth.login') }}">login</a> to continue.</p>
+    {% else %}
+        <p>Welcome, Admin!</p>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+    {% endif %}
+</body>
+</html>

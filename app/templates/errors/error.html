@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ error.code }} - Error</title>
+</head>
+<body>
+    <h1>{{ error.code }} - {{ error.name }}</h1>
+    <p>{{ error.description }}</p>
+    <a href="{{ url_for('index') }}">Return to Home</a>
+</body>
+</html>

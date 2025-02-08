@@ -3,12 +3,16 @@ import os
 from datetime import datetime
 
 def setup_logging():
-    # Create logs directory if it doesn't exist
-    if not os.path.exists('logs'):
-        os.makedirs('logs')
+    # Resolve the log directory path
+    log_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'logs')
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
     
-    # Create log filename with date
-    log_filename = f'logs/bank_app.log'
+    log_filename = os.path.join(log_dir, 'bank_app.log')
+    
+    # Clear existing handlers to avoid duplicate logging
+    for handler in logging.root.handlers[:]:
+        logging.root.removeHandler(handler)
     
     logging.basicConfig(
         level=logging.INFO,
@@ -19,6 +23,5 @@ def setup_logging():
         ]
     )
 
-if __name__ == "__main__":
-    setup_logging()
-    logging.info("Logging setup successful")
+    # Return logger for the calling module
+    return logging.getLogger(__name__)
