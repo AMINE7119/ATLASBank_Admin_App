@@ -1,11 +1,44 @@
+# templates/errors/error.html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ error.code }} - Error</title>
+    <title>{{ error.code }} - {{ error.name }}</title>
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 50px;
+            font-family: Arial, sans-serif;
+        }
+        .error-code {
+            font-size: 72px;
+            color: #e74c3c;
+            margin: 0;
+        }
+        .error-message {
+            font-size: 24px;
+            color: #555;
+            margin: 20px 0;
+        }
+        .error-description {
+            color: #777;
+            margin: 20px 0;
+        }
+        .home-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ error.code }} - {{ error.name }}</h1>
-    <p>{{ error.description }}</p>
-    <a href="{{ url_for('index') }}">Return to Home</a>
+    <div class="error-container">
+        <h1 class="error-code">{{ error.code }}</h1>
+        <h2 class="error-message">{{ error.name }}</h2>
+        <p class="error-description">{{ error.description }}</p>
+        <a href="{{ url_for('index') }}" class="home-link">Return to Home</a>
+    </div>
 </body>
 </html>

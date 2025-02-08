@@ -1,0 +1,18 @@
+# templates/errors/403.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>403 - Forbidden</title>
+    <style>
+        /* Same styles as error.html */
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-code">403</h1>
+        <h2 class="error-message">Access Denied</h2>
+        <p class="error-description">You don't have permission to access this resource.</p>
+        <a href="{{ url_for('index') }}" class="home-link">Return to Home</a>
+    </div>
+</body>
+</html>

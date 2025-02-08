@@ -1,11 +1,18 @@
+# templates/errors/404.html
 <!DOCTYPE html>
 <html>
 <head>
     <title>404 - Not Found</title>
+    <style>
+        /* Same styles as error.html */
+    </style>
 </head>
 <body>
-    <h1>404 - Page Not Found</h1>
-    <p>The requested path '{{ path }}' could not be found.</p>
-    <a href="{{ url_for('index') }}">Return to Home</a>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-message">Page Not Found</h2>
+        <p class="error-description">The requested path '{{ path }}' could not be found.</p>
+        <a href="{{ url_for('index') }}" class="home-link">Return to Home</a>
+    </div>
 </body>
 </html>

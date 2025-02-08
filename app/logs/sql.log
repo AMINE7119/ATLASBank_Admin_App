@@ -7,3 +7,116 @@
 2025-02-08 01:28:28,278 - SQL - WARNING - Query: No admin record found for username: adminxw
 2025-02-08 01:28:29,742 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
 2025-02-08 01:28:29,749 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:08:13,352 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:08:13,433 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:09:54,254 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: adminrg
+2025-02-08 18:09:54,263 - SQL - WARNING - Query: No admin record found for username: adminrg
+2025-02-08 18:09:56,212 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:09:56,219 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:10:55,321 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:10:55,325 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:11:32,566 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:11:32,572 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:11:54,186 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:11:54,193 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:12:40,016 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:12:40,023 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:15:57,224 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:15:57,232 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:17:51,146 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:17:51,151 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:26:53,987 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:26:53,992 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:27:24,787 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:27:24,796 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:46:06,600 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:46:06,647 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:46:09,688 - SQL - INFO - Query: Executing query: 
+                SELECT a.account_number, a.user_id, a.account_type, 
+                       a.balance, a.is_active, a.interest_rate, a.created_at,
+                       u.username, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.account_number
+            
+2025-02-08 18:47:35,803 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:47:35,809 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:47:38,606 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, 
+                       a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-08 18:49:21,222 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, 
+                       a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-08 18:49:24,023 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, 
+                       a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-08 18:52:43,343 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:52:43,349 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:52:46,524 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-08 18:52:48,388 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-08 18:53:09,639 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-08 18:53:13,359 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-08 18:57:55,121 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 19260646235
+2025-02-08 18:58:27,155 - SQL - INFO - Query: Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:58:27,159 - SQL - INFO - Query: Found admin record for username: admin
+2025-02-08 18:58:31,878 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            

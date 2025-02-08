@@ -1,5 +1,6 @@
-import logging  
+import logging
 from flask import Blueprint, request, render_template, session, redirect, url_for
+from werkzeug.exceptions import Unauthorized, Forbidden
 from app.services.auth_service import authenticate_admin
 from app.logger.app_logging import setup_logging
 
@@ -9,8 +10,13 @@ auth_bp = Blueprint('auth', __name__)
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        if not username or not password:
+            logger.warning("Login attempt with missing credentials")
+            raise Unauthorized("Username and password are required")
+            
         admin = authenticate_admin(username, password)
         if admin:
             session['admin_id'] = admin.id
@@ -18,7 +24,8 @@ def login():
             return redirect(url_for('bank.menu'))
         else:
             logger.warning(f"Failed login attempt for username: {username}")
-            return render_template('auth/login.html', error='Invalid username or password')
+            raise Unauthorized("Invalid username or password")
+            
     return render_template('auth/login.html')
 
 @auth_bp.route('/logout')

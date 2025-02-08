@@ -1,0 +1,18 @@
+# templates/errors/401.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>401 - Unauthorized</title>
+    <style>
+        /* Same styles as error.html */
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-code">401</h1>
+        <h2 class="error-message">Authentication Required</h2>
+        <p class="error-description">Please log in to access this resource.</p>
+        <a href="{{ url_for('auth.login') }}" class="home-link">Login</a>
+    </div>
+</body>
+</html>

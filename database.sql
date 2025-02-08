@@ -62,3 +62,4 @@ CREATE INDEX idx_transactions_account ON transactions(account_id);
 CREATE INDEX idx_transactions_recipient ON transactions(recipient_account);
 CREATE INDEX idx_transactions_date ON transactions(date);
 ALTER TABLE users ADD COLUMN job VARCHAR(100);
+ALTER TABLE accounts ADD COLUMN interest_rate DECIMAL(5,2);

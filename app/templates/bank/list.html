@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Accounts - List</title>
+    <style>
+        .account-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .account-list th, .account-list td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .account-list th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        .account-list tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .account-list tr:hover {
+            background-color: #f0f0f0;
+        }
+        .status-active {
+            color: green;
+            font-weight: bold;
+        }
+        .status-inactive {
+            color: red;
+            font-weight: bold;
+        }
+        .action-links a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        .action-links a:hover {
+            text-decoration: underline;
+        }
+        .nav-menu {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+        .nav-menu a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-menu">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('bank.menu') }}">Menu</a>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+    </div>
+
+    <h1>Bank Accounts</h1>
+
+    {% if accounts %}
+        <table class="account-list">
+            <thead>
+                <tr>
+                    <th>Account Number</th>
+                    <th>Account Holder</th>
+                    <th>Type</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                    <th>Interest Rate</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for account in accounts %}
+                    <tr>
+                        <td>{{ account.account_number }}</td>
+                        <td>
+                            {{ account.holder_name }}<br>
+                            <small>{{ account.holder_email }}</small>
+                        </td>
+                        <td>{{ account.account_type }}</td>
+                        <td>${{ "%.2f"|format(account.balance) }}</td>
+                        <td class="status-{{ 'active' if account.is_active else 'inactive' }}">
+                            {{ 'Active' if account.is_active else 'Inactive' }}
+                        </td>
+                        <td>{{ "%.2f"|format(account.interest_rate) }}%</td>
+                        <td>{{ account.created_at.strftime('%Y-%m-%d') }}</td>
+                        <td class="action-links">
+                            <a href="{{ url_for('bank.view', account_number=account.account_number) }}">View</a>
+                            <a href="{{ url_for('bank.edit', account_number=account.account_number) }}">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No accounts found.</p>
+    {% endif %}
+</body>
+</html>

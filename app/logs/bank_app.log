@@ -128,3 +128,429 @@
 2025-02-08 01:28:32,562 - app.logger.app_logging - INFO - Admin ID 1 logged out
 2025-02-08 01:28:32,564 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:32] "[32mGET /logout HTTP/1.1[0m" 302 -
 2025-02-08 01:28:32,572 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:28:32] "GET / HTTP/1.1" 200 -
+2025-02-08 01:33:19,560 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 01:33:19] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:05:40,350 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-08 18:05:40,351 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-08 18:05:40,363 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:05:40,795 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:05:40,830 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:05:43,116 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:05:43] "GET / HTTP/1.1" 200 -
+2025-02-08 18:05:43,416 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:05:43] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-08 18:08:11,142 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:08:11] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:08:13,352 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:08:13,433 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:08:13,435 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:08:13,438 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:08:13] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:08:13,447 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:08:13] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:08:16,997 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-08 18:08:16,999 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:08:16] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 18:08:17,037 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:08:17] "GET / HTTP/1.1" 200 -
+2025-02-08 18:08:19,289 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:08:19] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:09:47,194 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\errors\\error.py', reloading
+2025-02-08 18:09:47,267 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:09:47,706 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:09:47,729 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:09:54,254 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: adminrg
+2025-02-08 18:09:54,263 - sql - WARNING - No admin record found for username: adminrg
+2025-02-08 18:09:54,264 - app.logger.app_logging - WARNING - Failed login attempt for username: adminrg
+2025-02-08 18:09:54,271 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:09:54] "POST /login HTTP/1.1" 200 -
+2025-02-08 18:09:56,212 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:09:56,219 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:09:56,221 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:09:56,222 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:09:56] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:09:56,230 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:09:56] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:09:59,164 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-08 18:09:59,167 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:09:59] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 18:09:59,174 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:09:59] "GET / HTTP/1.1" 200 -
+2025-02-08 18:10:00,497 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:10:00] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:10:55,321 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:10:55,325 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:10:55,326 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:10:55,326 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:10:55] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:10:55,370 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:10:55] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-08 18:10:55,587 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:10:55] "GET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-02-08 18:10:55,596 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:10:55] "GET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-02-08 18:10:55,664 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:10:55] "GET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-02-08 18:10:55,682 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:10:55] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:11:05,198 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:05] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:11:32,566 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:11:32,572 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:11:32,573 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:11:32,575 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:32] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:11:32,590 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:32] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-08 18:11:32,695 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:32] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:11:32,700 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:32] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:11:32,766 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:32] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:11:51,376 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:51] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-08 18:11:51,421 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:51] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:11:51,433 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:51] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:11:51,512 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:51] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:11:51,533 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:51] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:11:54,186 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:11:54,193 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:11:54,194 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:11:54,195 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:54] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:11:54,206 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:54] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-08 18:11:54,325 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:54] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:11:54,325 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:54] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:11:54,368 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:11:54] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:12:36,776 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:36] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-08 18:12:36,931 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:36] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:12:36,935 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:36] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:12:36,953 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:36] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:12:36,969 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:36] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:12:38,270 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:38] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:12:40,016 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:12:40,023 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:12:40,024 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:12:40,025 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:40] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:12:40,035 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:40] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-08 18:12:40,073 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:40] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:12:40,074 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:40] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:12:40,238 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:12:40] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:13:07,157 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-08 18:13:07,219 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:13:07,984 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:13:07,993 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:13:09,278 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:09] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-08 18:13:09,377 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:09] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:13:09,403 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:09] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:13:09,430 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:09] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:13:09,455 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:09] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:13:24,036 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:24] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:13:25,485 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:25] "[35m[1mGET /bank/list HTTP/1.1[0m" 500 -
+2025-02-08 18:13:25,687 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:25] "GET /bank/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-02-08 18:13:25,688 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:25] "GET /bank/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-02-08 18:13:25,792 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:25] "GET /bank/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-02-08 18:13:25,805 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:13:25] "[36mGET /bank/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:14:57,749 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-08 18:14:57,816 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:14:58,382 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:14:58,400 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:15:55,847 - app.logger.app_logging - WARNING - Unauthorized access attempt to menu
+2025-02-08 18:15:55,848 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:15:55] "[32mGET /bank/menu HTTP/1.1[0m" 302 -
+2025-02-08 18:15:55,895 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:15:55] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:15:57,224 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:15:57,232 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:15:57,234 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:15:57,235 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:15:57] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:15:57,241 - app.logger.app_logging - INFO - Admin 1 accessed menu
+2025-02-08 18:15:57,245 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:15:57] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:16:02,857 - app.logger.app_logging - INFO - Admin 1 accessed account list
+2025-02-08 18:16:02,867 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:16:02] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 18:16:06,535 - app.logger.app_logging - INFO - Admin 1 accessed account list
+2025-02-08 18:16:06,537 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:16:06] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 18:16:08,868 - app.logger.app_logging - INFO - Admin 1 accessed menu
+2025-02-08 18:16:08,869 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:16:08] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:16:09,851 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:16:09] "GET / HTTP/1.1" 200 -
+2025-02-08 18:17:45,779 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:17:45] "GET / HTTP/1.1" 200 -
+2025-02-08 18:17:48,548 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-08 18:17:48,550 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:17:48] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 18:17:48,559 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:17:48] "GET / HTTP/1.1" 200 -
+2025-02-08 18:17:49,714 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:17:49] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:17:51,146 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:17:51,151 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:17:51,153 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:17:51,154 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:17:51] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:17:51,159 - app.logger.app_logging - INFO - Admin 1 accessed menu
+2025-02-08 18:17:51,174 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:17:51] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-08 18:17:51,369 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:17:51] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:17:51,370 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:17:51] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:17:51,566 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:17:51] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:17:51,582 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:17:51] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:20:14,444 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\errors\\error.py', reloading
+2025-02-08 18:20:14,481 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:20:14,951 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:20:14,965 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:22:58,073 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\errors\\error.py', reloading
+2025-02-08 18:22:58,124 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:22:58,613 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:22:58,625 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:24:29,227 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\auth_controller.py', reloading
+2025-02-08 18:24:29,279 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:24:29,763 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:24:29,777 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:24:44,878 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-08 18:24:44,919 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:24:45,274 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:24:45,284 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:26:50,192 - app.logger.app_logging - WARNING - Unauthorized access attempt to menu
+2025-02-08 18:26:50,201 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:50] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-08 18:26:50,377 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:50] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:26:50,378 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:50] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:26:50,460 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:50] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:26:50,479 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:50] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:26:52,289 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:52] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:26:53,987 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:26:53,992 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:26:53,994 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:26:53,995 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:53] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:26:54,002 - app.logger.app_logging - INFO - Admin 1 accessed menu
+2025-02-08 18:26:54,019 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:54] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-08 18:26:54,071 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:54] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:26:54,079 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:54] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:26:54,173 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:26:54] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:27:14,965 - app.logger.app_logging - INFO - Admin 1 accessed menu
+2025-02-08 18:27:14,975 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:14] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:27:16,360 - app.logger.app_logging - INFO - Admin 1 accessed account list
+2025-02-08 18:27:16,372 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:16] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 18:27:18,248 - app.logger.app_logging - INFO - Admin 1 accessed menu
+2025-02-08 18:27:18,250 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:18] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:27:19,162 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:19] "GET / HTTP/1.1" 200 -
+2025-02-08 18:27:21,829 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-08 18:27:21,831 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:21] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 18:27:21,837 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:21] "GET / HTTP/1.1" 200 -
+2025-02-08 18:27:23,248 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:23] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:27:24,787 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:27:24,796 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:27:24,798 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:27:24,799 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:24] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:27:24,805 - app.logger.app_logging - INFO - Admin 1 accessed menu
+2025-02-08 18:27:24,806 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:24] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:27:28,744 - app.logger.app_logging - INFO - Admin 1 accessed account list
+2025-02-08 18:27:28,746 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:28] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 18:27:43,064 - app.logger.app_logging - WARNING - Unauthorized access attempt to list
+2025-02-08 18:27:43,085 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:27:43] "[35m[1mGET /bank/list HTTP/1.1[0m" 500 -
+2025-02-08 18:28:05,019 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:05] "GET / HTTP/1.1" 200 -
+2025-02-08 18:28:08,204 - app.logger.app_logging - WARNING - 404 Error for path: /keeefds
+2025-02-08 18:28:08,208 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:08] "[33mGET /keeefds HTTP/1.1[0m" 404 -
+2025-02-08 18:28:31,609 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:31] "GET / HTTP/1.1" 200 -
+2025-02-08 18:28:34,248 - app.logger.app_logging - INFO - Admin 1 accessed account list
+2025-02-08 18:28:34,250 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:34] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 18:28:36,985 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-08 18:28:36,988 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:36] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 18:28:36,994 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:36] "GET / HTTP/1.1" 200 -
+2025-02-08 18:28:44,651 - app.logger.app_logging - WARNING - Unauthorized access attempt to list
+2025-02-08 18:28:44,660 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:44] "[35m[1mGET /bank/list HTTP/1.1[0m" 500 -
+2025-02-08 18:28:44,710 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:44] "[36mGET /bank/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:28:44,722 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:44] "[36mGET /bank/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:28:44,797 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:44] "[36mGET /bank/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:28:44,820 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:28:44] "[36mGET /bank/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:29:22,432 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-08 18:29:22,494 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:29:22,965 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:29:22,975 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:29:26,382 - app.logger.app_logging - WARNING - Unauthorized access attempt to list
+2025-02-08 18:29:26,385 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/list
+2025-02-08 18:29:26,394 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:29:26] "[31m[1mGET /bank/list HTTP/1.1[0m" 401 -
+2025-02-08 18:31:32,599 - app.logger.app_logging - WARNING - 404 Error for path: /bank/list/BDS
+2025-02-08 18:31:32,603 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:31:32] "[33mGET /bank/list/BDS HTTP/1.1[0m" 404 -
+2025-02-08 18:31:42,233 - app.logger.app_logging - WARNING - 404 Error for path: /bank/gsd
+2025-02-08 18:31:42,235 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:31:42] "[33mGET /bank/gsd HTTP/1.1[0m" 404 -
+2025-02-08 18:31:45,144 - app.logger.app_logging - WARNING - 404 Error for path: /bank
+2025-02-08 18:31:45,147 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:31:45] "[33mGET /bank HTTP/1.1[0m" 404 -
+2025-02-08 18:39:36,633 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\account_dao.py', reloading
+2025-02-08 18:39:36,686 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:39:37,351 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:39:37,367 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:40:06,787 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-08 18:40:06,838 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:40:07,316 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:40:07,328 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:42:27,020 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_controller.py', reloading
+2025-02-08 18:42:27,068 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:42:27,529 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:42:27,542 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:42:38,665 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-08 18:42:38,717 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:46:01,780 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-08 18:46:01,782 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-08 18:46:01,789 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:46:02,277 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:46:02,287 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:46:03,777 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:46:03] "GET / HTTP/1.1" 200 -
+2025-02-08 18:46:05,716 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:46:05] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:46:06,600 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:46:06,647 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:46:06,649 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:46:06,650 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:46:06] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:46:06,660 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:46:06] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:46:09,637 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-08 18:46:09,688 - sql - INFO - Executing query: 
+                SELECT a.account_number, a.user_id, a.account_type, 
+                       a.balance, a.is_active, a.interest_rate, a.created_at,
+                       u.username, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.account_number
+            
+2025-02-08 18:46:09,752 - app.logger.app_logging - ERROR - Error fetching accounts: column a.account_number does not exist
+LINE 2:                 SELECT a.account_number, a.user_id, a.accoun...
+                               ^
+
+2025-02-08 18:46:09,764 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:46:09] "[35m[1mGET /bank/list HTTP/1.1[0m" 500 -
+2025-02-08 18:46:09,887 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:46:09] "[36mGET /bank/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:46:09,904 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:46:09] "[36mGET /bank/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:46:09,959 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:46:09] "[36mGET /bank/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:46:10,038 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:46:10] "[36mGET /bank/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:47:13,917 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\account_dao.py', reloading
+2025-02-08 18:47:13,962 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:47:14,404 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:47:14,416 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:47:17,204 - app.logger.app_logging - WARNING - Unauthorized access attempt to list
+2025-02-08 18:47:17,205 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/list
+2025-02-08 18:47:17,212 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:47:17] "[31m[1mGET /bank/list HTTP/1.1[0m" 401 -
+2025-02-08 18:47:34,042 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:47:34] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:47:35,803 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:47:35,809 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:47:35,811 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:47:35,812 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:47:35] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:47:35,823 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:47:35] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:47:38,522 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-08 18:47:38,606 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, 
+                       a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-08 18:47:38,659 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-08 18:47:38,692 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:47:38] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 18:49:21,173 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-08 18:49:21,222 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, 
+                       a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-08 18:49:21,248 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:49:21] "[35m[1mGET /bank/edit/1 HTTP/1.1[0m" 500 -
+2025-02-08 18:49:21,377 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:49:21] "GET /bank/edit/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-02-08 18:49:21,379 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:49:21] "GET /bank/edit/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-02-08 18:49:21,406 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:49:21] "GET /bank/edit/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-02-08 18:49:21,451 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:49:21] "[36mGET /bank/edit/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:49:23,977 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-08 18:49:24,023 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, 
+                       a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-08 18:49:24,043 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:49:24] "GET /bank/view/1 HTTP/1.1" 200 -
+2025-02-08 18:51:29,505 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\account_dao.py', reloading
+2025-02-08 18:51:29,562 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:51:30,136 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:51:30,149 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:51:49,078 - app.logger.app_logging - WARNING - Unauthorized access attempt to view
+2025-02-08 18:51:49,079 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/view/1
+2025-02-08 18:51:49,086 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:51:49] "[31m[1mGET /bank/view/1 HTTP/1.1[0m" 401 -
+2025-02-08 18:51:53,515 - app.logger.app_logging - WARNING - Unauthorized access attempt to view
+2025-02-08 18:51:53,516 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/view/2
+2025-02-08 18:51:53,517 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:51:53] "[31m[1mGET /bank/view/2 HTTP/1.1[0m" 401 -
+2025-02-08 18:52:32,789 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\account_dao.py', reloading
+2025-02-08 18:52:32,843 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 18:52:33,255 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 18:52:33,264 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 18:52:36,810 - app.logger.app_logging - WARNING - Unauthorized access attempt to list
+2025-02-08 18:52:36,811 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/list
+2025-02-08 18:52:36,820 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:52:36] "[31m[1mGET /bank/list HTTP/1.1[0m" 401 -
+2025-02-08 18:52:39,005 - app.logger.app_logging - WARNING - Unauthorized access attempt to list
+2025-02-08 18:52:39,006 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/list
+2025-02-08 18:52:39,007 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:52:39] "[31m[1mGET /bank/list HTTP/1.1[0m" 401 -
+2025-02-08 18:52:42,123 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:52:42] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:52:43,343 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:52:43,349 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:52:43,350 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:52:43,352 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:52:43] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:52:43,364 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:52:43] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:52:46,468 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-08 18:52:46,524 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-08 18:52:46,542 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-08 18:52:46,573 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:52:46] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 18:52:48,340 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-08 18:52:48,388 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-08 18:52:48,406 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:52:48] "GET /bank/view/1 HTTP/1.1" 200 -
+2025-02-08 18:53:09,591 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-08 18:53:09,639 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-08 18:53:09,654 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:53:09] "GET /bank/view/1 HTTP/1.1" 200 -
+2025-02-08 18:53:13,300 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-08 18:53:13,359 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-08 18:53:13,392 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:53:13] "[35m[1mGET /bank/edit/1 HTTP/1.1[0m" 500 -
+2025-02-08 18:53:13,526 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:53:13] "[36mGET /bank/edit/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-08 18:53:13,528 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:53:13] "[36mGET /bank/edit/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-08 18:53:13,644 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:53:13] "[36mGET /bank/edit/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 18:57:55,066 - app.logger.app_logging - INFO - Fetching account 19260646235
+2025-02-08 18:57:55,121 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 19260646235
+2025-02-08 18:57:55,132 - app.logger.app_logging - WARNING - Account 19260646235 not found
+2025-02-08 18:57:55,133 - app.logger.app_logging - ERROR - Error fetching account 19260646235: 404 Not Found: Account 19260646235 not found
+2025-02-08 18:57:55,134 - app.logger.app_logging - WARNING - 404 Error for path: /bank/view/19260646235
+2025-02-08 18:57:55,138 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:57:55] "[33mGET /bank/view/19260646235 HTTP/1.1[0m" 404 -
+2025-02-08 18:58:18,615 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:58:18] "GET / HTTP/1.1" 200 -
+2025-02-08 18:58:20,747 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-08 18:58:20,749 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:58:20] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 18:58:20,759 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:58:20] "GET / HTTP/1.1" 200 -
+2025-02-08 18:58:24,917 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:58:24] "GET /login HTTP/1.1" 200 -
+2025-02-08 18:58:27,155 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 18:58:27,159 - sql - INFO - Found admin record for username: admin
+2025-02-08 18:58:27,161 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 18:58:27,163 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:58:27] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 18:58:27,171 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:58:27] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 18:58:31,801 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-08 18:58:31,878 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-08 18:58:31,899 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-08 18:58:31,922 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 18:58:31] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 19:01:57,334 - app.logger.app_logging - INFO - Fetching account 680
+2025-02-08 19:01:57,386 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 680
+2025-02-08 19:01:57,407 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 19:01:57] "[35m[1mGET /bank/edit/680 HTTP/1.1[0m" 500 -
+2025-02-08 19:01:57,472 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 19:01:57] "GET /bank/edit/680?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-02-08 19:01:57,498 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 19:01:57] "GET /bank/edit/680?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-02-08 19:01:57,771 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 19:01:57] "GET /bank/edit/680?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-02-08 19:01:57,800 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 19:01:57] "[36mGET /bank/edit/680?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
