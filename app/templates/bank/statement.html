@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Statement - Account #{{ statement.account.account_number }}</title>
+    <style>
+        /* ... [styles précédents] ... */
+        .statement-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .account-summary {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .transaction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .transaction-table th, 
+        .transaction-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .transaction-table th {
+            background: #f5f5f5;
+        }
+        .amount-positive {
+            color: green;
+        }
+        .amount-negative {
+            color: red;
+        }
+        .statement-summary {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        .date-filter {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="statement-container">
+        <h1>Bank Statement</h1>
+        
+        <div class="account-summary">
+            <h2>Account Information</h2>
+            <p><strong>Account Number:</strong> {{ statement.account.account_number }}</p>
+            <p><strong>Account Holder:</strong> {{ statement.account.holder_name }}</p>
+            <p><strong>Account Type:</strong> {{ statement.account.account_type }}</p>
+            <p><strong>Statement Period:</strong> {{ statement.start_date.strftime('%Y-%m-%d') }} to {{ statement.end_date.strftime('%Y-%m-%d') }}</p>
+        </div>
+
+        <div class="date-filter">
+            <form method="POST">
+                <label for="start_date">Start Date:</label>
+                <input type="date" name="start_date" value="{{ request.form.get('start_date', '') }}">
+                
+                <label for="end_date">End Date:</label>
+                <input type="date" name="end_date" value="{{ request.form.get('end_date', '') }}">
+                
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <div class="statement-summary">
+            <h3>Summary</h3>
+            <p><strong>Opening Balance:</strong> ${{ "%.2f"|format(statement.opening_balance) }}</p>
+            <p><strong>Total Deposits:</strong> ${{ "%.2f"|format(statement.total_deposits) }}</p>
+            <p><strong>Total Withdrawals:</strong> ${{ "%.2f"|format(statement.total_withdrawals) }}</p>
+            <p><strong>Closing Balance:</strong> ${{ "%.2f"|format(statement.closing_balance) }}</p>
+        </div>
+
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in statement.transactions %}
+                    <tr>
+                        <td>{{ transaction.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td>{{ transaction.description or transaction.type }}</td>
+                        <td>{{ transaction.type }}</td>
+                        <td class="{{ 'amount-positive' if transaction.transaction_amount > 0 else 'amount-negative' }}">
+                            {{ "%.2f"|format(transaction.amount) }}
+                        </td>
+                        <td>${{ "%.2f"|format(transaction.running_balance) }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

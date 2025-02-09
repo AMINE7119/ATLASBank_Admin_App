@@ -1,21 +1,33 @@
-<!-- templates/bank/menu.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Bank Management - Menu</title>
     <style>
-        .nav-menu {
-            margin: 20px 0;
-            padding: 10px;
-            background-color: #f5f5f5;
+        /* ... [styles précédents] ... */
+
+        .transaction-card {
+            border-color: #0066cc;
         }
-        .nav-menu a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #333;
+
+        .transaction-card a {
+            background-color: #0066cc;
         }
-        .nav-menu a:hover {
-            color: #007bff;
+
+        .transaction-card a:hover {
+            background-color: #0052a3;
+        }
+
+        /* Style spécifique pour la carte de relevé bancaire */
+        .statement-card {
+            border-color: #6c5ce7;
+        }
+
+        .statement-card a {
+            background-color: #6c5ce7;
+        }
+
+        .statement-card a:hover {
+            background-color: #5849c2;
         }
     </style>
 </head>
@@ -27,18 +39,59 @@
         <a href="{{ url_for('auth.logout') }}">Logout</a>
     </div>
     
-    <h1>Bank Management Menu</h1>
-    
-    {% if session.get('admin_id') %}
-        <div class="menu-options">
-            <h2>Available Options:</h2>
-            <ul>
-                <li><a href="{{ url_for('bank.list') }}">View Account List</a></li>
-                <!-- Add more menu options here -->
-            </ul>
-        </div>
-    {% else %}
-        <p>Please <a href="{{ url_for('auth.login') }}">login</a> to access the menu.</p>
-    {% endif %}
+    <div class="menu-container">
+        <h1>Bank Management Menu</h1>
+        
+        {% if session.get('admin_id') %}
+            <div class="menu-grid">
+                <!-- Account Management Section -->
+                <div class="menu-card create-account-card">
+                    <h3>Create New Account</h3>
+                    <p>Create a new bank account with associated user profile</p>
+                    <a href="{{ url_for('bank.create') }}">Create Account</a>
+                </div>
+
+                <div class="menu-card">
+                    <h3>View Accounts</h3>
+                    <p>View and manage all existing bank accounts</p>
+                    <a href="{{ url_for('bank.list') }}">View Accounts</a>
+                </div>  
+
+                <div class="menu-card">
+                    <h3>Search Account</h3>
+                    <p>Search for accounts by name or number</p>
+                    <a href="{{ url_for('bank.search') }}">Search Account</a>
+                </div>
+
+                <!-- Transaction Section -->
+                <div class="menu-card transaction-card">
+                    <h3>Deposit</h3>
+                    <p>Make a deposit to an existing account</p>
+                    <a href="{{ url_for('bank.search') }}?action=deposit">Make Deposit</a>
+                </div>
+
+                <div class="menu-card transaction-card">
+                    <h3>Withdraw</h3>
+                    <p>Process a withdrawal from an account</p>
+                    <a href="{{ url_for('bank.search') }}?action=withdraw">Make Withdrawal</a>
+                </div>
+
+                <div class="menu-card transaction-card">
+                    <h3>Transfer</h3>
+                    <p>Transfer money between accounts</p>
+                    <a href="{{ url_for('bank.search') }}?action=transfer">Make Transfer</a>
+                </div>
+
+                <!-- Bank Statement Section -->
+                <div class="menu-card statement-card">
+                    <h3>Bank Statement</h3>
+                    <p>View account transactions and generate statements</p>
+                    <a href="{{ url_for('bank.search') }}?action=statement">View Statement</a>
+                </div>
+            </div>
+        {% else %}
+            <p>Please <a href="{{ url_for('auth.login') }}">login</a> to access the menu.</p>
+        {% endif %}
+    </div>
 </body>
 </html>

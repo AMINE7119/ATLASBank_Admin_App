@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Withdraw - Account #{{ account.account_number }}</title>
+    <!-- Mêmes styles que deposit.html -->
+</head>
+<body>
+    <div class="transaction-form">
+        <h2>Withdraw from Account #{{ account.account_number }}</h2>
+        
+        <div class="account-info">
+            <p><strong>Account Holder:</strong> {{ account.holder_name }}</p>
+            <p><strong>Available Balance:</strong> ${{ "%.2f"|format(account.balance) }}</p>
+        </div>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="amount">Amount ($)</label>
+                <input type="number" 
+                       name="amount" 
+                       step="0.01" 
+                       min="0.01"
+                       max="{{ account.balance }}"
+                       required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Process Withdrawal</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,31 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Details</title>
     <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation styles */
+        .nav-menu {
+            background-color: #fff;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #0066cc;
+            margin-right: 1.5rem;
+            padding: 0.5rem 0;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover {
+            color: #004499;
+        }
+
+        /* Account details container */
         .account-details {
             max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        /* Detail groups */
         .detail-group {
-            margin-bottom: 15px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
         }
+
+        .detail-group:last-child {
+            border-bottom: none;
+        }
+
         .detail-label {
-            font-weight: bold;
-            color: #555;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 0.5rem;
         }
-        .nav-menu {
-            margin: 20px 0;
-            padding: 10px;
-            background-color: #f5f5f5;
+
+        /* Status indicators */
+        .status-active {
+            color: #28a745;
+            font-weight: 500;
         }
-        .nav-menu a {
-            margin-right: 15px;
+
+        .status-inactive {
+            color: #dc3545;
+            font-weight: 500;
+        }
+
+        /* Action links */
+        .action-links {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .action-links a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #0066cc;
+            color: #fff;
             text-decoration: none;
-            color: #333;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .action-links a:hover {
+            background-color: #004499;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .account-details {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                padding: 0.5rem;
+                text-align: center;
+            }
+
+            .nav-menu a {
+                display: inline-block;
+                margin: 0.25rem 0.5rem;
+            }
         }
     </style>
 </head>
@@ -41,46 +136,56 @@
         <h1>Account Details</h1>
         
         <div class="detail-group">
-            <div class="detail-label">Account Number:</div>
+            <div class="detail-label">Account Number</div>
             <div>{{ account.account_number }}</div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Account Holder:</div>
+            <div class="detail-label">Account Holder</div>
             <div>{{ account.holder_name }}</div>
             <div>{{ account.holder_email }}</div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Account Type:</div>
+            <div class="detail-label">Account Type</div>
             <div>{{ account.account_type }}</div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Balance:</div>
+            <div class="detail-label">Balance</div>
             <div>${{ "%.2f"|format(account.balance) }}</div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Status:</div>
+            <div class="detail-label">Status</div>
             <div class="status-{{ 'active' if account.is_active else 'inactive' }}">
                 {{ 'Active' if account.is_active else 'Inactive' }}
             </div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Interest Rate:</div>
+            <div class="detail-label">Interest Rate</div>
             <div>{{ "%.2f"|format(account.interest_rate) }}%</div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Created At:</div>
+            <div class="detail-label">Created At</div>
             <div>{{ account.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</div>
         </div>
 
         <div class="action-links">
             <a href="{{ url_for('bank.edit', account_number=account.account_number) }}">Edit Account</a>
         </div>
+        <!-- Dans la section action-links de view.html -->
+<div class="action-links">
+    <a href="{{ url_for('bank.deposit', account_number=account.account_number) }}" class="action-btn deposit">Deposit</a>
+    <a href="{{ url_for('bank.withdraw', account_number=account.account_number) }}" class="action-btn withdraw">Withdraw</a>
+    <a href="{{ url_for('bank.transfer', account_number=account.account_number) }}" class="action-btn transfer">Transfer</a>
+    <a href="{{ url_for('bank.edit', account_number=account.account_number) }}" class="action-btn edit">Edit Account</a>
+    
+    <a href="{{ url_for('bank.statement', account_number=account.account_number) }}" class="action-btn">View Statement</a>
+    
+</div>
     </div>
 </body>
 </html>

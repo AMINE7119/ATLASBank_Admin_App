@@ -12,8 +12,8 @@ def setup_sql_logging():
     
     log_filename = os.path.join(log_dir, 'sql.log')
     
-    # Get logger with specific name 'sql'
-    sql_logger = logging.getLogger('sql')
+    # Get logger with specific name 'sql_logger'
+    sql_logger = logging.getLogger('sql_logger')
     sql_logger.setLevel(logging.INFO)
     
     # Create formatter
@@ -35,3 +35,6 @@ def setup_sql_logging():
     sql_logger.addHandler(stream_handler)
     
     return sql_logger
+
+# Ensure sql_logger is defined
+sql_logger = setup_sql_logging()

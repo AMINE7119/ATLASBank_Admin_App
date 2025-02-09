@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transfer - Account #{{ account.account_number }}</title>
+    <!-- Mêmes styles de base que les autres templates -->
+</head>
+<body>
+    <div class="transaction-form">
+        <h2>Transfer from Account #{{ account.account_number }}</h2>
+        
+        <div class="account-info">
+            <p><strong>From Account:</strong> #{{ account.account_number }} ({{ account.holder_name }})</p>
+            <p><strong>Available Balance:</strong> ${{ "%.2f"|format(account.balance) }}</p>
+        </div>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="to_account">To Account Number</label>
+                <input type="number" 
+                       name="to_account" 
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount ($)</label>
+                <input type="number" 
+                       name="amount" 
+                       step="0.01" 
+                       min="0.01"
+                       max="{{ account.balance }}"
+                       required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Process Transfer</button>
+        </form>
+    </div>
+</body>
+</html>

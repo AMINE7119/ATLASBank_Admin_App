@@ -554,3 +554,1529 @@ LINE 2:                 SELECT a.account_number, a.user_id, a.accoun...
 2025-02-08 19:01:57,498 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 19:01:57] "GET /bank/edit/680?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
 2025-02-08 19:01:57,771 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 19:01:57] "GET /bank/edit/680?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
 2025-02-08 19:01:57,800 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 19:01:57] "[36mGET /bank/edit/680?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-08 20:19:25,116 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-08 20:19:25,118 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-08 20:19:25,122 - werkzeug - INFO -  * Restarting with stat
+2025-02-08 20:19:25,499 - werkzeug - WARNING -  * Debugger is active!
+2025-02-08 20:19:25,508 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-08 20:19:40,882 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:19:40] "GET / HTTP/1.1" 200 -
+2025-02-08 20:19:43,188 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:19:43] "GET /login HTTP/1.1" 200 -
+2025-02-08 20:19:44,521 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-08 20:19:44,527 - sql - INFO - Found admin record for username: admin
+2025-02-08 20:19:44,528 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-08 20:19:44,529 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:19:44] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-08 20:19:44,540 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:19:44] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 20:19:47,459 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:19:47] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 20:19:57,360 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-08 20:19:57,410 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-08 20:19:57,426 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-08 20:19:57,476 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:19:57] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 20:21:47,944 - app.logger.app_logging - INFO - Fetching account 5
+2025-02-08 20:21:47,974 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 5
+2025-02-08 20:21:47,984 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:21:47] "GET /bank/view/5 HTTP/1.1" 200 -
+2025-02-08 20:22:04,132 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-08 20:22:04,206 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-08 20:22:04,226 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-08 20:22:04,255 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:22:04] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 20:22:05,519 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:22:05] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 20:22:06,308 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:22:06] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-08 20:22:07,490 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-08 20:22:07,546 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-08 20:22:07,568 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-08 20:22:07,591 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:22:07] "GET /bank/list HTTP/1.1" 200 -
+2025-02-08 20:22:09,716 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:22:09] "GET / HTTP/1.1" 200 -
+2025-02-08 20:22:11,571 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-08 20:22:11,572 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:22:11] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-08 20:22:11,580 - werkzeug - INFO - 127.0.0.1 - - [08/Feb/2025 20:22:11] "GET / HTTP/1.1" 200 -
+2025-02-09 00:23:01,508 - app.logger.app_logging - WARNING - 404 Error for path: /bank/create-with-user
+2025-02-09 00:23:01,540 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:01] "[33mPOST /bank/create-with-user HTTP/1.1[0m" 404 -
+2025-02-09 00:23:02,899 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:02] "GET / HTTP/1.1" 200 -
+2025-02-09 00:23:04,213 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:04] "GET /login HTTP/1.1" 200 -
+2025-02-09 00:23:05,576 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 00:23:05,594 - sql - INFO - Found admin record for username: admin
+2025-02-09 00:23:05,596 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 00:23:05,597 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:05] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 00:23:05,608 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:05] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 00:23:10,401 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 00:23:10,496 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 00:23:10,523 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-09 00:23:10,547 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:10] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 00:23:14,790 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:14] "GET / HTTP/1.1" 200 -
+2025-02-09 00:23:16,705 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-09 00:23:16,707 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:16] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-09 00:23:16,731 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:16] "GET / HTTP/1.1" 200 -
+2025-02-09 00:23:18,254 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:18] "GET /login HTTP/1.1" 200 -
+2025-02-09 00:23:19,870 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 00:23:19,878 - sql - INFO - Found admin record for username: admin
+2025-02-09 00:23:19,880 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 00:23:19,881 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:19] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 00:23:19,890 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:19] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 00:23:22,622 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 00:23:22,674 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 00:23:22,689 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-09 00:23:22,737 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:22] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 00:23:24,304 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-09 00:23:24,382 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-09 00:23:24,397 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:24] "GET /bank/view/1 HTTP/1.1" 200 -
+2025-02-09 00:23:27,284 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-09 00:23:27,341 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-09 00:23:27,373 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:27] "[35m[1mGET /bank/edit/1 HTTP/1.1[0m" 500 -
+2025-02-09 00:23:27,561 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:27] "[36mGET /bank/edit/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:23:27,587 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:27] "[36mGET /bank/edit/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-09 00:23:27,631 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:23:27] "[36mGET /bank/edit/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:31:54,566 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:31:54] "GET / HTTP/1.1" 200 -
+2025-02-09 00:38:57,815 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\user_dao.py', reloading
+2025-02-09 00:38:57,893 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:38:58,731 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:38:58,746 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:39:23,063 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 00:39:23,142 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:39:23,842 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:39:23,855 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:40:48,961 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 00:40:49,013 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:40:49,666 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:40:49,678 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:41:50,313 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:41:50] "GET / HTTP/1.1" 200 -
+2025-02-09 00:41:51,414 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:41:51] "GET /login HTTP/1.1" 200 -
+2025-02-09 00:41:52,943 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 00:41:52,955 - sql - INFO - Found admin record for username: admin
+2025-02-09 00:41:52,981 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 00:41:52,983 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:41:52] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 00:41:52,993 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:41:52] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 00:42:00,311 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 00:42:00,374 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 00:42:00,408 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-09 00:42:00,447 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:42:00] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 00:42:05,864 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 00:42:05,928 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 00:42:05,956 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-09 00:42:05,984 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:42:05] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 00:42:20,034 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 00:42:20,108 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 00:42:20,132 - app.logger.app_logging - INFO - Successfully fetched 720 accounts
+2025-02-09 00:42:20,164 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:42:20] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 00:42:58,883 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 00:42:58,884 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 00:42:58,894 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:42:59,507 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:42:59,524 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:43:07,035 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:07] "GET / HTTP/1.1" 200 -
+2025-02-09 00:43:10,197 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-09 00:43:10,199 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:10] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-09 00:43:10,223 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:10] "GET / HTTP/1.1" 200 -
+2025-02-09 00:43:12,673 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:12] "GET /login HTTP/1.1" 200 -
+2025-02-09 00:43:13,810 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 00:43:13,824 - sql - INFO - Found admin record for username: admin
+2025-02-09 00:43:13,829 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 00:43:13,840 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:13] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 00:43:13,861 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:13] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 00:43:16,558 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:16] "GET /bank/create HTTP/1.1" 200 -
+2025-02-09 00:43:50,230 - app.logger.app_logging - INFO - Creating new user and account
+2025-02-09 00:43:50,306 - sql - INFO - Executing query: 
+                INSERT INTO users (first_name, last_name, email, phone, address, 
+                                 date_of_birth, gender, job)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING id
+             with values: ('Amine', 'YANI', 'amine.yani667@gmail.com', '0625052616', 'N68 ETG 1 LOT KAMILIA 1', '1973-02-05', 'M', 'ETUDIANT')
+2025-02-09 00:43:50,340 - app.logger.app_logging - ERROR - Error creating account: duplicate key value violates unique constraint "users_email_key"
+DETAIL:  Key (email)=(amine.yani667@gmail.com) already exists.
+
+2025-02-09 00:43:50,355 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:50] "[35m[1mPOST /bank/create HTTP/1.1[0m" 500 -
+2025-02-09 00:43:50,560 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:50] "GET /bank/create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-02-09 00:43:50,570 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:50] "GET /bank/create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-02-09 00:43:50,659 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:50] "GET /bank/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-02-09 00:43:50,684 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:43:50] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:44:04,199 - app.logger.app_logging - INFO - Creating new user and account
+2025-02-09 00:44:04,256 - sql - INFO - Executing query: 
+                INSERT INTO users (first_name, last_name, email, phone, address, 
+                                 date_of_birth, gender, job)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING id
+             with values: ('Amine', 'YANI', 'amine.yani@gmail.com', '0625052616', 'N68 ETG 1 LOT KAMILIA 1', '1973-02-05', 'M', 'ETUDIANT')
+2025-02-09 00:44:04,265 - app.logger.app_logging - ERROR - Error creating account: duplicate key value violates unique constraint "users_phone_key"
+DETAIL:  Key (phone)=(0625052616) already exists.
+
+2025-02-09 00:44:04,279 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:04] "[35m[1mPOST /bank/create HTTP/1.1[0m" 500 -
+2025-02-09 00:44:04,317 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:04] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:44:04,341 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:04] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-09 00:44:04,467 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:04] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:44:04,485 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:44:04] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:45:52,637 - app.logger.app_logging - INFO - Creating new user and account
+2025-02-09 00:45:52,699 - sql - INFO - Executing query: 
+                INSERT INTO users (first_name, last_name, email, phone, address, 
+                                 date_of_birth, gender, job)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING id
+             with values: ('tariq', 'rhiati', 'tariq@gmail.com', '0625052611', 'N68 ETG 1 LOT KAMILIA 1', '1973-02-05', 'M', 'ETUDIANT')
+2025-02-09 00:45:52,785 - sql - INFO - Executing query: 
+                INSERT INTO accounts (user_id, type, balance, interest_rate)
+                VALUES (%s, %s, %s, %s)
+                RETURNING number, created_at
+             with values: (604, 'checking', '1200', '0')
+2025-02-09 00:45:52,864 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 721
+2025-02-09 00:45:52,887 - app.logger.app_logging - ERROR - Error creating account: 'NoneType' object has no attribute 'account_number'
+2025-02-09 00:45:52,899 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:45:52] "[35m[1mPOST /bank/create HTTP/1.1[0m" 500 -
+2025-02-09 00:45:52,944 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:45:52] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:45:52,969 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:45:52] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-09 00:45:53,081 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:45:53] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:45:53,107 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:45:53] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:47:05,735 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 00:47:05,788 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:47:06,411 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 00:47:06,477 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:47:06,533 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:47:06,547 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:47:07,183 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:47:07,198 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:47:14,648 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\account_dao.py', reloading
+2025-02-09 00:47:14,718 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:47:15,341 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\account_dao.py', reloading
+2025-02-09 00:47:15,389 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:47:15,481 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:47:15,498 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:47:16,154 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:47:16,169 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:47:17,569 - app.logger.app_logging - WARNING - Unauthorized access attempt to create
+2025-02-09 00:47:17,569 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/create
+2025-02-09 00:47:17,579 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:47:17] "[31m[1mPOST /bank/create HTTP/1.1[0m" 401 -
+2025-02-09 00:47:20,326 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:47:20] "GET /login HTTP/1.1" 200 -
+2025-02-09 00:47:21,745 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 00:47:21,752 - sql - INFO - Found admin record for username: admin
+2025-02-09 00:47:21,765 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 00:47:21,782 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:47:21] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 00:47:21,794 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:47:21] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 00:47:25,000 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:47:25] "GET /bank/create HTTP/1.1" 200 -
+2025-02-09 00:48:03,412 - app.logger.app_logging - INFO - Creating new user and account
+2025-02-09 00:48:03,487 - sql - INFO - Executing query: 
+                INSERT INTO users (first_name, last_name, email, phone, address, 
+                                 date_of_birth, gender, job)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING id
+             with values: ('tariq', 'rhiati', 'tariq@gmail.com', '0625052611', 'N68 ETG 1 LOT KAMILIA 1', '1946-01-11', 'M', 'ETUDIANT')
+2025-02-09 00:48:03,505 - app.logger.app_logging - ERROR - Error in create_account: duplicate key value violates unique constraint "users_email_key"
+DETAIL:  Key (email)=(tariq@gmail.com) already exists.
+
+2025-02-09 00:48:03,533 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:48:03] "[35m[1mPOST /bank/create HTTP/1.1[0m" 500 -
+2025-02-09 00:48:03,699 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:48:03] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:48:03,711 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:48:03] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-09 00:48:03,737 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:48:03] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:48:03,792 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:48:03] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:48:35,449 - app.logger.app_logging - INFO - Creating new user and account
+2025-02-09 00:48:35,514 - sql - INFO - Executing query: 
+                INSERT INTO users (first_name, last_name, email, phone, address, 
+                                 date_of_birth, gender, job)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING id
+             with values: ('ANOUAR', 'NOUARI', 'ANOAUR@gmail.com', '0625052619', 'N68 ETG 1 LOT KAMILIA 1', '1973-01-11', 'M', 'ETUDIANT')
+2025-02-09 00:48:35,588 - sql - INFO - Executing query: 
+                    INSERT INTO accounts (user_id, type, balance, interest_rate)
+                    VALUES (%s, %s, %s, %s)
+                    RETURNING number
+                 with values: (606, 'checking', '12000', '0')
+2025-02-09 00:48:35,656 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 722
+2025-02-09 00:48:35,705 - app.logger.app_logging - ERROR - Error creating account for user 606: Failed to create account
+2025-02-09 00:48:35,706 - app.logger.app_logging - ERROR - Error in create_account: Failed to create account
+2025-02-09 00:48:35,715 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:48:35] "[35m[1mPOST /bank/create HTTP/1.1[0m" 500 -
+2025-02-09 00:48:35,767 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:48:35] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:48:35,780 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:48:35] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-09 00:48:35,876 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:48:35] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:48:35,899 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:48:35] "[36mGET /bank/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:50:29,837 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\account_dao.py', reloading
+2025-02-09 00:50:29,899 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:50:30,635 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:50:30,650 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:50:30,736 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\account_dao.py', reloading
+2025-02-09 00:50:30,806 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:50:31,498 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:50:31,513 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:50:31,688 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-09 00:50:31,751 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:50:32,451 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:50:32,465 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:50:32,555 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 00:50:32,603 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:50:33,327 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:50:33,344 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:50:36,201 - app.logger.app_logging - WARNING - Unauthorized access attempt to create
+2025-02-09 00:50:36,202 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/create
+2025-02-09 00:50:36,234 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:50:36] "[31m[1mGET /bank/create HTTP/1.1[0m" 401 -
+2025-02-09 00:50:37,361 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:50:37] "GET /login HTTP/1.1" 200 -
+2025-02-09 00:50:38,723 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 00:50:38,732 - sql - INFO - Found admin record for username: admin
+2025-02-09 00:50:38,739 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 00:50:38,743 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:50:38] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 00:50:38,767 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:50:38] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 00:50:41,086 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:50:41] "GET /bank/create HTTP/1.1" 200 -
+2025-02-09 00:51:35,036 - app.logger.app_logging - INFO - Creating account with data: {'first_name': 'SALIM', 'last_name': 'BENSALMANE', 'email': 'salim@gmail.com', 'phone': '0625052614', 'address': ' LOT KAMILIA 1', 'date_of_birth': '1953-12-11', 'gender': 'M', 'job': 'ETUDIANT', 'type': 'savings', 'balance': 111111.0, 'interest_rate': 1.0}
+2025-02-09 00:51:35,037 - app.logger.app_logging - INFO - Creating new user and account
+2025-02-09 00:51:35,110 - sql - INFO - Executing query: 
+                INSERT INTO users (first_name, last_name, email, phone, address, 
+                                 date_of_birth, gender, job)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING id
+             with values: ('SALIM', 'BENSALMANE', 'salim@gmail.com', '0625052614', ' LOT KAMILIA 1', '1953-12-11', 'M', 'ETUDIANT')
+2025-02-09 00:51:35,124 - app.logger.app_logging - INFO - Created user with ID: 607
+2025-02-09 00:51:35,191 - sql - INFO - Executing query: 
+                    INSERT INTO accounts (user_id, type, balance, interest_rate)
+                    VALUES (%s, %s, %s, %s)
+                    RETURNING number, created_at
+                 with values: (607, 'savings', 111111.0, 1.0)
+2025-02-09 00:51:35,210 - app.logger.app_logging - INFO - Successfully created account 723 for user 607
+2025-02-09 00:51:35,211 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:51:35] "[32mPOST /bank/create HTTP/1.1[0m" 302 -
+2025-02-09 00:51:35,220 - app.logger.app_logging - INFO - Fetching account 723
+2025-02-09 00:51:35,289 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 723
+2025-02-09 00:51:35,324 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:51:35] "GET /bank/view/723 HTTP/1.1" 200 -
+2025-02-09 00:51:39,527 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 00:51:39,596 - sql - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 00:51:39,624 - app.logger.app_logging - INFO - Successfully fetched 723 accounts
+2025-02-09 00:51:39,657 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:51:39] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 00:51:42,894 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:51:42] "GET / HTTP/1.1" 200 -
+2025-02-09 00:51:45,157 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-09 00:51:45,158 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:51:45] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-09 00:51:45,171 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:51:45] "GET / HTTP/1.1" 200 -
+2025-02-09 00:51:46,119 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:51:46] "GET /login HTTP/1.1" 200 -
+2025-02-09 00:51:47,179 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 00:51:47,189 - sql - INFO - Found admin record for username: admin
+2025-02-09 00:51:47,191 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 00:51:47,193 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:51:47] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 00:51:47,203 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:51:47] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 00:55:12,931 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\user_dao.py', reloading
+2025-02-09 00:55:12,932 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-09 00:55:12,980 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:55:12,980 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:55:13,725 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:55:13,740 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:55:13,746 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:55:13,763 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:57:21,331 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 00:57:21,333 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 00:57:21,379 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:57:21,916 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:57:21,917 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:57:21,926 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:57:21,927 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:58:05,295 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 00:58:05,301 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 00:58:05,346 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:58:05,352 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 00:58:05,898 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:58:05,911 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:58:05,912 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 00:58:05,924 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 00:58:12,469 - app.logger.app_logging - WARNING - Unauthorized access attempt to menu
+2025-02-09 00:58:12,470 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/menu
+2025-02-09 00:58:12,478 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:58:12] "[31m[1mGET /bank/menu HTTP/1.1[0m" 401 -
+2025-02-09 00:58:13,626 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:58:13] "GET /login HTTP/1.1" 200 -
+2025-02-09 00:58:14,808 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 00:58:14,815 - sql - INFO - Found admin record for username: admin
+2025-02-09 00:58:14,819 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 00:58:14,825 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:58:14] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 00:58:14,839 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:58:14] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 00:58:16,966 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 00:58:17,019 - sql - INFO - Fetching all accounts
+2025-02-09 00:58:17,033 - app.logger.app_logging - INFO - Successfully fetched 723 accounts
+2025-02-09 00:58:17,059 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:58:17] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 00:58:20,118 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-09 00:58:20,177 - sql - INFO - Fetching account: 1
+2025-02-09 00:58:20,202 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:58:20] "[35m[1mGET /bank/edit/1 HTTP/1.1[0m" 500 -
+2025-02-09 00:58:20,336 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:58:20] "[36mGET /bank/edit/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-09 00:58:20,354 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:58:20] "[36mGET /bank/edit/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-09 00:58:20,465 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:58:20] "[36mGET /bank/edit/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 00:59:18,156 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-09 00:59:18,210 - sql - INFO - Fetching account: 1
+2025-02-09 00:59:18,220 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:59:18] "GET /bank/edit/1 HTTP/1.1" 200 -
+2025-02-09 00:59:22,241 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 00:59:22,291 - sql - INFO - Fetching account: 2
+2025-02-09 00:59:22,301 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:59:22] "GET /bank/edit/2 HTTP/1.1" 200 -
+2025-02-09 00:59:30,620 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-09 00:59:30,669 - sql - INFO - Fetching account: 1
+2025-02-09 00:59:30,690 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:59:30] "GET /bank/edit/1 HTTP/1.1" 200 -
+2025-02-09 00:59:37,324 - app.logger.app_logging - INFO - Updating account 1
+2025-02-09 00:59:37,374 - sql - INFO - Fetching account: 1
+2025-02-09 00:59:37,434 - sql - INFO - Updating account 1: ('savings', Decimal('32450.54'), True, Decimal('3.32'), 1)
+2025-02-09 00:59:37,537 - sql - INFO - Fetching account: 1
+2025-02-09 00:59:37,556 - app.logger.app_logging - INFO - Successfully updated account 1
+2025-02-09 00:59:37,558 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:59:37] "POST /bank/edit/1 HTTP/1.1" 200 -
+2025-02-09 00:59:40,735 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:59:40] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 00:59:42,121 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 00:59:42,166 - sql - INFO - Fetching all accounts
+2025-02-09 00:59:42,177 - app.logger.app_logging - INFO - Successfully fetched 723 accounts
+2025-02-09 00:59:42,199 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 00:59:42] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 01:04:46,647 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 01:04:46,652 - werkzeug - INFO -  * Detected change in 'C:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 01:04:46,704 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:04:46,714 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:07:35,439 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 01:07:35,440 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 01:07:35,445 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:07:35,934 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:07:35,942 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:07:37,047 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:07:37] "GET / HTTP/1.1" 200 -
+2025-02-09 01:07:47,804 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:07:47] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:07:48,794 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:07:48,800 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:07:48,802 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:07:48,803 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:07:48] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:07:48,813 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:07:48] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:07:51,260 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 01:07:51,319 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 01:07:51,339 - app.logger.app_logging - INFO - Successfully fetched 723 accounts
+2025-02-09 01:07:51,377 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:07:51] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 01:07:59,539 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-09 01:07:59,591 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-09 01:07:59,614 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:07:59] "GET /bank/edit/1 HTTP/1.1" 200 -
+2025-02-09 01:08:05,925 - app.logger.app_logging - INFO - Updating account 1
+2025-02-09 01:08:05,994 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-09 01:08:06,055 - sql_logger - INFO - Executing query: 
+                UPDATE accounts
+                SET type = %s,
+                    balance = %s,
+                    status = %s,
+                    interest_rate = %s
+                WHERE number = %s
+             with values: ('savings', Decimal('100'), True, Decimal('3.32'), 1)
+2025-02-09 01:08:06,117 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-09 01:08:06,132 - app.logger.app_logging - INFO - Successfully updated account 1
+2025-02-09 01:08:06,135 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:08:06] "POST /bank/edit/1 HTTP/1.1" 200 -
+2025-02-09 01:08:15,834 - app.logger.app_logging - INFO - Updating account 1
+2025-02-09 01:08:15,908 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-09 01:08:15,971 - sql_logger - INFO - Executing query: 
+                UPDATE accounts
+                SET type = %s,
+                    balance = %s,
+                    status = %s,
+                    interest_rate = %s
+                WHERE number = %s
+             with values: ('savings', Decimal('1200'), True, Decimal('3.32'), 1)
+2025-02-09 01:08:16,023 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-09 01:08:16,038 - app.logger.app_logging - INFO - Successfully updated account 1
+2025-02-09 01:08:16,039 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:08:16] "POST /bank/edit/1 HTTP/1.1" 200 -
+2025-02-09 01:08:18,307 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-09 01:08:18,358 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-09 01:08:18,375 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:08:18] "GET /bank/view/1 HTTP/1.1" 200 -
+2025-02-09 01:08:31,152 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 01:08:31,200 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 01:08:31,215 - app.logger.app_logging - INFO - Successfully fetched 723 accounts
+2025-02-09 01:08:31,251 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:08:31] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 01:08:32,413 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:08:32] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:08:35,320 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 01:08:35,367 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 01:08:35,385 - app.logger.app_logging - INFO - Successfully fetched 723 accounts
+2025-02-09 01:08:35,408 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:08:35] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 01:08:38,571 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:08:38] "GET / HTTP/1.1" 200 -
+2025-02-09 01:10:22,633 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 01:10:22,687 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:10:23,145 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:10:23,153 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:11:57,154 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 01:11:57,194 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:11:57,642 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:11:57,651 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:15:11,769 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 01:15:11,833 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:15:12,403 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:15:12,416 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:16:02,963 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-09 01:16:03,008 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:16:03,479 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:16:03,494 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:16:26,758 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-09 01:16:26,807 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:16:27,287 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:16:27,299 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:16:58,651 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-09 01:16:58,704 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:17:17,429 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-09 01:17:17,430 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-09 01:17:17,435 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:17:17,748 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:17:17,755 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:17:19,632 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:19] "GET / HTTP/1.1" 200 -
+2025-02-09 01:17:22,263 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:22] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:17:23,661 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:17:23,666 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:17:23,667 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:17:23,668 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:23] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:17:23,679 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:23] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:17:25,869 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:25] "GET /bank/search HTTP/1.1" 200 -
+2025-02-09 01:17:29,426 - app.logger.app_logging - INFO - Searching account for user name: amine
+2025-02-09 01:17:29,478 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE u.first_name = %s OR u.last_name = %s
+             with user_name: amine
+2025-02-09 01:17:29,494 - app.logger.app_logging - WARNING - No account found for user name: amine
+2025-02-09 01:17:29,494 - app.logger.app_logging - ERROR - Error searching account by name: 404 Not Found: No account found for user: amine
+2025-02-09 01:17:29,497 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:29] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:17:34,849 - app.logger.app_logging - INFO - Searching account for user name: rachid
+2025-02-09 01:17:34,902 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE u.first_name = %s OR u.last_name = %s
+             with user_name: rachid
+2025-02-09 01:17:34,916 - app.logger.app_logging - WARNING - No account found for user name: rachid
+2025-02-09 01:17:34,917 - app.logger.app_logging - ERROR - Error searching account by name: 404 Not Found: No account found for user: rachid
+2025-02-09 01:17:34,919 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:34] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:17:39,405 - app.logger.app_logging - INFO - Searching account for user name: tariq
+2025-02-09 01:17:39,477 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE u.first_name = %s OR u.last_name = %s
+             with user_name: tariq
+2025-02-09 01:17:39,495 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:39] "[32mPOST /bank/search HTTP/1.1[0m" 302 -
+2025-02-09 01:17:39,503 - app.logger.app_logging - INFO - Fetching account 721
+2025-02-09 01:17:39,553 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 721
+2025-02-09 01:17:39,573 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:39] "GET /bank/view/721 HTTP/1.1" 200 -
+2025-02-09 01:17:50,878 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:50] "GET /bank/search HTTP/1.1" 200 -
+2025-02-09 01:17:54,803 - app.logger.app_logging - INFO - Searching account for user name: amine
+2025-02-09 01:17:54,961 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE u.first_name = %s OR u.last_name = %s
+             with user_name: amine
+2025-02-09 01:17:54,971 - app.logger.app_logging - WARNING - No account found for user name: amine
+2025-02-09 01:17:54,972 - app.logger.app_logging - ERROR - Error searching account by name: 404 Not Found: No account found for user: amine
+2025-02-09 01:17:54,973 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:17:54] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:18:52,700 - app.logger.app_logging - INFO - Searching account for user name: amine
+2025-02-09 01:18:52,760 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE u.first_name = %s OR u.last_name = %s
+             with user_name: amine
+2025-02-09 01:18:52,774 - app.logger.app_logging - WARNING - No account found for user name: amine
+2025-02-09 01:18:52,776 - app.logger.app_logging - ERROR - Error searching account by name: 404 Not Found: No account found for user: amine
+2025-02-09 01:18:52,782 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:18:52] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:22:10,815 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 01:22:10,881 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:22:11,406 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:22:11,419 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:22:35,641 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 01:22:35,709 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:22:36,235 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:22:36,246 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:22:50,413 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-09 01:22:50,480 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:22:50,999 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:22:51,011 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:23:17,132 - app.logger.app_logging - WARNING - Unauthorized access attempt to search
+2025-02-09 01:23:17,132 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/search
+2025-02-09 01:23:17,141 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:17] "[31m[1mPOST /bank/search HTTP/1.1[0m" 401 -
+2025-02-09 01:23:18,345 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:18] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:23:19,419 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:23:19,425 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:23:19,426 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:23:19,427 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:19] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:23:19,440 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:19] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:23:21,549 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:21] "GET /bank/search HTTP/1.1" 200 -
+2025-02-09 01:23:27,991 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:23:28,037 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:23:28,044 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:23:28,045 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:28] "[32mPOST /bank/search HTTP/1.1[0m" 302 -
+2025-02-09 01:23:28,054 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:23:28,249 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:23:28,276 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:28] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:23:33,852 - app.logger.app_logging - INFO - Searching accounts with term: AMI
+2025-02-09 01:23:33,903 - sql_logger - INFO - Executing search query with term: AMI
+2025-02-09 01:23:33,920 - app.logger.app_logging - INFO - Found 83 matching accounts
+2025-02-09 01:23:33,923 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:33] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:23:48,579 - app.logger.app_logging - INFO - Searching accounts with term: AMIne yani
+2025-02-09 01:23:48,637 - sql_logger - INFO - Executing search query with term: AMIne yani
+2025-02-09 01:23:48,646 - app.logger.app_logging - INFO - Found 0 matching accounts
+2025-02-09 01:23:48,648 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:48] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:23:52,779 - app.logger.app_logging - INFO - Searching accounts with term: yani
+2025-02-09 01:23:52,842 - sql_logger - INFO - Executing search query with term: yani
+2025-02-09 01:23:52,852 - app.logger.app_logging - INFO - Found 0 matching accounts
+2025-02-09 01:23:52,855 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:52] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:23:56,077 - app.logger.app_logging - INFO - Searching accounts with term: tariq
+2025-02-09 01:23:56,129 - sql_logger - INFO - Executing search query with term: tariq
+2025-02-09 01:23:56,142 - app.logger.app_logging - INFO - Found 9 matching accounts
+2025-02-09 01:23:56,143 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:23:56] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:24:05,023 - app.logger.app_logging - INFO - Searching accounts with term: 35
+2025-02-09 01:24:05,073 - sql_logger - INFO - Executing search query with term: 35
+2025-02-09 01:24:05,081 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:24:05,082 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:24:05] "[32mPOST /bank/search HTTP/1.1[0m" 302 -
+2025-02-09 01:24:05,089 - app.logger.app_logging - INFO - Fetching account 35
+2025-02-09 01:24:05,142 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 35
+2025-02-09 01:24:05,156 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:24:05] "GET /bank/view/35 HTTP/1.1" 200 -
+2025-02-09 01:25:09,221 - app.logger.app_logging - INFO - Searching accounts with term: AMINE
+2025-02-09 01:25:09,270 - sql_logger - INFO - Executing search query with term: AMINE
+2025-02-09 01:25:09,280 - app.logger.app_logging - INFO - Found 3 matching accounts
+2025-02-09 01:25:09,286 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:25:09] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:25:12,619 - app.logger.app_logging - INFO - Fetching account 254
+2025-02-09 01:25:12,671 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 254
+2025-02-09 01:25:12,684 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:25:12] "GET /bank/view/254 HTTP/1.1" 200 -
+2025-02-09 01:25:26,837 - app.logger.app_logging - INFO - Searching accounts with term: AMINE
+2025-02-09 01:25:26,893 - sql_logger - INFO - Executing search query with term: AMINE
+2025-02-09 01:25:26,903 - app.logger.app_logging - INFO - Found 3 matching accounts
+2025-02-09 01:25:26,912 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:25:26] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:25:28,519 - app.logger.app_logging - INFO - Fetching account 254
+2025-02-09 01:25:28,681 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 254
+2025-02-09 01:25:28,697 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:25:28] "GET /bank/view/254 HTTP/1.1" 200 -
+2025-02-09 01:25:32,408 - app.logger.app_logging - INFO - Fetching account 254
+2025-02-09 01:25:32,466 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 254
+2025-02-09 01:25:32,479 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:25:32] "GET /bank/view/254 HTTP/1.1" 200 -
+2025-02-09 01:26:21,032 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:26:21] "GET / HTTP/1.1" 200 -
+2025-02-09 01:26:23,441 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-09 01:26:23,443 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:26:23] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-09 01:26:23,454 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:26:23] "GET / HTTP/1.1" 200 -
+2025-02-09 01:26:24,521 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:26:24] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:26:25,479 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:26:25,482 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:26:25,483 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:26:25,484 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:26:25] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:26:25,490 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:26:25] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:28:28,564 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 01:28:28,602 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:28:29,181 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:28:29,191 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:29:20,650 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 01:29:20,686 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:29:21,106 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:29:21,116 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:29:40,338 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-09 01:29:40,389 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:29:40,886 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:29:40,896 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:31:20,367 - app.logger.app_logging - WARNING - Unauthorized access attempt to menu
+2025-02-09 01:31:20,368 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/menu
+2025-02-09 01:31:20,372 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:20] "[31m[1mGET /bank/menu HTTP/1.1[0m" 401 -
+2025-02-09 01:31:21,689 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:21] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:31:22,630 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:31:22,636 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:31:22,638 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:31:22,639 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:22] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:31:22,650 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:22] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:31:31,095 - app.logger.app_logging - WARNING - 404 Error for path: /bank/view
+2025-02-09 01:31:31,097 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:31] "[33mGET /bank/view HTTP/1.1[0m" 404 -
+2025-02-09 01:31:33,352 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:33] "GET / HTTP/1.1" 200 -
+2025-02-09 01:31:34,942 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-09 01:31:34,943 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:34] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-09 01:31:34,951 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:34] "GET / HTTP/1.1" 200 -
+2025-02-09 01:31:36,043 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:36] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:31:56,988 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:31:56,995 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:31:56,996 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:31:56,997 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:56] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:31:57,026 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:57] "[35m[1mGET /bank/menu HTTP/1.1[0m" 500 -
+2025-02-09 01:31:57,239 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:57] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-09 01:31:57,241 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:57] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-09 01:31:57,329 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:57] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 01:31:57,375 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:31:57] "[36mGET /bank/menu?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 01:32:45,963 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:32:45] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:32:49,458 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:32:49] "GET /bank/search?action=deposit HTTP/1.1" 200 -
+2025-02-09 01:32:53,369 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:32:53,422 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:32:53,431 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:32:53,432 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:32:53] "[32mPOST /bank/search?action=deposit HTTP/1.1[0m" 302 -
+2025-02-09 01:32:53,439 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:32:53,488 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:32:53,513 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:32:53] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:33:00,453 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:33:00,516 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:33:00,532 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:33:00] "GET /bank/account/2/transfer HTTP/1.1" 200 -
+2025-02-09 01:33:14,435 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:33:14,498 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:33:14,511 - app.logger.app_logging - INFO - Processing transfer: From=2, To=12, Amount=1000.0
+2025-02-09 01:33:14,512 - app.logger.app_logging - ERROR - Error processing transfer: 'BankDAO' object has no attribute 'transfer'
+2025-02-09 01:33:14,521 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:33:14] "[35m[1mPOST /bank/account/2/transfer HTTP/1.1[0m" 500 -
+2025-02-09 01:33:14,568 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:33:14] "GET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-02-09 01:33:14,580 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:33:14] "GET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-02-09 01:33:14,662 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:33:14] "GET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-02-09 01:33:14,685 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:33:14] "[36mGET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 01:33:55,488 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 01:33:55,528 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:33:55,971 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:33:55,979 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:34:00,449 - app.logger.app_logging - WARNING - Unauthorized access attempt to transfer
+2025-02-09 01:34:00,450 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/account/2/transfer
+2025-02-09 01:34:00,458 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:00] "[31m[1mPOST /bank/account/2/transfer HTTP/1.1[0m" 401 -
+2025-02-09 01:34:01,660 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:01] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:34:02,728 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:34:02,734 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:34:02,736 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:34:02,737 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:02] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:34:02,749 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:02] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:34:05,530 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:05] "GET /bank/search?action=deposit HTTP/1.1" 200 -
+2025-02-09 01:34:07,858 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:34:07,911 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:34:07,921 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:34:07,922 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:07] "[32mPOST /bank/search?action=deposit HTTP/1.1[0m" 302 -
+2025-02-09 01:34:07,930 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:34:07,981 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:34:08,004 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:08] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:34:11,621 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:34:11,676 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:34:11,691 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:11] "GET /bank/account/2/transfer HTTP/1.1" 200 -
+2025-02-09 01:34:20,753 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:34:20,822 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:34:20,834 - app.logger.app_logging - INFO - Processing transfer: From=2, To=12, Amount=100.0
+2025-02-09 01:34:20,835 - app.logger.app_logging - ERROR - Error processing transfer: 'BankDAO' object has no attribute 'transfer'
+2025-02-09 01:34:20,844 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:20] "[35m[1mPOST /bank/account/2/transfer HTTP/1.1[0m" 500 -
+2025-02-09 01:34:20,984 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:20] "[36mGET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-09 01:34:20,992 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:20] "[36mGET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-09 01:34:21,016 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:21] "[36mGET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 01:34:21,035 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:34:21] "[36mGET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 01:36:42,328 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:36:42,387 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:36:42,401 - app.logger.app_logging - INFO - Processing transfer: From=2, To=12, Amount=100.0
+2025-02-09 01:36:42,401 - app.logger.app_logging - ERROR - Error processing transfer: 'BankDAO' object has no attribute 'transfer'
+2025-02-09 01:36:42,411 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:36:42] "[35m[1mPOST /bank/account/2/transfer HTTP/1.1[0m" 500 -
+2025-02-09 01:36:42,472 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:36:42] "[36mGET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-09 01:36:42,496 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:36:42] "[36mGET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-09 01:36:42,584 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:36:42] "[36mGET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 01:36:42,639 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:36:42] "[36mGET /bank/account/2/transfer?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-09 01:37:17,913 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 01:37:17,979 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:37:18,493 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:37:18,502 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:37:20,360 - app.logger.app_logging - WARNING - Unauthorized access attempt to transfer
+2025-02-09 01:37:20,362 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/account/2/transfer
+2025-02-09 01:37:20,370 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:37:20] "[31m[1mPOST /bank/account/2/transfer HTTP/1.1[0m" 401 -
+2025-02-09 01:37:21,832 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:37:21] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:37:23,085 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:37:23,090 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:37:23,091 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:37:23,093 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:37:23] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:37:23,105 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:37:23] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:37:26,983 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:37:26] "GET /bank/search HTTP/1.1" 200 -
+2025-02-09 01:37:29,435 - app.logger.app_logging - INFO - Searching accounts with term: AMI
+2025-02-09 01:37:29,488 - sql_logger - INFO - Executing search query with term: AMI
+2025-02-09 01:37:29,500 - app.logger.app_logging - INFO - Found 83 matching accounts
+2025-02-09 01:37:29,503 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:37:29] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:37:30,546 - app.logger.app_logging - INFO - Fetching account 19
+2025-02-09 01:37:30,594 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 19
+2025-02-09 01:37:30,614 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:37:30] "GET /bank/view/19 HTTP/1.1" 200 -
+2025-02-09 01:37:32,127 - app.logger.app_logging - INFO - Fetching account 19
+2025-02-09 01:37:32,176 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 19
+2025-02-09 01:37:32,190 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:37:32] "GET /bank/account/19/transfer HTTP/1.1" 200 -
+2025-02-09 01:37:45,008 - app.logger.app_logging - INFO - Fetching account 19
+2025-02-09 01:37:45,067 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 19
+2025-02-09 01:37:45,079 - app.logger.app_logging - INFO - Processing transfer: From=19, To=1, Amount=20000.0
+2025-02-09 01:37:45,170 - sql_logger - INFO - Transfer processed: From=19, To=1, Amount=20000.0
+2025-02-09 01:37:45,172 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:37:45] "[32mPOST /bank/account/19/transfer HTTP/1.1[0m" 302 -
+2025-02-09 01:37:45,179 - app.logger.app_logging - INFO - Fetching account 19
+2025-02-09 01:37:45,228 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 19
+2025-02-09 01:37:45,240 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:37:45] "GET /bank/view/19 HTTP/1.1" 200 -
+2025-02-09 01:38:22,817 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:38:22] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:38:24,311 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:38:24] "GET /bank/search HTTP/1.1" 200 -
+2025-02-09 01:38:26,954 - app.logger.app_logging - INFO - Searching accounts with term: Youssef El Hamidi
+2025-02-09 01:38:27,123 - sql_logger - INFO - Executing search query with term: Youssef El Hamidi
+2025-02-09 01:38:27,141 - app.logger.app_logging - INFO - Found 0 matching accounts
+2025-02-09 01:38:27,143 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:38:27] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:38:38,290 - app.logger.app_logging - INFO - Searching accounts with term: Youssef
+2025-02-09 01:38:38,350 - sql_logger - INFO - Executing search query with term: Youssef
+2025-02-09 01:38:38,360 - app.logger.app_logging - INFO - Found 8 matching accounts
+2025-02-09 01:38:38,362 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:38:38] "POST /bank/search HTTP/1.1" 200 -
+2025-02-09 01:38:42,966 - app.logger.app_logging - INFO - Fetching account 20
+2025-02-09 01:38:43,019 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 20
+2025-02-09 01:38:43,032 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:38:43] "GET /bank/view/20 HTTP/1.1" 200 -
+2025-02-09 01:38:47,235 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 01:38:47,288 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 01:38:47,303 - app.logger.app_logging - INFO - Successfully fetched 723 accounts
+2025-02-09 01:38:47,329 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:38:47] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 01:38:55,916 - app.logger.app_logging - INFO - Fetching account 19
+2025-02-09 01:38:55,981 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 19
+2025-02-09 01:38:55,996 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:38:55] "GET /bank/view/19 HTTP/1.1" 200 -
+2025-02-09 01:39:00,176 - app.logger.app_logging - INFO - Fetching account 19
+2025-02-09 01:39:00,230 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 19
+2025-02-09 01:39:00,238 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:39:00] "GET /bank/account/19/deposit HTTP/1.1" 200 -
+2025-02-09 01:39:12,099 - app.logger.app_logging - INFO - Fetching account 19
+2025-02-09 01:39:12,170 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 19
+2025-02-09 01:39:12,183 - app.logger.app_logging - INFO - Processing deposit: Account=19, Amount=1000.0
+2025-02-09 01:39:12,369 - sql_logger - INFO - Deposit processed: Account=19, Amount=1000.0, NewBalance=5581.87
+2025-02-09 01:39:12,373 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:39:12] "[32mPOST /bank/account/19/deposit HTTP/1.1[0m" 302 -
+2025-02-09 01:39:12,381 - app.logger.app_logging - INFO - Fetching account 19
+2025-02-09 01:39:12,428 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 19
+2025-02-09 01:39:12,441 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:39:12] "GET /bank/view/19 HTTP/1.1" 200 -
+2025-02-09 01:42:18,614 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\bank_dao.py', reloading
+2025-02-09 01:42:18,678 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:42:19,147 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:42:19,155 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:42:21,201 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 01:42:21,249 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:42:21,783 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:42:21,821 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:42:23,312 - app.logger.app_logging - WARNING - Unauthorized access attempt to view
+2025-02-09 01:42:23,313 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/view/19
+2025-02-09 01:42:23,321 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:42:23] "[31m[1mGET /bank/view/19 HTTP/1.1[0m" 401 -
+2025-02-09 01:42:24,513 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:42:24] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:42:25,246 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:42:25,252 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:42:25,253 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:42:25,254 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:42:25] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:42:25,266 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:42:25] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:42:28,966 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:42:28] "GET /bank/search?action=statement HTTP/1.1" 200 -
+2025-02-09 01:42:32,000 - app.logger.app_logging - INFO - Searching accounts with term: 1
+2025-02-09 01:42:32,056 - sql_logger - INFO - Executing search query with term: 1
+2025-02-09 01:42:32,064 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:42:32,065 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:42:32] "[32mPOST /bank/search?action=statement HTTP/1.1[0m" 302 -
+2025-02-09 01:42:32,073 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-09 01:42:32,120 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-09 01:42:32,136 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:42:32] "GET /bank/view/1 HTTP/1.1" 200 -
+2025-02-09 01:43:51,854 - app.logger.app_logging - INFO - Fetching account 1
+2025-02-09 01:43:51,909 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 1
+2025-02-09 01:43:51,924 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:43:51] "GET /bank/view/1 HTTP/1.1" 200 -
+2025-02-09 01:43:55,023 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:43:55] "GET / HTTP/1.1" 200 -
+2025-02-09 01:43:56,709 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-09 01:43:56,710 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:43:56] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-09 01:43:56,734 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:43:56] "GET / HTTP/1.1" 200 -
+2025-02-09 01:43:57,835 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:43:57] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:43:58,649 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:43:58,654 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:43:58,655 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:43:58,656 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:43:58] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:43:58,667 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:43:58] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:44:01,935 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:44:01] "GET /bank/search?action=statement HTTP/1.1" 200 -
+2025-02-09 01:44:04,496 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:44:04,564 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:44:04,572 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:44:04,573 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:44:04] "[32mPOST /bank/search?action=statement HTTP/1.1[0m" 302 -
+2025-02-09 01:44:04,581 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:44:04,633 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:44:04,648 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:44:04] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:45:14,489 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-09 01:45:14,546 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:45:15,132 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:45:15,144 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:45:17,545 - app.logger.app_logging - WARNING - Unauthorized access attempt to view
+2025-02-09 01:45:17,545 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/view/2
+2025-02-09 01:45:17,552 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:17] "[31m[1mGET /bank/view/2 HTTP/1.1[0m" 401 -
+2025-02-09 01:45:18,710 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:18] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:45:19,681 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:45:19,688 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:45:19,689 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:45:19,690 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:19] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:45:19,736 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:19] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:45:22,518 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:22] "GET /bank/search?action=statement HTTP/1.1" 200 -
+2025-02-09 01:45:24,879 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:45:24,946 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:45:24,955 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:45:24,956 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:24] "[32mPOST /bank/search?action=statement HTTP/1.1[0m" 302 -
+2025-02-09 01:45:24,965 - app.logger.app_logging - INFO - Generating bank statement for account 2
+2025-02-09 01:45:25,181 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:45:25,195 - sql_logger - INFO - Executing bank statement query for account: 2
+2025-02-09 01:45:25,218 - app.logger.app_logging - INFO - Generated statement with 1 transactions
+2025-02-09 01:45:25,228 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:25] "GET /bank/account/2/statement HTTP/1.1" 200 -
+2025-02-09 01:45:35,699 - app.logger.app_logging - INFO - Generating bank statement for account 2
+2025-02-09 01:45:35,793 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:45:35,799 - sql_logger - INFO - Executing bank statement query for account: 2
+2025-02-09 01:45:35,802 - app.logger.app_logging - INFO - Generated statement with 1 transactions
+2025-02-09 01:45:35,803 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:35] "POST /bank/account/2/statement HTTP/1.1" 200 -
+2025-02-09 01:45:39,269 - app.logger.app_logging - INFO - Generating bank statement for account 2
+2025-02-09 01:45:39,481 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:45:39,496 - sql_logger - INFO - Executing bank statement query for account: 2
+2025-02-09 01:45:39,505 - app.logger.app_logging - INFO - Generated statement with 1 transactions
+2025-02-09 01:45:39,506 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:39] "GET /bank/account/2/statement HTTP/1.1" 200 -
+2025-02-09 01:45:43,966 - app.logger.app_logging - INFO - Searching accounts with term: 23
+2025-02-09 01:45:44,020 - sql_logger - INFO - Executing search query with term: 23
+2025-02-09 01:45:44,031 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:45:44,033 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:44] "[32mPOST /bank/search?action=statement HTTP/1.1[0m" 302 -
+2025-02-09 01:45:44,041 - app.logger.app_logging - INFO - Generating bank statement for account 23
+2025-02-09 01:45:44,134 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 23
+2025-02-09 01:45:44,147 - sql_logger - INFO - Executing bank statement query for account: 23
+2025-02-09 01:45:44,180 - app.logger.app_logging - INFO - Generated statement with 10 transactions
+2025-02-09 01:45:44,181 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:45:44] "GET /bank/account/23/statement HTTP/1.1" 200 -
+2025-02-09 01:48:10,645 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:48:10] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:48:13,059 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:48:13] "GET /bank/search?action=statement HTTP/1.1" 200 -
+2025-02-09 01:49:42,505 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:49:42] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:52:10,634 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:52:10] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:52:51,263 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:52:51] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:53:25,275 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:53:25] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:53:27,625 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:53:27] "GET /bank/search?action=statement HTTP/1.1" 200 -
+2025-02-09 01:53:55,835 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 01:53:55,894 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 01:53:55,914 - app.logger.app_logging - INFO - Successfully fetched 723 accounts
+2025-02-09 01:53:55,945 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:53:55] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 01:53:58,564 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:53:58] "GET /bank/search HTTP/1.1" 200 -
+2025-02-09 01:54:00,904 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:00] "GET /bank/search?action=deposit HTTP/1.1" 200 -
+2025-02-09 01:54:04,248 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:04] "GET /bank/search HTTP/1.1" 200 -
+2025-02-09 01:54:06,308 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:54:06,362 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:54:06,375 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:54:06,376 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:06] "[32mPOST /bank/search HTTP/1.1[0m" 302 -
+2025-02-09 01:54:06,384 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:54:06,428 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:54:06,471 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:06] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:54:10,862 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:10] "GET /bank/search?action=deposit HTTP/1.1" 200 -
+2025-02-09 01:54:16,634 - app.logger.app_logging - INFO - Searching accounts with term: AMI
+2025-02-09 01:54:16,687 - sql_logger - INFO - Executing search query with term: AMI
+2025-02-09 01:54:16,703 - app.logger.app_logging - INFO - Found 83 matching accounts
+2025-02-09 01:54:16,706 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:16] "POST /bank/search?action=deposit HTTP/1.1" 200 -
+2025-02-09 01:54:17,959 - app.logger.app_logging - INFO - Fetching account 20
+2025-02-09 01:54:18,106 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 20
+2025-02-09 01:54:18,123 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:18] "GET /bank/view/20 HTTP/1.1" 200 -
+2025-02-09 01:54:23,147 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:23] "GET /bank/search?action=deposit HTTP/1.1" 200 -
+2025-02-09 01:54:24,820 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:24] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:54:27,731 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:27] "GET /bank/search?action=withdraw HTTP/1.1" 200 -
+2025-02-09 01:54:31,939 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:54:31,987 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:54:31,995 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:54:31,996 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:31] "[32mPOST /bank/search?action=withdraw HTTP/1.1[0m" 302 -
+2025-02-09 01:54:32,004 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:54:32,053 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:54:32,066 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:32] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:54:35,602 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:35] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:54:37,356 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:37] "GET /bank/search?action=transfer HTTP/1.1" 200 -
+2025-02-09 01:54:39,411 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:54:39,452 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:54:39,458 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:54:39,459 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:39] "[32mPOST /bank/search?action=transfer HTTP/1.1[0m" 302 -
+2025-02-09 01:54:39,466 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:54:39,509 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:54:39,524 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:54:39] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:55:03,604 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:55:03,658 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:55:03,671 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:03] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:55:05,874 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:55:06,051 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:55:06,062 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:55:06,064 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:06] "[32mPOST /bank/search?action=withdraw HTTP/1.1[0m" 302 -
+2025-02-09 01:55:06,071 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:55:06,118 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:55:06,137 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:06] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:55:09,696 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:09] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:55:11,503 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:11] "GET /bank/search?action=deposit HTTP/1.1" 200 -
+2025-02-09 01:55:14,715 - app.logger.app_logging - INFO - Searching accounts with term: yani
+2025-02-09 01:55:14,927 - sql_logger - INFO - Executing search query with term: yani
+2025-02-09 01:55:14,943 - app.logger.app_logging - INFO - Found 0 matching accounts
+2025-02-09 01:55:14,946 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:14] "POST /bank/search?action=deposit HTTP/1.1" 200 -
+2025-02-09 01:55:18,433 - app.logger.app_logging - INFO - Searching accounts with term: 35
+2025-02-09 01:55:18,479 - sql_logger - INFO - Executing search query with term: 35
+2025-02-09 01:55:18,487 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:55:18,488 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:18] "[32mPOST /bank/search?action=deposit HTTP/1.1[0m" 302 -
+2025-02-09 01:55:18,495 - app.logger.app_logging - INFO - Fetching account 35
+2025-02-09 01:55:18,536 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 35
+2025-02-09 01:55:18,548 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:18] "GET /bank/view/35 HTTP/1.1" 200 -
+2025-02-09 01:55:21,100 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:21] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:55:22,943 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:22] "GET /bank/search?action=statement HTTP/1.1" 200 -
+2025-02-09 01:55:25,474 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:55:25,525 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:55:25,532 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:55:25,533 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:25] "[32mPOST /bank/search?action=statement HTTP/1.1[0m" 302 -
+2025-02-09 01:55:25,541 - app.logger.app_logging - INFO - Generating bank statement for account 2
+2025-02-09 01:55:25,641 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:55:25,649 - sql_logger - INFO - Executing bank statement query for account: 2
+2025-02-09 01:55:25,657 - app.logger.app_logging - INFO - Generated statement with 1 transactions
+2025-02-09 01:55:25,658 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:25] "GET /bank/account/2/statement HTTP/1.1" 200 -
+2025-02-09 01:55:49,943 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:49] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:55:51,661 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:51] "GET /bank/search?action=transfer HTTP/1.1" 200 -
+2025-02-09 01:55:53,733 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:55:53,905 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:55:53,916 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:55:53,917 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:53] "[32mPOST /bank/search?action=transfer HTTP/1.1[0m" 302 -
+2025-02-09 01:55:53,927 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:55:53,973 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:55:53,987 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:55:53] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:56:59,007 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:56:59,059 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:56:59,082 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:56:59] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:57:03,811 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:57:03] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:57:05,822 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:57:05] "GET /bank/search?action=statement HTTP/1.1" 200 -
+2025-02-09 01:57:07,775 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:57:07,822 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:57:07,831 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:57:07,832 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:57:07] "[32mPOST /bank/search?action=statement HTTP/1.1[0m" 302 -
+2025-02-09 01:57:07,863 - app.logger.app_logging - INFO - Generating bank statement for account 2
+2025-02-09 01:57:07,950 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:57:07,964 - sql_logger - INFO - Executing bank statement query for account: 2
+2025-02-09 01:57:07,972 - app.logger.app_logging - INFO - Generated statement with 1 transactions
+2025-02-09 01:57:07,974 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:57:07] "GET /bank/account/2/statement HTTP/1.1" 200 -
+2025-02-09 01:57:12,708 - app.logger.app_logging - INFO - Searching accounts with term: 23
+2025-02-09 01:57:12,776 - sql_logger - INFO - Executing search query with term: 23
+2025-02-09 01:57:12,785 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:57:12,786 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:57:12] "[32mPOST /bank/search?action=statement HTTP/1.1[0m" 302 -
+2025-02-09 01:57:12,793 - app.logger.app_logging - INFO - Generating bank statement for account 23
+2025-02-09 01:57:12,890 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 23
+2025-02-09 01:57:12,907 - sql_logger - INFO - Executing bank statement query for account: 23
+2025-02-09 01:57:12,916 - app.logger.app_logging - INFO - Generated statement with 10 transactions
+2025-02-09 01:57:12,918 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:57:12] "GET /bank/account/23/statement HTTP/1.1" 200 -
+2025-02-09 01:57:18,112 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:57:18] "GET /bank/search?action=transfer HTTP/1.1" 200 -
+2025-02-09 01:57:20,595 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:57:20,647 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:57:20,657 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:57:20,658 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:57:20] "[32mPOST /bank/search?action=transfer HTTP/1.1[0m" 302 -
+2025-02-09 01:57:20,665 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:57:20,824 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:57:20,843 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:57:20] "GET /bank/view/2 HTTP/1.1" 200 -
+2025-02-09 01:58:14,148 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-09 01:58:14,206 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 01:58:14,736 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 01:58:14,746 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 01:58:17,181 - app.logger.app_logging - WARNING - Unauthorized access attempt to search
+2025-02-09 01:58:17,183 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/search
+2025-02-09 01:58:17,197 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:17] "[31m[1mPOST /bank/search?action=transfer HTTP/1.1[0m" 401 -
+2025-02-09 01:58:18,432 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:18] "GET /login HTTP/1.1" 200 -
+2025-02-09 01:58:19,397 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 01:58:19,402 - sql - INFO - Found admin record for username: admin
+2025-02-09 01:58:19,403 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 01:58:19,404 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:19] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 01:58:19,416 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:19] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 01:58:22,199 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:22] "GET /bank/search?action=deposit HTTP/1.1" 200 -
+2025-02-09 01:58:24,435 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:58:24,494 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:58:24,507 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:58:24,509 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:24] "[32mPOST /bank/search?action=deposit HTTP/1.1[0m" 302 -
+2025-02-09 01:58:24,517 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:58:24,565 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:58:24,584 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:24] "GET /bank/account/2/deposit HTTP/1.1" 200 -
+2025-02-09 01:58:28,505 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:28] "GET /bank/search?action=withdraw HTTP/1.1" 200 -
+2025-02-09 01:58:30,455 - app.logger.app_logging - INFO - Searching accounts with term: 2
+2025-02-09 01:58:30,500 - sql_logger - INFO - Executing search query with term: 2
+2025-02-09 01:58:30,507 - app.logger.app_logging - INFO - Found 1 matching accounts
+2025-02-09 01:58:30,508 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:30] "[32mPOST /bank/search?action=withdraw HTTP/1.1[0m" 302 -
+2025-02-09 01:58:30,514 - app.logger.app_logging - INFO - Fetching account 2
+2025-02-09 01:58:30,550 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-09 01:58:30,564 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:30] "GET /bank/account/2/withdraw HTTP/1.1" 200 -
+2025-02-09 01:58:36,239 - app.logger.app_logging - INFO - Searching accounts with term: der
+2025-02-09 01:58:36,300 - sql_logger - INFO - Executing search query with term: der
+2025-02-09 01:58:36,309 - app.logger.app_logging - INFO - Found 11 matching accounts
+2025-02-09 01:58:36,311 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:36] "POST /bank/search?action=withdraw HTTP/1.1" 200 -
+2025-02-09 01:58:37,583 - app.logger.app_logging - INFO - Fetching account 43
+2025-02-09 01:58:37,629 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 43
+2025-02-09 01:58:37,649 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:37] "GET /bank/view/43 HTTP/1.1" 200 -
+2025-02-09 01:58:42,496 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 01:58:42] "GET /bank/search?action=withdraw HTTP/1.1" 200 -
+2025-02-09 02:00:06,929 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\logger\\app_logging.py', reloading
+2025-02-09 02:00:06,980 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 02:00:07,415 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 02:00:07,424 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 02:00:19,395 - app.logger.app_logging - WARNING - Unauthorized access attempt to create
+2025-02-09 02:00:19,397 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/create
+2025-02-09 02:00:19,403 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 02:00:19] "[31m[1mGET /bank/create HTTP/1.1[0m" 401 -
+2025-02-09 02:00:21,017 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 02:00:21] "GET /login HTTP/1.1" 200 -
+2025-02-09 02:00:21,832 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-09 02:00:21,838 - sql - INFO - Found admin record for username: admin
+2025-02-09 02:00:21,839 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-09 02:00:21,840 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 02:00:21] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-09 02:00:21,852 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 02:00:21] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-09 02:00:24,149 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-09 02:00:24,202 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-09 02:00:24,218 - app.logger.app_logging - INFO - Successfully fetched 723 accounts
+2025-02-09 02:00:24,252 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2025 02:00:24] "GET /bank/list HTTP/1.1" 200 -
+2025-02-09 02:00:45,879 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\logger\\app_logging.py', reloading
+2025-02-09 02:00:45,919 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 02:00:46,309 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 02:00:46,317 - werkzeug - INFO -  * Debugger PIN: 939-336-666

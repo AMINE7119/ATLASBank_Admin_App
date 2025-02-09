@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Accounts</title>
+    <style>
+        /* ... [styles précédents] ... */
+        .search-results {
+            margin-top: 30px;
+        }
+        .account-card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .account-card a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .account-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-menu">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('bank.menu') }}">Menu</a>
+        <a href="{{ url_for('bank.list') }}">Account List</a>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+    </div>
+
+    <div class="search-container">
+        <h1>Search Accounts</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" class="search-form">
+            <input type="text" 
+                   name="search_term" 
+                   class="search-input"
+                   placeholder="Enter account number, first name, or last name" 
+                   value="{{ search_term or '' }}"
+                   required>
+            <button type="submit" class="search-button">Search</button>
+        </form>
+
+        {% if accounts %}
+            <div class="search-results">
+                <h2>Search Results</h2>
+                {% for account in accounts %}
+                    <div class="account-card">
+                        <h3>
+                            <a href="{{ url_for('bank.view', account_number=account.account_number) }}">
+                                Account #{{ account.account_number }}
+                            </a>
+                        </h3>
+                        <p>Holder: {{ account.holder_name }}</p>
+                        <p>Type: {{ account.account_type }}</p>
+                        <p>Balance: ${{ "%.2f"|format(account.balance) }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

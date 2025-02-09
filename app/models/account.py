@@ -1,8 +1,8 @@
- 
 # app/models/account.py
 from dataclasses import dataclass
 from datetime import datetime
 from decimal import Decimal
+from typing import Optional
 
 @dataclass
 class Account:
@@ -12,4 +12,6 @@ class Account:
     balance: Decimal
     is_active: bool = True
     interest_rate: Decimal = Decimal('0.00')
-    created_at: datetime = None
+    created_at: Optional[datetime] = None
+    holder_name: Optional[str] = None
+    holder_email: Optional[str] = None
