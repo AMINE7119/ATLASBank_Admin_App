@@ -3,7 +3,9 @@ from typing import List, Optional, Dict, Any
 from flask import session
 from werkzeug.exceptions import NotFound, Forbidden, Unauthorized
 from app.models.account import Account
-from app.dal.bank_dao import BankDAO
+from app.dal.user_dao import UserDAO
+from app.dal.bank_dao   import BankDAO
+from app.dal.account_dao import AccountDAO
 from app.logger.app_logging import setup_logging
 from functools import wraps
 from decimal import Decimal

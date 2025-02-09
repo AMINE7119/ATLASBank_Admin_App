@@ -2080,3 +2080,27 @@ DETAIL:  Key (email)=(tariq@gmail.com) already exists.
 2025-02-09 02:00:45,919 - werkzeug - INFO -  * Restarting with stat
 2025-02-09 02:00:46,309 - werkzeug - WARNING -  * Debugger is active!
 2025-02-09 02:00:46,317 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 02:04:48,978 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\user_dao.py', reloading
+2025-02-09 02:04:49,061 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 02:04:49,622 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 02:04:49,663 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 02:04:57,746 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\account_dao.py', reloading
+2025-02-09 02:04:57,784 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 02:04:58,197 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 02:04:58,207 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 02:05:08,297 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\account_dao.py', reloading
+2025-02-09 02:05:08,336 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 02:05:08,808 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 02:05:08,819 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 02:06:05,320 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\transaction_dao.py', reloading
+2025-02-09 02:06:05,363 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 02:06:05,796 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 02:06:05,808 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 02:06:14,911 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\transaction_dao.py', reloading
+2025-02-09 02:06:14,957 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 02:06:15,364 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 02:06:15,376 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 02:06:56,834 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 02:06:56,889 - werkzeug - INFO -  * Restarting with stat
+2025-02-09 02:06:57,400 - werkzeug - WARNING -  * Debugger is active!
+2025-02-09 02:06:57,410 - werkzeug - INFO -  * Debugger PIN: 939-336-666
