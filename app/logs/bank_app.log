@@ -2104,3 +2104,5 @@ DETAIL:  Key (email)=(tariq@gmail.com) already exists.
 2025-02-09 02:06:56,889 - werkzeug - INFO -  * Restarting with stat
 2025-02-09 02:06:57,400 - werkzeug - WARNING -  * Debugger is active!
 2025-02-09 02:06:57,410 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-09 02:07:51,035 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\bank_service.py', reloading
+2025-02-09 02:07:51,092 - werkzeug - INFO -  * Restarting with stat
