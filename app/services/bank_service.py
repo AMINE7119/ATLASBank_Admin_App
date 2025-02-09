@@ -4,7 +4,7 @@ from flask import session
 from werkzeug.exceptions import NotFound, Forbidden, Unauthorized
 from app.models.account import Account
 from app.dal.user_dao import UserDAO
-from app.dal.transaction_dao import BankDAO
+from app.dal.transaction_dao import TransactionDAO
 from app.dal.account_dao import AccountDAO
 from app.logger.app_logging import setup_logging
 from functools import wraps
@@ -15,7 +15,9 @@ logger = setup_logging()
 
 class BankService:
     def __init__(self):
-        self.bank_dao = BankDAO()
+        self.account_dao = AccountDAO()
+        self.transaction_dao = TransactionDAO()
+        self.user_dao = UserDAO()
 
     def check_auth(self, f, *args, **kwargs):
         """Handle authentication and authorization"""
@@ -28,7 +30,7 @@ class BankService:
         """Get all accounts with related information"""
         try:
             logger.info("Fetching all accounts")
-            accounts = self.bank_dao.get_all_accounts()
+            accounts = self.account_dao.get_all_accounts()
             logger.info(f"Successfully fetched {len(accounts)} accounts")
             return accounts
         except Exception as e:
@@ -39,7 +41,7 @@ class BankService:
         """Get single account with full details"""
         try:
             logger.info(f"Fetching account {account_number}")
-            account = self.bank_dao.get_account_by_number(account_number)
+            account = self.account_dao.get_account_by_number(account_number)
             if not account:
                 logger.warning(f"Account {account_number} not found")
                 raise NotFound(f"Account {account_number} not found")
@@ -55,7 +57,7 @@ class BankService:
             if not self._check_edit_permission(account_number):
                 raise Forbidden("You don't have permission to edit this account")
             
-            account = self.bank_dao.get_account_by_number(account_number)
+            account = self.account_dao.get_account_by_number(account_number)
             if not account:
                 raise NotFound(f"Account {account_number} not found")
 
@@ -67,7 +69,7 @@ class BankService:
                 'interest_rate': Decimal(str(data.get('interest_rate', 0.00)))
             }
 
-            updated_account = self.bank_dao.update_account(account_number, update_data)
+            updated_account = self.account_dao.update_account(account_number, update_data)
             logger.info(f"Successfully updated account {account_number}")
             return updated_account
         except Exception as e:
@@ -92,7 +94,7 @@ class BankService:
             }
             
             # Create user and get user_id
-            user_id = self.bank_dao.create_user(user_data)
+            user_id = self.user_dao.create_user(user_data)
             if not user_id:
                 logger.error("Failed to create user")
                 raise ValueError("Failed to create user")
@@ -108,7 +110,7 @@ class BankService:
             }
             
             # Create account
-            account = self.bank_dao.create_account(account_data)
+            account = self.account_dao.create_account(account_data)
             if not account:
                 logger.error("Failed to create account")
                 raise ValueError("Failed to create account")
@@ -123,7 +125,7 @@ class BankService:
                     'amount': account.balance,
                     'description': 'Initial deposit'
                 }
-                transaction_id = self.bank_dao.create_transaction(transaction_data)
+                transaction_id = self.transaction_dao.create_transaction(transaction_data)
                 logger.info(f"Created initial deposit transaction: {transaction_id}")
             
             return account
@@ -139,14 +141,14 @@ class BankService:
             if not self._check_edit_permission(account_number):
                 raise Forbidden("You don't have permission to delete this account")
             
-            account = self.bank_dao.get_account_by_number(account_number)
+            account = self.account_dao.get_account_by_number(account_number)
             if not account:
                 raise NotFound(f"Account {account_number} not found")
 
             if account.balance > 0:
                 raise ValueError("Cannot delete account with positive balance")
 
-            self.bank_dao.delete_account(account_number)
+            self.account_dao.delete_account(account_number)
             logger.info(f"Successfully deleted account {account_number}")
         except Exception as e:
             logger.error(f"Error deleting account {account_number}: {str(e)}")
@@ -156,10 +158,10 @@ class BankService:
         """Get all transactions for an account"""
         try:
             logger.info(f"Fetching transactions for account {account_number}")
-            if not self.bank_dao.get_account_by_number(account_number):
+            if not self.account_dao.get_account_by_number(account_number):
                 raise NotFound(f"Account {account_number} not found")
                 
-            transactions = self.bank_dao.get_account_transactions(account_number)
+            transactions = self.account_dao.get_account_transactions(account_number)
             logger.info(f"Found {len(transactions)} transactions")
             return transactions
         except Exception as e:
@@ -184,7 +186,7 @@ class BankService:
                 raise ValueError("Search term cannot be empty")
                 
             logger.info(f"Searching accounts with term: {search_term}")
-            accounts = self.bank_dao.search_accounts(search_term)
+            accounts = self.account_dao.search_accounts(search_term)
             
             logger.info(f"Found {len(accounts)} matching accounts")
             return accounts
@@ -201,7 +203,7 @@ class BankService:
             amount_decimal = Decimal(str(amount))
             logger.info(f"Processing deposit: Account={account_number}, Amount={amount_decimal}")
             
-            return self.bank_dao.deposit(account_number, amount_decimal, description)
+            return self.account_dao.deposit(account_number, amount_decimal, description)
             
         except Exception as e:
             logger.error(f"Error processing deposit: {str(e)}")
@@ -216,7 +218,7 @@ class BankService:
             amount_decimal = Decimal(str(amount))
             logger.info(f"Processing withdrawal: Account={account_number}, Amount={amount_decimal}")
             
-            return self.bank_dao.withdraw(account_number, amount_decimal, description)
+            return self.account_dao.withdraw(account_number, amount_decimal, description)
             
         except Exception as e:
             logger.error(f"Error processing withdrawal: {str(e)}")
@@ -234,7 +236,7 @@ class BankService:
             amount_decimal = Decimal(str(amount))
             logger.info(f"Processing transfer: From={from_account}, To={to_account}, Amount={amount_decimal}")
             
-            return self.bank_dao.transfer(from_account, to_account, amount_decimal, description)
+            return self.account_dao.transfer(from_account, to_account, amount_decimal, description)
             
         except Exception as e:
             logger.error(f"Error processing transfer: {str(e)}")
@@ -249,7 +251,7 @@ class BankService:
             start_date_obj = datetime.strptime(start_date, '%Y-%m-%d') if start_date else None
             end_date_obj = datetime.strptime(end_date, '%Y-%m-%d') if end_date else None
             
-            statement = self.bank_dao.get_bank_statement(account_number, start_date_obj, end_date_obj)
+            statement = self.account_dao.get_bank_statement(account_number, start_date_obj, end_date_obj)
             
             logger.info(f"Generated statement with {len(statement['transactions'])} transactions")
             return statement
