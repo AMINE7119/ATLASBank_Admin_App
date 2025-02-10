@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template, session, redirect, url_for, request, flash
+from flask import Blueprint, render_template, session, redirect, url_for, request, flash, abort
 from app.services.bank_service import BankService
 from app.logger.app_logging import setup_logging
 from functools import wraps
+from decimal import Decimal, InvalidOperation
+from datetime import datetime
 from app.errors.error import NotFound, handle_401, handle_404, handle_500
 
 logger = setup_logging()
@@ -12,6 +14,7 @@ def auth_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not session.get('admin_id'):
+            logger.warning("Unauthorized access attempt")
             return handle_401("Authentication required")
         return f(*args, **kwargs)
     return decorated_function
@@ -24,24 +27,52 @@ def menu():
 @bank_bp.route('/list')
 @auth_required
 def list():
-    accounts = bank_service.list_accounts()
-    return render_template('bank/list.html', accounts=accounts)
+    try:
+        accounts = bank_service.list_accounts()
+        return render_template('bank/list.html', accounts=accounts)
+    except Exception as e:
+        logger.error(f"Error listing accounts: {str(e)}")
+        return handle_500(e)
 
 @bank_bp.route('/view/<int:account_number>')
 @auth_required
 def view(account_number):
-    account = bank_service.get_account(account_number)
-    return render_template('bank/view.html', account=account)
+    try:
+        account = bank_service.get_account(account_number)
+        return render_template('bank/view.html', account=account)
+    except NotFound:
+        return handle_404(f"Account {account_number} not found")
+    except Exception as e:
+        logger.error(f"Error viewing account {account_number}: {str(e)}")
+        return handle_500(e)
 
 @bank_bp.route('/edit/<int:account_number>', methods=['GET', 'POST'])
 @auth_required
 def edit(account_number):
-    if request.method == 'POST':
-        data = request.form
-        account = bank_service.update_account(account_number, data)
-    else:
+    try:
+        if request.method == 'POST':
+            data = {
+                'type': request.form.get('type'),
+                'balance': request.form.get('balance'),
+                'status': request.form.get('status') == 'true',
+                'interest_rate': request.form.get('interest_rate', '0.00')
+            }
+            
+            account = bank_service.update_account(account_number, data)
+            flash('Account updated successfully', 'success')
+            return redirect(url_for('bank.view', account_number=account_number))
+            
         account = bank_service.get_account(account_number)
-    return render_template('bank/edit.html', account=account)
+        return render_template('bank/edit.html', account=account)
+        
+    except ValueError as e:
+        flash(str(e), 'error')
+        return redirect(url_for('bank.view', account_number=account_number))
+    except NotFound:
+        return handle_404(f"Account {account_number} not found")
+    except Exception as e:
+        logger.error(f"Error editing account {account_number}: {str(e)}")
+        return handle_500(e)
 
 @bank_bp.route('/create', methods=['GET', 'POST'])
 @auth_required
@@ -58,29 +89,52 @@ def create():
                 'gender': request.form.get('gender'),
                 'job': request.form.get('job'),
                 'type': request.form.get('type'),
-                'balance': float(request.form.get('balance', 0)),
-                'interest_rate': float(request.form.get('interest_rate', 0))
+                'balance': request.form.get('balance', '0'),
+                'interest_rate': request.form.get('interest_rate', '0')
             }
             
-            logger.info(f"Creating account with data: {data}")
+            logger.info(f"Attempting to create account with data: {data}")
             account = bank_service.create_account(data)
-            if account:
-                return redirect(url_for('bank.view', account_number=account.account_number))
-            else:
-                raise ValueError("Account creation failed")
+            
+            if not account:
+                raise ValueError("Account creation failed - no account returned")
                 
-        except Exception as e:
-            logger.error(f"Error in create route: {str(e)}")
-            flash(f"Error creating account: {str(e)}", 'error')
-            return render_template('bank/create.html')
-    
-    return render_template('bank/create.html')
+            if not hasattr(account, 'account_number'):
+                raise ValueError("Account creation failed - invalid account object")
+                
+            logger.info(f"Successfully created account number: {account.account_number}")
+            flash('Account created successfully!', 'success')
+            
+            # Add debug logging
+            logger.info(f"Redirecting to view page for account: {account.account_number}")
+            return redirect(url_for('bank.view', account_number=account.account_number))
 
+        except ValueError as e:
+            logger.warning(f"Validation error in create: {str(e)}")
+            flash(str(e), 'error')
+            return render_template('bank/create.html', data=data)
+            
+        except Exception as e:
+            logger.error(f"Unexpected error in create: {str(e)}")
+            flash("An unexpected error occurred while creating the account", 'error')
+            return render_template('errors/500.html'), 500
+
+    return render_template('bank/create.html')
 @bank_bp.route('/delete/<int:account_number>', methods=['POST'])
 @auth_required
 def delete(account_number):
-    bank_service.delete_account(account_number)
-    return redirect(url_for('bank.list'))
+    try:
+        bank_service.delete_account(account_number)
+        flash('Account deleted successfully', 'success')
+        return redirect(url_for('bank.list'))
+    except ValueError as e:
+        flash(str(e), 'error')
+        return redirect(url_for('bank.view', account_number=account_number))
+    except NotFound:
+        return handle_404(f"Account {account_number} not found")
+    except Exception as e:
+        logger.error(f"Error deleting account {account_number}: {str(e)}")
+        return handle_500(e)
 
 @bank_bp.route('/search', methods=['GET', 'POST'])
 @auth_required
@@ -88,8 +142,8 @@ def search():
     action = request.args.get('action')
     
     if request.method == 'POST':
-        search_term = request.form.get('search_term', '').strip()
         try:
+            search_term = request.form.get('search_term', '').strip()
             if not search_term:
                 flash("Please enter a search term", 'warning')
                 return render_template('bank/search.html', action=action)
@@ -116,7 +170,6 @@ def search():
             return render_template('bank/search.html', accounts=accounts, search_term=search_term, action=action)
             
         except ValueError as e:
-            logger.warning(f"Invalid search attempt: {str(e)}")
             flash(str(e), 'warning')
         except Exception as e:
             logger.error(f"Error during search: {str(e)}")
@@ -129,69 +182,83 @@ def search():
 def deposit(account_number):
     try:
         account = bank_service.get_account(account_number)
+        
         if request.method == 'POST':
-            amount = float(request.form.get('amount', 0))
+            amount = Decimal(request.form.get('amount', '0'))
             description = request.form.get('description')
             
-            if bank_service.process_deposit(account_number, amount, description):
-                flash('Deposit processed successfully', 'success')
-                return redirect(url_for('bank.view', account_number=account_number))
+            bank_service.process_deposit(account_number, amount, description)
+            flash('Deposit processed successfully', 'success')
+            return redirect(url_for('bank.view', account_number=account_number))
             
         return render_template('bank/deposit.html', account=account)
         
     except ValueError as e:
         flash(str(e), 'error')
-        return redirect(url_for('bank.view', account_number=account_number))
+        return render_template('bank/deposit.html', account=account)
+    except NotFound:
+        return handle_404(f"Account {account_number} not found")
+    except Exception as e:
+        logger.error(f"Error processing deposit: {str(e)}")
+        return handle_500(e)
 
 @bank_bp.route('/account/<int:account_number>/withdraw', methods=['GET', 'POST'])
 @auth_required
 def withdraw(account_number):
     try:
         account = bank_service.get_account(account_number)
+        
         if request.method == 'POST':
-            amount = float(request.form.get('amount', 0))
+            amount = Decimal(request.form.get('amount', '0'))
             description = request.form.get('description')
             
-            if bank_service.process_withdrawal(account_number, amount, description):
-                flash('Withdrawal processed successfully', 'success')
-                return redirect(url_for('bank.view', account_number=account_number))
+            bank_service.process_withdrawal(account_number, amount, description)
+            flash('Withdrawal processed successfully', 'success')
+            return redirect(url_for('bank.view', account_number=account_number))
             
         return render_template('bank/withdraw.html', account=account)
         
     except ValueError as e:
         flash(str(e), 'error')
-        return redirect(url_for('bank.view', account_number=account_number))
+        return render_template('bank/withdraw.html', account=account)
+    except NotFound:
+        return handle_404(f"Account {account_number} not found")
+    except Exception as e:
+        logger.error(f"Error processing withdrawal: {str(e)}")
+        return handle_500(e)
 
 @bank_bp.route('/account/<int:account_number>/transfer', methods=['GET', 'POST'])
 @auth_required
 def transfer(account_number):
     try:
         from_account = bank_service.get_account(account_number)
+        
         if request.method == 'POST':
             to_account_number = int(request.form.get('to_account'))
-            amount = float(request.form.get('amount', 0))
+            amount = Decimal(request.form.get('amount', '0'))
             description = request.form.get('description')
             
-            if bank_service.process_transfer(account_number, to_account_number, amount, description):
-                flash('Transfer processed successfully', 'success')
-                return redirect(url_for('bank.view', account_number=account_number))
+            bank_service.process_transfer(account_number, to_account_number, amount, description)
+            flash('Transfer processed successfully', 'success')
+            return redirect(url_for('bank.view', account_number=account_number))
             
         return render_template('bank/transfer.html', account=from_account)
         
     except ValueError as e:
         flash(str(e), 'error')
-        return redirect(url_for('bank.view', account_number=account_number))
+        return render_template('bank/transfer.html', account=from_account)
+    except NotFound:
+        return handle_404(f"Account {account_number} not found")
+    except Exception as e:
+        logger.error(f"Error processing transfer: {str(e)}")
+        return handle_500(e)
 
 @bank_bp.route('/account/<int:account_number>/statement', methods=['GET', 'POST'])
 @auth_required
 def statement(account_number):
     try:
-        if request.method == 'POST':
-            start_date = request.form.get('start_date')
-            end_date = request.form.get('end_date')
-        else:
-            start_date = request.args.get('start_date')
-            end_date = request.args.get('end_date')
+        start_date = request.form.get('start_date') if request.method == 'POST' else request.args.get('start_date')
+        end_date = request.form.get('end_date') if request.method == 'POST' else request.args.get('end_date')
 
         statement = bank_service.get_bank_statement(account_number, start_date, end_date)
         return render_template('bank/statement.html', statement=statement)
@@ -199,12 +266,11 @@ def statement(account_number):
     except ValueError as e:
         flash(str(e), 'error')
         return redirect(url_for('bank.view', account_number=account_number))
+    except NotFound:
+        return handle_404(f"Account {account_number} not found")
     except Exception as e:
         logger.error(f"Error generating statement: {str(e)}")
-        flash("Error generating bank statement", 'error')
-        return redirect(url_for('bank.view', account_number=account_number))
-
-from werkzeug.exceptions import abort
+        return handle_500(e)
 
 @bank_bp.route('/errors/<error_code>')
 @auth_required

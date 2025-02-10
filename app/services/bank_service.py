@@ -10,6 +10,9 @@ from app.logger.app_logging import setup_logging
 from functools import wraps
 from decimal import Decimal
 from datetime import datetime
+from decimal import Decimal
+from datetime import datetime
+import decimal
 
 logger = setup_logging()
 
@@ -31,6 +34,8 @@ class BankService:
         try:
             logger.info("Fetching all accounts")
             accounts = self.account_dao.get_all_accounts()
+            #append by balance 
+            accounts.sort(key=lambda x: x.balance, reverse=True)
             logger.info(f"Successfully fetched {len(accounts)} accounts")
             return accounts
         except Exception as e:
@@ -81,57 +86,96 @@ class BankService:
         try:
             logger.info("Creating new user and account")
             
-            # Create user first
+            # Validate required user fields
+            required_user_fields = ['first_name', 'last_name', 'email', 'phone', 'address', 'date_of_birth', 'gender']
+            missing_fields = [field for field in required_user_fields if not data.get(field)]
+            if missing_fields:
+                raise ValueError(f"Missing required fields: {', '.join(missing_fields)}")
+
+            # Validate required account fields
+            if not data.get('type'):
+                raise ValueError("Account type is required")
+            if data['type'] not in ['savings', 'checking']:
+                raise ValueError("Invalid account type. Must be 'savings' or 'checking'")
+
+            # Convert and validate numeric fields
+            try:
+                balance = Decimal(str(data.get('balance', '0')))
+                interest_rate = Decimal(str(data.get('interest_rate', '0.00')))
+                
+                if balance < 0:
+                    raise ValueError("Balance cannot be negative")
+                if interest_rate < 0 or interest_rate > 100:
+                    raise ValueError("Interest rate must be between 0 and 100")
+            except (ValueError, TypeError, decimal.InvalidOperation):
+                raise ValueError("Invalid numeric values provided for balance or interest rate")
+
+            # Prepare user data
             user_data = {
                 'first_name': data['first_name'],
                 'last_name': data['last_name'],
                 'email': data['email'],
                 'phone': data['phone'],
                 'address': data['address'],
-                'date_of_birth': data['date_of_birth'],
+                'date_of_birth': datetime.strptime(data['date_of_birth'], '%Y-%m-%d').date(),
                 'gender': data['gender'],
                 'job': data.get('job')
             }
             
-            # Create user and get user_id
-            user_id = self.user_dao.create_user(user_data)
-            if not user_id:
-                logger.error("Failed to create user")
-                raise ValueError("Failed to create user")
+            # Create user
+            try:
+                user_id = self.user_dao.create_user(user_data)
+                if not user_id:
+                    raise ValueError("Failed to create user")
+                logger.info(f"Created user with ID: {user_id}")
+            except Exception as e:
+                if 'duplicate key' in str(e).lower():
+                    raise ValueError("A user with this email or phone already exists")
+                raise
             
-            logger.info(f"Created user with ID: {user_id}")
-            
-            # Create the account
+            # Prepare account data
             account_data = {
                 'user_id': user_id,
                 'type': data['type'],
-                'balance': Decimal(str(data['balance'])),
-                'interest_rate': Decimal(str(data.get('interest_rate', 0.00)))
+                'balance': balance,
+                'interest_rate': interest_rate
             }
             
             # Create account
-            account = self.account_dao.create_account(account_data)
-            if not account:
-                logger.error("Failed to create account")
-                raise ValueError("Failed to create account")
+            try:
+                account = self.account_dao.create_account(account_data)
+                if not account:
+                    raise ValueError("Failed to create account")
+                logger.info(f"Created account {account.account_number} for user {user_id}")
+            except ValueError as e:
+                # If account creation fails, we should still propagate the error
+                raise e
             
-            logger.info(f"Successfully created account {account.account_number} for user {user_id}")
-            
-            # If initial balance > 0, create initial deposit transaction
-            if account.balance > 0:
-                transaction_data = {
-                    'account_id': account.account_number,
-                    'type': 'DEPOSIT',
-                    'amount': account.balance,
-                    'description': 'Initial deposit'
-                }
-                transaction_id = self.transaction_dao.create_transaction(transaction_data)
-                logger.info(f"Created initial deposit transaction: {transaction_id}")
+            # Create initial deposit transaction if balance > 0
+            if balance > 0:
+                try:
+                    transaction_data = {
+                        'account_id': account.account_number,
+                        'type': 'DEPOSIT',
+                        'amount': balance,
+                        'description': 'Initial deposit'
+                    }
+                    
+                    transaction_id = self.transaction_dao.create_transaction(transaction_data)
+                    if not transaction_id:
+                        raise ValueError("Failed to create initial deposit transaction")
+                    logger.info(f"Created initial deposit transaction: {transaction_id}")
+                except Exception as e:
+                    logger.error(f"Error creating initial deposit: {e}")
+                    # We don't raise here as the account is already created
             
             return account
-            
+                
+        except ValueError as e:
+            logger.error(f"Validation error in create_account: {str(e)}")
+            raise
         except Exception as e:
-            logger.error(f"Error in create_account: {str(e)}")
+            logger.error(f"Unexpected error in create_account: {str(e)}")
             raise ValueError(f"Account creation failed: {str(e)}")
 
     def delete_account(self, account_number: int) -> None:
