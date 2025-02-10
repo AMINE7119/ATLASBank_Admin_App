@@ -3,9 +3,52 @@
 <head>
     <title>Search Accounts</title>
     <style>
-        /* ... [styles précédents] ... */
-        .search-results {
-            margin-top: 30px;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .nav-menu {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav-menu a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .search-form {
+            margin-bottom: 20px;
+        }
+        .search-input {
+            width: 70%;
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .search-button {
+            padding: 8px 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: #0052a3;
         }
         .account-card {
             background: white;
@@ -14,12 +57,36 @@
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .account-card a {
-            color: #007bff;
-            text-decoration: none;
+        .account-card h3 {
+            margin: 0 0 10px 0;
+            color: #333;
         }
-        .account-card:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        .action-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .action-btn:hover {
+            background-color: #0052a3;
+        }
+        .alert {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .alert-warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+        }
+        .alert-info {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
         }
     </style>
 </head>
@@ -33,6 +100,17 @@
 
     <div class="search-container">
         <h1>Search Accounts</h1>
+        {% if action == 'statement' %}
+            <p>Search for an account to view its statement</p>
+        {% elif action == 'deposit' %}
+            <p>Search for an account to make a deposit</p>
+        {% elif action == 'withdraw' %}
+            <p>Search for an account to make a withdrawal</p>
+        {% elif action == 'transfer' %}
+            <p>Search for an account to make a transfer</p>
+        {% else %}
+            <p>Search for an account by number or account holder name</p>
+        {% endif %}
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -46,7 +124,7 @@
             <input type="text" 
                    name="search_term" 
                    class="search-input"
-                   placeholder="Enter account number, first name, or last name" 
+                   placeholder="Enter account number or account holder name" 
                    value="{{ search_term or '' }}"
                    required>
             <button type="submit" class="search-button">Search</button>
@@ -57,14 +135,21 @@
                 <h2>Search Results</h2>
                 {% for account in accounts %}
                     <div class="account-card">
-                        <h3>
-                            <a href="{{ url_for('bank.view', account_number=account.account_number) }}">
-                                Account #{{ account.account_number }}
-                            </a>
-                        </h3>
+                        <h3>Account #{{ account.account_number }}</h3>
                         <p>Holder: {{ account.holder_name }}</p>
                         <p>Type: {{ account.account_type }}</p>
                         <p>Balance: ${{ "%.2f"|format(account.balance) }}</p>
+                        {% if action == 'deposit' %}
+                            <a href="{{ url_for('bank.deposit', account_number=account.account_number) }}" class="action-btn">Make Deposit</a>
+                        {% elif action == 'withdraw' %}
+                            <a href="{{ url_for('bank.withdraw', account_number=account.account_number) }}" class="action-btn">Make Withdrawal</a>
+                        {% elif action == 'transfer' %}
+                            <a href="{{ url_for('bank.transfer', account_number=account.account_number) }}" class="action-btn">Make Transfer</a>
+                        {% elif action == 'statement' %}
+                            <a href="{{ url_for('bank.statement', account_number=account.account_number) }}" class="action-btn">View Statement</a>
+                        {% else %}
+                            <a href="{{ url_for('bank.view', account_number=account.account_number) }}" class="action-btn">View Details</a>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

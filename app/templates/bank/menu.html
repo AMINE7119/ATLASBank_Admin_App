@@ -1,97 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bank Management - Menu</title>
-    <style>
-        /* ... [styles précédents] ... */
-
-        .transaction-card {
-            border-color: #0066cc;
-        }
-
-        .transaction-card a {
-            background-color: #0066cc;
-        }
-
-        .transaction-card a:hover {
-            background-color: #0052a3;
-        }
-
-        /* Style spécifique pour la carte de relevé bancaire */
-        .statement-card {
-            border-color: #6c5ce7;
-        }
-
-        .statement-card a {
-            background-color: #6c5ce7;
-        }
-
-        .statement-card a:hover {
-            background-color: #5849c2;
-        }
-    </style>
+   <title>Bank Management - Menu</title>
 </head>
 <body>
-    <div class="nav-menu">
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('bank.menu') }}">Menu</a>
-        <a href="{{ url_for('bank.list') }}">Account List</a>
-        <a href="{{ url_for('auth.logout') }}">Logout</a>
-    </div>
-    
-    <div class="menu-container">
-        <h1>Bank Management Menu</h1>
-        
-        {% if session.get('admin_id') %}
-            <div class="menu-grid">
-                <!-- Account Management Section -->
-                <div class="menu-card create-account-card">
-                    <h3>Create New Account</h3>
-                    <p>Create a new bank account with associated user profile</p>
-                    <a href="{{ url_for('bank.create') }}">Create Account</a>
-                </div>
+   <div class="nav-menu">
+       <a href="{{ url_for('index') }}">Home</a>
+       <a href="{{ url_for('bank.menu') }}">Menu</a>
+       <a href="{{ url_for('bank.list') }}">Account List</a>
+       <a href="{{ url_for('auth.logout') }}">Logout</a>
+   </div>
+   
+   <div class="menu-container">
+       <h1>Bank Management Menu</h1>
+       
+       {% if session.get('admin_id') %}
+           <div class="menu-grid">
+               <div class="menu-card create-account-card">
+                   <h3>Create New Account</h3>
+                   <p>Create a new bank account with associated user profile</p>
+                   <a href="{{ url_for('bank.create') }}">Create Account</a>
+               </div>
 
-                <div class="menu-card">
-                    <h3>View Accounts</h3>
-                    <p>View and manage all existing bank accounts</p>
-                    <a href="{{ url_for('bank.list') }}">View Accounts</a>
-                </div>  
+               <div class="menu-card">
+                   <h3>View Accounts</h3>
+                   <p>View and manage all existing bank accounts</p>
+                   <a href="{{ url_for('bank.list') }}">View Accounts</a>
+               </div>  
 
-                <div class="menu-card">
-                    <h3>Search Account</h3>
-                    <p>Search for accounts by name or number</p>
-                    <a href="{{ url_for('bank.search') }}">Search Account</a>
-                </div>
+               <div class="menu-card">
+                   <h3>Search Account</h3>
+                   <p>Search for accounts by name or number</p>
+                   <a href="{{ url_for('bank.search') }}">Search Account</a>
+               </div>
 
-                <!-- Transaction Section -->
-                <div class="menu-card transaction-card">
-                    <h3>Deposit</h3>
-                    <p>Make a deposit to an existing account</p>
-                    <a href="{{ url_for('bank.search') }}?action=deposit">Make Deposit</a>
-                </div>
+               <div class="menu-card transaction-card">
+                   <h3>Deposit</h3>
+                   <p>Make a deposit to an existing account</p>
+                   <a href="{{ url_for('bank.search') }}?action=deposit">Make Deposit</a>
+               </div>
 
-                <div class="menu-card transaction-card">
-                    <h3>Withdraw</h3>
-                    <p>Process a withdrawal from an account</p>
-                    <a href="{{ url_for('bank.search') }}?action=withdraw">Make Withdrawal</a>
-                </div>
+               <div class="menu-card transaction-card">
+                   <h3>Withdraw</h3>
+                   <p>Process a withdrawal from an account</p>
+                   <a href="{{ url_for('bank.search') }}?action=withdraw">Make Withdrawal</a>
+               </div>
 
-                <div class="menu-card transaction-card">
-                    <h3>Transfer</h3>
-                    <p>Transfer money between accounts</p>
-                    <a href="{{ url_for('bank.search') }}?action=transfer">Make Transfer</a>
-                </div>
+               <div class="menu-card transaction-card">
+                   <h3>Transfer</h3>
+                   <p>Transfer money between accounts</p>
+                   <a href="{{ url_for('bank.search') }}?action=transfer">Make Transfer</a>
+               </div>
 
-                <!-- Bank Statement Section -->
-                <div class="menu-card statement-card">
-                    <h3>Bank Statement</h3>
-                    <p>View account transactions and generate statements</p>
-                    <a href="{{ url_for('bank.search') }}?action=statement">View Statement</a>
-                </div>
-            </div>
-        {% else %}
-            <p>Please <a href="{{ url_for('auth.login') }}">login</a> to access the menu.</p>
-        {% endif %}
-    </div>
+               <div class="menu-card statement-card">
+                   <h3>Bank Statement</h3>
+                   <p>View account transactions and generate statements</p>
+                   <a href="{{ url_for('bank.search') }}?action=statement">View Statement</a>
+               </div>
+
+               <div class="menu-card analytics-card">
+                   <h3>Analytics Dashboard</h3>
+                   <p>View bank statistics and performance metrics</p>
+                   <a href="{{ url_for('analytics.dashboard') }}">View Analytics</a>
+               </div>
+
+               <div class="error-test-card">
+                   <h3>Error Page Testing</h3>
+                   <div class="error-buttons">
+                       <a href="{{ url_for('bank.test_error', error_code=401) }}" class="error-btn error-401">Test 401 Unauthorized</a>
+                       <a href="{{ url_for('bank.test_error', error_code=403) }}" class="error-btn error-403">Test 403 Forbidden</a>
+                       <a href="{{ url_for('bank.test_error', error_code=404) }}" class="error-btn error-404">Test 404 Not Found</a>
+                       <a href="{{ url_for('bank.test_error', error_code=500) }}" class="error-btn error-500">Test 500 Server Error</a>
+                   </div>
+               </div>
+           </div>
+       {% else %}
+           <p>Please <a href="{{ url_for('auth.login') }}">login</a> to access the menu.</p>
+       {% endif %}
+   </div>
 </body>
 </html>

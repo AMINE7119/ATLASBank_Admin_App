@@ -1,12 +1,19 @@
 import logging
 from flask import Blueprint, request, render_template, session, redirect, url_for
-from werkzeug.exceptions import Unauthorized, Forbidden
+from werkzeug.exceptions import Unauthorized, Forbidden, abort
 from app.services.auth_service import authenticate_admin
 from app.logger.app_logging import setup_logging
-
+from functools import wraps
 logger = setup_logging()
 auth_bp = Blueprint('auth', __name__)
 
+def auth_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not session.get('admin_id'):
+            abort(401)
+        return f(*args, **kwargs)
+    return decorated_function
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':

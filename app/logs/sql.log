@@ -871,3 +871,178 @@
                 JOIN users u ON a.user_id = u.id
                 ORDER BY a.number
             
+2025-02-10 12:15:01,988 - SQL - INFO - Query: Executing search query with term: 14
+2025-02-10 12:15:02,185 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 14
+2025-02-10 12:15:04,399 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 14
+2025-02-10 12:15:16,078 - SQL - INFO - Query: Executing search query with term: 2
+2025-02-10 12:15:16,125 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-10 12:15:24,551 - SQL - INFO - Query: Executing search query with term: 2
+2025-02-10 12:15:24,631 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-10 12:15:29,446 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-10 12:18:35,438 - SQL - INFO - Query: Executing search query with term: 35
+2025-02-10 12:18:35,568 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 35
+2025-02-10 12:18:37,397 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 35
+2025-02-10 12:32:53,193 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-10 12:32:56,179 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-10 12:32:57,903 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-10 12:36:15,036 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-10 12:36:17,276 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 18
+2025-02-10 12:36:19,944 - SQL - INFO - Query: Executing bank statement query for account: 18
+2025-02-10 12:36:20,021 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 18
+2025-02-10 12:38:08,593 - SQL - INFO - Query: Executing search query with term: 2
+2025-02-10 12:38:08,657 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-10 12:38:12,056 - SQL - INFO - Query: Executing bank statement query for account: 2
+2025-02-10 12:38:12,146 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 2
+2025-02-10 12:38:19,461 - SQL - INFO - Query: Executing search query with term: 35
+2025-02-10 12:38:19,530 - SQL - INFO - Query: Executing bank statement query for account: 35
+2025-02-10 12:38:19,725 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 35
+2025-02-10 12:50:21,963 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-10 12:57:00,249 - SQL - INFO - Query: Executing top customers query with limit: 10
+2025-02-10 13:00:30,073 - SQL - INFO - Query: Executing top customers query with limit: 10
+2025-02-10 13:01:03,510 - SQL - INFO - Query: Executing top customers query with limit: 10
+2025-02-10 13:11:41,976 - SQL - INFO - Query: Executing transaction metrics query
+2025-02-10 13:11:41,984 - SQL - INFO - Query: Transaction metrics: {'total_transactions': 311, 'avg_transaction_amount': 2600.7707073954984, 'max_transaction_amount': 20000.0, 'min_transaction_amount': 112.55}
+2025-02-10 13:11:42,033 - SQL - INFO - Query: Executing account distribution query
+2025-02-10 13:11:42,066 - SQL - INFO - Query: Found 2 account types
+2025-02-10 13:11:42,112 - SQL - INFO - Query: Executing top customers query with limit: 10
+2025-02-10 13:11:42,123 - SQL - INFO - Query: Found 10 top customers
+2025-02-10 13:11:42,175 - SQL - INFO - Query: Executing daily transactions query for last 30 days
+2025-02-10 13:11:42,183 - SQL - INFO - Query: Found 30 days of transaction data
+2025-02-10 13:13:09,479 - SQL - INFO - Query: Executing search query with term: 324
+2025-02-10 13:13:09,554 - SQL - INFO - Query: Executing bank statement query for account: 324
+2025-02-10 13:13:09,635 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 324
+2025-02-10 13:30:22,001 - SQL - INFO - Query: Executing search query with term: da
+2025-02-10 13:30:23,766 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                WHERE a.number = %s
+             with account_number: 11

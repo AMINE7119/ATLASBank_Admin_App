@@ -112,6 +112,7 @@ def search():
                 elif action == 'transfer':
                     return redirect(url_for('bank.transfer', account_number=account.account_number))
                 elif action == 'statement':
+                    # Directly redirect to statement route instead of view
                     return redirect(url_for('bank.statement', account_number=account.account_number))
                 else:
                     return redirect(url_for('bank.view', account_number=account.account_number))
@@ -207,3 +208,15 @@ def statement(account_number):
         logger.error(f"Error generating statement: {str(e)}")
         flash("Error generating bank statement", 'error')
         return redirect(url_for('bank.view', account_number=account_number))
+    
+from werkzeug.exceptions import abort
+
+@bank_bp.route('/errors/<error_code>')
+@login_required
+def test_error(error_code):
+    """Test route to trigger different error pages"""
+    try:
+        error_code = int(error_code)
+        abort(error_code)
+    except ValueError:
+        abort(404)
