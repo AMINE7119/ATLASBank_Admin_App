@@ -4,6 +4,7 @@ from app.services.bank_service import BankService
 from app.logger.app_logging import setup_logging
 from functools import wraps
 from app.errors.error import NotFound
+
 logger = setup_logging()
 bank_bp = Blueprint('bank', __name__)
 bank_service = BankService()

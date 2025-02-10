@@ -79,3 +79,18 @@ class AnalyticsDAO:
             cursor.execute(query)
             columns = [desc[0] for desc in cursor.description]
             return [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    def get_account_type_distribution(self) -> List[Dict[str, Any]]:
+        """Get account type distribution"""
+        with get_cursor() as cursor:
+            query = """
+                SELECT 
+                    type,
+                    COUNT(*) as count
+                FROM accounts
+                WHERE status = true
+                GROUP BY type
+            """
+            cursor.execute(query)
+            columns = [desc[0] for desc in cursor.description]
+            return [dict(zip(columns, row)) for row in cursor.fetchall()]

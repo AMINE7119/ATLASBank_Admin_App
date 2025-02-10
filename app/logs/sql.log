@@ -1046,3 +1046,80 @@
                 JOIN users u ON a.user_id = u.id
                 WHERE a.number = %s
              with account_number: 11
+2025-02-10 13:50:16,799 - SQL - INFO - Query: Executing search query with term: gsqgrg
+2025-02-10 13:53:05,445 - SQL - INFO - Query: Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-10 14:03:34,434 - SQL - INFO - Query: Executing query: 
+            SELECT 
+                COUNT(*) as total_accounts,
+                SUM(balance) as total_balance,
+                AVG(balance) as avg_balance,
+                COUNT(CASE WHEN type = 'savings' THEN 1 END) as savings_count,
+                COUNT(CASE WHEN type = 'checking' THEN 1 END) as checking_count
+            FROM accounts
+            WHERE status = true
+        
+2025-02-10 14:03:34,503 - SQL - INFO - Query: Query result: {'total_accounts': 723, 'total_balance': Decimal('18761596.43'), 'avg_balance': Decimal('25949.649280774550'), 'savings_count': 368, 'checking_count': 355}
+2025-02-10 14:03:34,505 - SQL - INFO - Query: Executing query: 
+            SELECT 
+                DATE(date) as trans_date,
+                type,
+                COUNT(*) as transaction_count,
+                SUM(amount) as total_amount
+            FROM transactions
+            WHERE date >= NOW() - INTERVAL '%s days'
+            GROUP BY DATE(date), type
+            ORDER BY trans_date, type
+         with days: 30
+2025-02-10 14:03:34,566 - SQL - INFO - Query: Query result: [{'trans_date': datetime.date(2025, 1, 11), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('301.91')}, {'trans_date': datetime.date(2025, 1, 11), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('1257.04')}, {'trans_date': datetime.date(2025, 1, 11), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('10103.60')}, {'trans_date': datetime.date(2025, 1, 12), 'type': 'DEPOSIT', 'transaction_count': 5, 'total_amount': Decimal('18235.45')}, {'trans_date': datetime.date(2025, 1, 12), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('3807.28')}, {'trans_date': datetime.date(2025, 1, 12), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('6291.33')}, {'trans_date': datetime.date(2025, 1, 13), 'type': 'DEPOSIT', 'transaction_count': 4, 'total_amount': Decimal('10624.44')}, {'trans_date': datetime.date(2025, 1, 13), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('1743.23')}, {'trans_date': datetime.date(2025, 1, 13), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('3301.94')}, {'trans_date': datetime.date(2025, 1, 14), 'type': 'DEPOSIT', 'transaction_count': 6, 'total_amount': Decimal('12027.16')}, {'trans_date': datetime.date(2025, 1, 14), 'type': 'TRANSFER', 'transaction_count': 4, 'total_amount': Decimal('11601.00')}, {'trans_date': datetime.date(2025, 1, 14), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('13634.21')}, {'trans_date': datetime.date(2025, 1, 15), 'type': 'DEPOSIT', 'transaction_count': 9, 'total_amount': Decimal('20169.79')}, {'trans_date': datetime.date(2025, 1, 15), 'type': 'TRANSFER', 'transaction_count': 2, 'total_amount': Decimal('7162.94')}, {'trans_date': datetime.date(2025, 1, 15), 'type': 'WITHDRAW', 'transaction_count': 8, 'total_amount': Decimal('20763.04')}, {'trans_date': datetime.date(2025, 1, 16), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('8244.60')}, {'trans_date': datetime.date(2025, 1, 16), 'type': 'TRANSFER', 'transaction_count': 3, 'total_amount': Decimal('4134.83')}, {'trans_date': datetime.date(2025, 1, 17), 'type': 'DEPOSIT', 'transaction_count': 4, 'total_amount': Decimal('5974.57')}, {'trans_date': datetime.date(2025, 1, 17), 'type': 'TRANSFER', 'transaction_count': 6, 'total_amount': Decimal('20461.31')}, {'trans_date': datetime.date(2025, 1, 17), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('5356.49')}, {'trans_date': datetime.date(2025, 1, 18), 'type': 'DEPOSIT', 'transaction_count': 3, 'total_amount': Decimal('9127.98')}, {'trans_date': datetime.date(2025, 1, 18), 'type': 'TRANSFER', 'transaction_count': 2, 'total_amount': Decimal('4840.54')}, {'trans_date': datetime.date(2025, 1, 18), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('14266.88')}, {'trans_date': datetime.date(2025, 1, 19), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('1931.99')}, {'trans_date': datetime.date(2025, 1, 19), 'type': 'TRANSFER', 'transaction_count': 5, 'total_amount': Decimal('16898.34')}, {'trans_date': datetime.date(2025, 1, 19), 'type': 'WITHDRAW', 'transaction_count': 5, 'total_amount': Decimal('10309.19')}, {'trans_date': datetime.date(2025, 1, 20), 'type': 'DEPOSIT', 'transaction_count': 6, 'total_amount': Decimal('15203.01')}, {'trans_date': datetime.date(2025, 1, 20), 'type': 'TRANSFER', 'transaction_count': 3, 'total_amount': Decimal('5744.03')}, {'trans_date': datetime.date(2025, 1, 20), 'type': 'WITHDRAW', 'transaction_count': 3, 'total_amount': Decimal('3650.22')}, {'trans_date': datetime.date(2025, 1, 21), 'type': 'DEPOSIT', 'transaction_count': 5, 'total_amount': Decimal('15304.73')}, {'trans_date': datetime.date(2025, 1, 21), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('4569.03')}, {'trans_date': datetime.date(2025, 1, 21), 'type': 'WITHDRAW', 'transaction_count': 3, 'total_amount': Decimal('4183.34')}, {'trans_date': datetime.date(2025, 1, 22), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('1190.58')}, {'trans_date': datetime.date(2025, 1, 22), 'type': 'TRANSFER', 'transaction_count': 2, 'total_amount': Decimal('4374.61')}, {'trans_date': datetime.date(2025, 1, 22), 'type': 'WITHDRAW', 'transaction_count': 6, 'total_amount': Decimal('16704.26')}, {'trans_date': datetime.date(2025, 1, 23), 'type': 'DEPOSIT', 'transaction_count': 4, 'total_amount': Decimal('8861.73')}, {'trans_date': datetime.date(2025, 1, 23), 'type': 'TRANSFER', 'transaction_count': 5, 'total_amount': Decimal('10515.72')}, {'trans_date': datetime.date(2025, 1, 23), 'type': 'WITHDRAW', 'transaction_count': 8, 'total_amount': Decimal('23024.12')}, {'trans_date': datetime.date(2025, 1, 24), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('3530.50')}, {'trans_date': datetime.date(2025, 1, 24), 'type': 'TRANSFER', 'transaction_count': 9, 'total_amount': Decimal('31176.73')}, {'trans_date': datetime.date(2025, 1, 24), 'type': 'WITHDRAW', 'transaction_count': 1, 'total_amount': Decimal('3302.35')}, {'trans_date': datetime.date(2025, 1, 25), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('3093.78')}, {'trans_date': datetime.date(2025, 1, 25), 'type': 'TRANSFER', 'transaction_count': 8, 'total_amount': Decimal('24397.59')}, {'trans_date': datetime.date(2025, 1, 25), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('8876.53')}, {'trans_date': datetime.date(2025, 1, 26), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('5089.72')}, {'trans_date': datetime.date(2025, 1, 26), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('4982.85')}, {'trans_date': datetime.date(2025, 1, 26), 'type': 'WITHDRAW', 'transaction_count': 6, 'total_amount': Decimal('16136.16')}, {'trans_date': datetime.date(2025, 1, 27), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('1624.59')}, {'trans_date': datetime.date(2025, 1, 27), 'type': 'TRANSFER', 'transaction_count': 2, 'total_amount': Decimal('6711.40')}, {'trans_date': datetime.date(2025, 1, 27), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('5635.13')}, {'trans_date': datetime.date(2025, 1, 28), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('4179.47')}, {'trans_date': datetime.date(2025, 1, 28), 'type': 'TRANSFER', 'transaction_count': 6, 'total_amount': Decimal('12812.59')}, {'trans_date': datetime.date(2025, 1, 28), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('3983.35')}, {'trans_date': datetime.date(2025, 1, 29), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('6522.25')}, {'trans_date': datetime.date(2025, 1, 29), 'type': 'TRANSFER', 'transaction_count': 4, 'total_amount': Decimal('11467.52')}, {'trans_date': datetime.date(2025, 1, 29), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('11665.48')}, {'trans_date': datetime.date(2025, 1, 30), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('4123.72')}, {'trans_date': datetime.date(2025, 1, 30), 'type': 'TRANSFER', 'transaction_count': 5, 'total_amount': Decimal('12440.14')}, {'trans_date': datetime.date(2025, 1, 30), 'type': 'WITHDRAW', 'transaction_count': 6, 'total_amount': Decimal('16199.87')}, {'trans_date': datetime.date(2025, 1, 31), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('6772.90')}, {'trans_date': datetime.date(2025, 1, 31), 'type': 'TRANSFER', 'transaction_count': 3, 'total_amount': Decimal('6534.64')}, {'trans_date': datetime.date(2025, 1, 31), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('778.28')}, {'trans_date': datetime.date(2025, 2, 1), 'type': 'DEPOSIT', 'transaction_count': 7, 'total_amount': Decimal('17575.61')}, {'trans_date': datetime.date(2025, 2, 1), 'type': 'TRANSFER', 'transaction_count': 4, 'total_amount': Decimal('8186.63')}, {'trans_date': datetime.date(2025, 2, 1), 'type': 'WITHDRAW', 'transaction_count': 3, 'total_amount': Decimal('6141.51')}, {'trans_date': datetime.date(2025, 2, 2), 'type': 'DEPOSIT', 'transaction_count': 3, 'total_amount': Decimal('10726.73')}, {'trans_date': datetime.date(2025, 2, 2), 'type': 'TRANSFER', 'transaction_count': 4, 'total_amount': Decimal('12128.17')}, {'trans_date': datetime.date(2025, 2, 2), 'type': 'WITHDRAW', 'transaction_count': 3, 'total_amount': Decimal('4053.28')}, {'trans_date': datetime.date(2025, 2, 3), 'type': 'DEPOSIT', 'transaction_count': 5, 'total_amount': Decimal('14353.40')}, {'trans_date': datetime.date(2025, 2, 3), 'type': 'TRANSFER', 'transaction_count': 5, 'total_amount': Decimal('12180.89')}, {'trans_date': datetime.date(2025, 2, 3), 'type': 'WITHDRAW', 'transaction_count': 3, 'total_amount': Decimal('10581.04')}, {'trans_date': datetime.date(2025, 2, 4), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('1188.70')}, {'trans_date': datetime.date(2025, 2, 4), 'type': 'TRANSFER', 'transaction_count': 5, 'total_amount': Decimal('12910.53')}, {'trans_date': datetime.date(2025, 2, 4), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('12185.73')}, {'trans_date': datetime.date(2025, 2, 5), 'type': 'DEPOSIT', 'transaction_count': 3, 'total_amount': Decimal('6322.00')}, {'trans_date': datetime.date(2025, 2, 5), 'type': 'TRANSFER', 'transaction_count': 3, 'total_amount': Decimal('3274.67')}, {'trans_date': datetime.date(2025, 2, 5), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('1009.05')}, {'trans_date': datetime.date(2025, 2, 6), 'type': 'DEPOSIT', 'transaction_count': 3, 'total_amount': Decimal('9432.02')}, {'trans_date': datetime.date(2025, 2, 6), 'type': 'TRANSFER', 'transaction_count': 4, 'total_amount': Decimal('5069.21')}, {'trans_date': datetime.date(2025, 2, 6), 'type': 'WITHDRAW', 'transaction_count': 5, 'total_amount': Decimal('5906.85')}, {'trans_date': datetime.date(2025, 2, 7), 'type': 'DEPOSIT', 'transaction_count': 6, 'total_amount': Decimal('9535.47')}, {'trans_date': datetime.date(2025, 2, 7), 'type': 'TRANSFER', 'transaction_count': 3, 'total_amount': Decimal('13432.15')}, {'trans_date': datetime.date(2025, 2, 7), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('7405.63')}, {'trans_date': datetime.date(2025, 2, 8), 'type': 'DEPOSIT', 'transaction_count': 4, 'total_amount': Decimal('8629.30')}, {'trans_date': datetime.date(2025, 2, 8), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('1360.25')}, {'trans_date': datetime.date(2025, 2, 8), 'type': 'WITHDRAW', 'transaction_count': 1, 'total_amount': Decimal('3927.60')}, {'trans_date': datetime.date(2025, 2, 9), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('1000.00')}, {'trans_date': datetime.date(2025, 2, 9), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('20000.00')}]
+2025-02-10 14:03:34,605 - SQL - INFO - Query: Executing query: 
+            SELECT 
+                gender,
+                COUNT(*) as count,
+                AVG(EXTRACT(YEAR FROM AGE(NOW(), date_of_birth))) as avg_age,
+                COUNT(DISTINCT job) as unique_jobs
+            FROM users
+            GROUP BY gender
+        
+2025-02-10 14:03:34,649 - SQL - INFO - Query: Query result: [{'gender': 'F', 'count': 286, 'avg_age': Decimal('42.9650349650349650'), 'unique_jobs': 15}, {'gender': 'M', 'count': 318, 'avg_age': Decimal('42.8238993710691824'), 'unique_jobs': 16}]
+2025-02-10 14:03:34,653 - SQL - INFO - Query: Executing query: 
+            SELECT 
+                CASE 
+                    WHEN balance BETWEEN 0 AND 1000 THEN '0-1k'
+                    WHEN balance BETWEEN 1001 AND 5000 THEN '1k-5k'
+                    WHEN balance BETWEEN 5001 AND 10000 THEN '5k-10k'
+                    WHEN balance BETWEEN 10001 AND 50000 THEN '10k-50k'
+                    ELSE '50k+'
+                END as balance_range,
+                COUNT(*) as account_count,
+                AVG(balance) as avg_balance
+            FROM accounts
+            WHERE status = true
+            GROUP BY 1
+            ORDER BY 1
+        
+2025-02-10 14:03:34,720 - SQL - INFO - Query: Query result: [{'balance_range': '10k-50k', 'account_count': 592, 'avg_balance': Decimal('30422.109966216216')}, {'balance_range': '1k-5k', 'account_count': 75, 'avg_balance': Decimal('2911.9997333333333333')}, {'balance_range': '50k+', 'account_count': 1, 'avg_balance': Decimal('111111.000000000000')}, {'balance_range': '5k-10k', 'account_count': 55, 'avg_balance': Decimal('7676.2972727272727273')}]
+2025-02-10 14:03:34,724 - SQL - INFO - Query: Executing query: 
+            SELECT 
+                type,
+                COUNT(*) as count
+            FROM accounts
+            WHERE status = true
+            GROUP BY type
+        
+2025-02-10 14:03:34,779 - SQL - INFO - Query: Query result: [{'type': 'savings', 'count': 368}, {'type': 'checking', 'count': 355}]
+2025-02-10 14:03:34,782 - SQL - INFO - Query: Executing query: 
+            SELECT 
+                TO_CHAR(date_created, 'YYYY-MM') as month,
+                COUNT(*) as count
+            FROM accounts
+            WHERE status = true
+            GROUP BY month
+            ORDER BY month
+        

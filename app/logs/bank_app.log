@@ -2770,3 +2770,222 @@ DETAIL:  Key (email)=(tariq@gmail.com) already exists.
 2025-02-10 13:47:39,402 - werkzeug - INFO -  * Restarting with stat
 2025-02-10 13:47:41,298 - werkzeug - WARNING -  * Debugger is active!
 2025-02-10 13:47:41,304 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 13:49:38,960 - app.logger.app_logging - WARNING - Unauthorized access attempt to menu
+2025-02-10 13:49:38,961 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/menu
+2025-02-10 13:49:38,971 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:49:38] "[31m[1mGET /bank/menu HTTP/1.1[0m" 401 -
+2025-02-10 13:49:42,086 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:49:42] "GET /login HTTP/1.1" 200 -
+2025-02-10 13:49:43,714 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-10 13:49:43,718 - sql - INFO - Found admin record for username: admin
+2025-02-10 13:49:43,719 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-10 13:49:43,721 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:49:43] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-10 13:49:43,734 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:49:43] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 13:49:46,649 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/errors/401
+2025-02-10 13:49:46,651 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:49:46] "[31m[1mGET /bank/errors/401 HTTP/1.1[0m" 401 -
+2025-02-10 13:49:49,020 - app.logger.app_logging - WARNING - 403 Forbidden error for path: /bank/errors/403
+2025-02-10 13:49:49,024 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:49:49] "[31m[1mGET /bank/errors/403 HTTP/1.1[0m" 403 -
+2025-02-10 13:49:53,361 - app.logger.app_logging - WARNING - 404 Error for path: /bank/errors/404
+2025-02-10 13:49:53,365 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:49:53] "[33mGET /bank/errors/404 HTTP/1.1[0m" 404 -
+2025-02-10 13:49:56,219 - app.logger.app_logging - ERROR - 500 Error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application. - Path: /bank/errors/500
+2025-02-10 13:49:56,223 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:49:56] "[35m[1mGET /bank/errors/500 HTTP/1.1[0m" 500 -
+2025-02-10 13:50:11,244 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:50:11] "GET /analytics/dashboard HTTP/1.1" 200 -
+2025-02-10 13:50:13,836 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:50:13] "GET /bank/search?action=statement HTTP/1.1" 200 -
+2025-02-10 13:50:16,739 - app.logger.app_logging - INFO - Searching accounts with term: gsqgrg
+2025-02-10 13:50:16,799 - sql_logger - INFO - Executing search query with term: gsqgrg
+2025-02-10 13:50:16,809 - app.logger.app_logging - INFO - Found 0 matching accounts
+2025-02-10 13:50:16,811 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:50:16] "POST /bank/search?action=statement HTTP/1.1" 200 -
+2025-02-10 13:53:03,692 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:03] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 13:53:05,401 - app.logger.app_logging - INFO - Fetching all accounts
+2025-02-10 13:53:05,445 - sql_logger - INFO - Executing query: 
+                SELECT a.number, a.user_id, a.type, 
+                       a.balance, a.status, a.interest_rate, a.created_at,
+                       u.first_name, u.last_name, u.email
+                FROM accounts a
+                JOIN users u ON a.user_id = u.id
+                ORDER BY a.number
+            
+2025-02-10 13:53:05,493 - app.logger.app_logging - INFO - Successfully fetched 723 accounts
+2025-02-10 13:53:05,526 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:05] "GET /bank/list HTTP/1.1" 200 -
+2025-02-10 13:53:07,648 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-10 13:53:07,650 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:07] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-10 13:53:07,661 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:07] "GET / HTTP/1.1" 200 -
+2025-02-10 13:53:09,822 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-10 13:53:09,827 - sql - INFO - Found admin record for username: admin
+2025-02-10 13:53:09,828 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-10 13:53:09,829 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:09] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-10 13:53:09,842 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:09] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 13:53:15,023 - app.logger.app_logging - INFO - Admin ID 1 logged out
+2025-02-10 13:53:15,024 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:15] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-02-10 13:53:15,036 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:15] "GET / HTTP/1.1" 200 -
+2025-02-10 13:53:23,753 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /analytics/dashboard
+2025-02-10 13:53:23,755 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:23] "[31m[1mGET /analytics/dashboard HTTP/1.1[0m" 401 -
+2025-02-10 13:53:51,277 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:51] "GET /login HTTP/1.1" 200 -
+2025-02-10 13:53:52,831 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-10 13:53:52,837 - sql - INFO - Found admin record for username: admin
+2025-02-10 13:53:52,838 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-10 13:53:52,840 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:52] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-10 13:53:52,928 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:53:52] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 13:54:07,366 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\controllers\\bank_controller.py', reloading
+2025-02-10 13:54:07,513 - werkzeug - INFO -  * Restarting with stat
+2025-02-10 13:54:08,956 - werkzeug - WARNING -  * Debugger is active!
+2025-02-10 13:54:08,961 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 13:54:15,838 - app.logger.app_logging - WARNING - Unauthorized access attempt to list
+2025-02-10 13:54:15,840 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /bank/list
+2025-02-10 13:54:15,850 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:54:15] "[31m[1mGET /bank/list HTTP/1.1[0m" 401 -
+2025-02-10 13:54:17,774 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:54:17] "GET /login HTTP/1.1" 200 -
+2025-02-10 13:54:19,079 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-10 13:54:19,084 - sql - INFO - Found admin record for username: admin
+2025-02-10 13:54:19,085 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-10 13:54:19,087 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:54:19] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-10 13:54:19,101 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:54:19] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 13:57:39,033 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:57:39] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 13:57:42,065 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:57:42] "GET /analytics/dashboard HTTP/1.1" 200 -
+2025-02-10 13:58:10,962 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 13:58:10] "GET /analytics/dashboard HTTP/1.1" 200 -
+2025-02-10 14:00:29,506 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\analytics_service.py', reloading
+2025-02-10 14:00:29,698 - werkzeug - INFO -  * Restarting with stat
+2025-02-10 14:00:31,276 - werkzeug - WARNING -  * Debugger is active!
+2025-02-10 14:00:31,284 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 14:00:37,394 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\analytics_service.py', reloading
+2025-02-10 14:00:37,683 - werkzeug - INFO -  * Restarting with stat
+2025-02-10 14:00:39,467 - werkzeug - WARNING -  * Debugger is active!
+2025-02-10 14:00:39,473 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 14:00:39,945 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-10 14:00:39,952 - sql - INFO - Found admin record for username: admin
+2025-02-10 14:00:39,953 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-10 14:00:39,956 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:00:39] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-10 14:00:39,976 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:00:39] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 14:00:45,389 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:00:45] "GET /analytics/dashboard HTTP/1.1" 200 -
+2025-02-10 14:02:25,813 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\analytics_service.py', reloading
+2025-02-10 14:02:26,012 - werkzeug - INFO -  * Restarting with stat
+2025-02-10 14:02:27,531 - werkzeug - WARNING -  * Debugger is active!
+2025-02-10 14:02:27,537 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 14:02:41,753 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\analytics_dao.py', reloading
+2025-02-10 14:02:41,938 - werkzeug - INFO -  * Restarting with stat
+2025-02-10 14:02:43,580 - werkzeug - WARNING -  * Debugger is active!
+2025-02-10 14:02:43,587 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 14:03:26,113 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\analytics_dao.py', reloading
+2025-02-10 14:03:26,326 - werkzeug - INFO -  * Restarting with stat
+2025-02-10 14:03:27,764 - werkzeug - WARNING -  * Debugger is active!
+2025-02-10 14:03:27,771 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 14:03:29,020 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /analytics/dashboard
+2025-02-10 14:03:29,028 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:03:29] "[31m[1mGET /analytics/dashboard HTTP/1.1[0m" 401 -
+2025-02-10 14:03:30,193 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:03:30] "GET /login HTTP/1.1" 200 -
+2025-02-10 14:03:31,134 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-10 14:03:31,138 - sql - INFO - Found admin record for username: admin
+2025-02-10 14:03:31,139 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-10 14:03:31,139 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:03:31] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-10 14:03:31,185 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:03:31] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 14:03:34,434 - sql_logger - INFO - Executing query: 
+            SELECT 
+                COUNT(*) as total_accounts,
+                SUM(balance) as total_balance,
+                AVG(balance) as avg_balance,
+                COUNT(CASE WHEN type = 'savings' THEN 1 END) as savings_count,
+                COUNT(CASE WHEN type = 'checking' THEN 1 END) as checking_count
+            FROM accounts
+            WHERE status = true
+        
+2025-02-10 14:03:34,503 - sql_logger - INFO - Query result: {'total_accounts': 723, 'total_balance': Decimal('18761596.43'), 'avg_balance': Decimal('25949.649280774550'), 'savings_count': 368, 'checking_count': 355}
+2025-02-10 14:03:34,505 - sql_logger - INFO - Executing query: 
+            SELECT 
+                DATE(date) as trans_date,
+                type,
+                COUNT(*) as transaction_count,
+                SUM(amount) as total_amount
+            FROM transactions
+            WHERE date >= NOW() - INTERVAL '%s days'
+            GROUP BY DATE(date), type
+            ORDER BY trans_date, type
+         with days: 30
+2025-02-10 14:03:34,566 - sql_logger - INFO - Query result: [{'trans_date': datetime.date(2025, 1, 11), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('301.91')}, {'trans_date': datetime.date(2025, 1, 11), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('1257.04')}, {'trans_date': datetime.date(2025, 1, 11), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('10103.60')}, {'trans_date': datetime.date(2025, 1, 12), 'type': 'DEPOSIT', 'transaction_count': 5, 'total_amount': Decimal('18235.45')}, {'trans_date': datetime.date(2025, 1, 12), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('3807.28')}, {'trans_date': datetime.date(2025, 1, 12), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('6291.33')}, {'trans_date': datetime.date(2025, 1, 13), 'type': 'DEPOSIT', 'transaction_count': 4, 'total_amount': Decimal('10624.44')}, {'trans_date': datetime.date(2025, 1, 13), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('1743.23')}, {'trans_date': datetime.date(2025, 1, 13), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('3301.94')}, {'trans_date': datetime.date(2025, 1, 14), 'type': 'DEPOSIT', 'transaction_count': 6, 'total_amount': Decimal('12027.16')}, {'trans_date': datetime.date(2025, 1, 14), 'type': 'TRANSFER', 'transaction_count': 4, 'total_amount': Decimal('11601.00')}, {'trans_date': datetime.date(2025, 1, 14), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('13634.21')}, {'trans_date': datetime.date(2025, 1, 15), 'type': 'DEPOSIT', 'transaction_count': 9, 'total_amount': Decimal('20169.79')}, {'trans_date': datetime.date(2025, 1, 15), 'type': 'TRANSFER', 'transaction_count': 2, 'total_amount': Decimal('7162.94')}, {'trans_date': datetime.date(2025, 1, 15), 'type': 'WITHDRAW', 'transaction_count': 8, 'total_amount': Decimal('20763.04')}, {'trans_date': datetime.date(2025, 1, 16), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('8244.60')}, {'trans_date': datetime.date(2025, 1, 16), 'type': 'TRANSFER', 'transaction_count': 3, 'total_amount': Decimal('4134.83')}, {'trans_date': datetime.date(2025, 1, 17), 'type': 'DEPOSIT', 'transaction_count': 4, 'total_amount': Decimal('5974.57')}, {'trans_date': datetime.date(2025, 1, 17), 'type': 'TRANSFER', 'transaction_count': 6, 'total_amount': Decimal('20461.31')}, {'trans_date': datetime.date(2025, 1, 17), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('5356.49')}, {'trans_date': datetime.date(2025, 1, 18), 'type': 'DEPOSIT', 'transaction_count': 3, 'total_amount': Decimal('9127.98')}, {'trans_date': datetime.date(2025, 1, 18), 'type': 'TRANSFER', 'transaction_count': 2, 'total_amount': Decimal('4840.54')}, {'trans_date': datetime.date(2025, 1, 18), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('14266.88')}, {'trans_date': datetime.date(2025, 1, 19), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('1931.99')}, {'trans_date': datetime.date(2025, 1, 19), 'type': 'TRANSFER', 'transaction_count': 5, 'total_amount': Decimal('16898.34')}, {'trans_date': datetime.date(2025, 1, 19), 'type': 'WITHDRAW', 'transaction_count': 5, 'total_amount': Decimal('10309.19')}, {'trans_date': datetime.date(2025, 1, 20), 'type': 'DEPOSIT', 'transaction_count': 6, 'total_amount': Decimal('15203.01')}, {'trans_date': datetime.date(2025, 1, 20), 'type': 'TRANSFER', 'transaction_count': 3, 'total_amount': Decimal('5744.03')}, {'trans_date': datetime.date(2025, 1, 20), 'type': 'WITHDRAW', 'transaction_count': 3, 'total_amount': Decimal('3650.22')}, {'trans_date': datetime.date(2025, 1, 21), 'type': 'DEPOSIT', 'transaction_count': 5, 'total_amount': Decimal('15304.73')}, {'trans_date': datetime.date(2025, 1, 21), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('4569.03')}, {'trans_date': datetime.date(2025, 1, 21), 'type': 'WITHDRAW', 'transaction_count': 3, 'total_amount': Decimal('4183.34')}, {'trans_date': datetime.date(2025, 1, 22), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('1190.58')}, {'trans_date': datetime.date(2025, 1, 22), 'type': 'TRANSFER', 'transaction_count': 2, 'total_amount': Decimal('4374.61')}, {'trans_date': datetime.date(2025, 1, 22), 'type': 'WITHDRAW', 'transaction_count': 6, 'total_amount': Decimal('16704.26')}, {'trans_date': datetime.date(2025, 1, 23), 'type': 'DEPOSIT', 'transaction_count': 4, 'total_amount': Decimal('8861.73')}, {'trans_date': datetime.date(2025, 1, 23), 'type': 'TRANSFER', 'transaction_count': 5, 'total_amount': Decimal('10515.72')}, {'trans_date': datetime.date(2025, 1, 23), 'type': 'WITHDRAW', 'transaction_count': 8, 'total_amount': Decimal('23024.12')}, {'trans_date': datetime.date(2025, 1, 24), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('3530.50')}, {'trans_date': datetime.date(2025, 1, 24), 'type': 'TRANSFER', 'transaction_count': 9, 'total_amount': Decimal('31176.73')}, {'trans_date': datetime.date(2025, 1, 24), 'type': 'WITHDRAW', 'transaction_count': 1, 'total_amount': Decimal('3302.35')}, {'trans_date': datetime.date(2025, 1, 25), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('3093.78')}, {'trans_date': datetime.date(2025, 1, 25), 'type': 'TRANSFER', 'transaction_count': 8, 'total_amount': Decimal('24397.59')}, {'trans_date': datetime.date(2025, 1, 25), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('8876.53')}, {'trans_date': datetime.date(2025, 1, 26), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('5089.72')}, {'trans_date': datetime.date(2025, 1, 26), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('4982.85')}, {'trans_date': datetime.date(2025, 1, 26), 'type': 'WITHDRAW', 'transaction_count': 6, 'total_amount': Decimal('16136.16')}, {'trans_date': datetime.date(2025, 1, 27), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('1624.59')}, {'trans_date': datetime.date(2025, 1, 27), 'type': 'TRANSFER', 'transaction_count': 2, 'total_amount': Decimal('6711.40')}, {'trans_date': datetime.date(2025, 1, 27), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('5635.13')}, {'trans_date': datetime.date(2025, 1, 28), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('4179.47')}, {'trans_date': datetime.date(2025, 1, 28), 'type': 'TRANSFER', 'transaction_count': 6, 'total_amount': Decimal('12812.59')}, {'trans_date': datetime.date(2025, 1, 28), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('3983.35')}, {'trans_date': datetime.date(2025, 1, 29), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('6522.25')}, {'trans_date': datetime.date(2025, 1, 29), 'type': 'TRANSFER', 'transaction_count': 4, 'total_amount': Decimal('11467.52')}, {'trans_date': datetime.date(2025, 1, 29), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('11665.48')}, {'trans_date': datetime.date(2025, 1, 30), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('4123.72')}, {'trans_date': datetime.date(2025, 1, 30), 'type': 'TRANSFER', 'transaction_count': 5, 'total_amount': Decimal('12440.14')}, {'trans_date': datetime.date(2025, 1, 30), 'type': 'WITHDRAW', 'transaction_count': 6, 'total_amount': Decimal('16199.87')}, {'trans_date': datetime.date(2025, 1, 31), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('6772.90')}, {'trans_date': datetime.date(2025, 1, 31), 'type': 'TRANSFER', 'transaction_count': 3, 'total_amount': Decimal('6534.64')}, {'trans_date': datetime.date(2025, 1, 31), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('778.28')}, {'trans_date': datetime.date(2025, 2, 1), 'type': 'DEPOSIT', 'transaction_count': 7, 'total_amount': Decimal('17575.61')}, {'trans_date': datetime.date(2025, 2, 1), 'type': 'TRANSFER', 'transaction_count': 4, 'total_amount': Decimal('8186.63')}, {'trans_date': datetime.date(2025, 2, 1), 'type': 'WITHDRAW', 'transaction_count': 3, 'total_amount': Decimal('6141.51')}, {'trans_date': datetime.date(2025, 2, 2), 'type': 'DEPOSIT', 'transaction_count': 3, 'total_amount': Decimal('10726.73')}, {'trans_date': datetime.date(2025, 2, 2), 'type': 'TRANSFER', 'transaction_count': 4, 'total_amount': Decimal('12128.17')}, {'trans_date': datetime.date(2025, 2, 2), 'type': 'WITHDRAW', 'transaction_count': 3, 'total_amount': Decimal('4053.28')}, {'trans_date': datetime.date(2025, 2, 3), 'type': 'DEPOSIT', 'transaction_count': 5, 'total_amount': Decimal('14353.40')}, {'trans_date': datetime.date(2025, 2, 3), 'type': 'TRANSFER', 'transaction_count': 5, 'total_amount': Decimal('12180.89')}, {'trans_date': datetime.date(2025, 2, 3), 'type': 'WITHDRAW', 'transaction_count': 3, 'total_amount': Decimal('10581.04')}, {'trans_date': datetime.date(2025, 2, 4), 'type': 'DEPOSIT', 'transaction_count': 2, 'total_amount': Decimal('1188.70')}, {'trans_date': datetime.date(2025, 2, 4), 'type': 'TRANSFER', 'transaction_count': 5, 'total_amount': Decimal('12910.53')}, {'trans_date': datetime.date(2025, 2, 4), 'type': 'WITHDRAW', 'transaction_count': 4, 'total_amount': Decimal('12185.73')}, {'trans_date': datetime.date(2025, 2, 5), 'type': 'DEPOSIT', 'transaction_count': 3, 'total_amount': Decimal('6322.00')}, {'trans_date': datetime.date(2025, 2, 5), 'type': 'TRANSFER', 'transaction_count': 3, 'total_amount': Decimal('3274.67')}, {'trans_date': datetime.date(2025, 2, 5), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('1009.05')}, {'trans_date': datetime.date(2025, 2, 6), 'type': 'DEPOSIT', 'transaction_count': 3, 'total_amount': Decimal('9432.02')}, {'trans_date': datetime.date(2025, 2, 6), 'type': 'TRANSFER', 'transaction_count': 4, 'total_amount': Decimal('5069.21')}, {'trans_date': datetime.date(2025, 2, 6), 'type': 'WITHDRAW', 'transaction_count': 5, 'total_amount': Decimal('5906.85')}, {'trans_date': datetime.date(2025, 2, 7), 'type': 'DEPOSIT', 'transaction_count': 6, 'total_amount': Decimal('9535.47')}, {'trans_date': datetime.date(2025, 2, 7), 'type': 'TRANSFER', 'transaction_count': 3, 'total_amount': Decimal('13432.15')}, {'trans_date': datetime.date(2025, 2, 7), 'type': 'WITHDRAW', 'transaction_count': 2, 'total_amount': Decimal('7405.63')}, {'trans_date': datetime.date(2025, 2, 8), 'type': 'DEPOSIT', 'transaction_count': 4, 'total_amount': Decimal('8629.30')}, {'trans_date': datetime.date(2025, 2, 8), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('1360.25')}, {'trans_date': datetime.date(2025, 2, 8), 'type': 'WITHDRAW', 'transaction_count': 1, 'total_amount': Decimal('3927.60')}, {'trans_date': datetime.date(2025, 2, 9), 'type': 'DEPOSIT', 'transaction_count': 1, 'total_amount': Decimal('1000.00')}, {'trans_date': datetime.date(2025, 2, 9), 'type': 'TRANSFER', 'transaction_count': 1, 'total_amount': Decimal('20000.00')}]
+2025-02-10 14:03:34,605 - sql_logger - INFO - Executing query: 
+            SELECT 
+                gender,
+                COUNT(*) as count,
+                AVG(EXTRACT(YEAR FROM AGE(NOW(), date_of_birth))) as avg_age,
+                COUNT(DISTINCT job) as unique_jobs
+            FROM users
+            GROUP BY gender
+        
+2025-02-10 14:03:34,649 - sql_logger - INFO - Query result: [{'gender': 'F', 'count': 286, 'avg_age': Decimal('42.9650349650349650'), 'unique_jobs': 15}, {'gender': 'M', 'count': 318, 'avg_age': Decimal('42.8238993710691824'), 'unique_jobs': 16}]
+2025-02-10 14:03:34,653 - sql_logger - INFO - Executing query: 
+            SELECT 
+                CASE 
+                    WHEN balance BETWEEN 0 AND 1000 THEN '0-1k'
+                    WHEN balance BETWEEN 1001 AND 5000 THEN '1k-5k'
+                    WHEN balance BETWEEN 5001 AND 10000 THEN '5k-10k'
+                    WHEN balance BETWEEN 10001 AND 50000 THEN '10k-50k'
+                    ELSE '50k+'
+                END as balance_range,
+                COUNT(*) as account_count,
+                AVG(balance) as avg_balance
+            FROM accounts
+            WHERE status = true
+            GROUP BY 1
+            ORDER BY 1
+        
+2025-02-10 14:03:34,720 - sql_logger - INFO - Query result: [{'balance_range': '10k-50k', 'account_count': 592, 'avg_balance': Decimal('30422.109966216216')}, {'balance_range': '1k-5k', 'account_count': 75, 'avg_balance': Decimal('2911.9997333333333333')}, {'balance_range': '50k+', 'account_count': 1, 'avg_balance': Decimal('111111.000000000000')}, {'balance_range': '5k-10k', 'account_count': 55, 'avg_balance': Decimal('7676.2972727272727273')}]
+2025-02-10 14:03:34,724 - sql_logger - INFO - Executing query: 
+            SELECT 
+                type,
+                COUNT(*) as count
+            FROM accounts
+            WHERE status = true
+            GROUP BY type
+        
+2025-02-10 14:03:34,779 - sql_logger - INFO - Query result: [{'type': 'savings', 'count': 368}, {'type': 'checking', 'count': 355}]
+2025-02-10 14:03:34,782 - sql_logger - INFO - Executing query: 
+            SELECT 
+                TO_CHAR(date_created, 'YYYY-MM') as month,
+                COUNT(*) as count
+            FROM accounts
+            WHERE status = true
+            GROUP BY month
+            ORDER BY month
+        
+2025-02-10 14:03:34,884 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:03:34] "GET /analytics/dashboard HTTP/1.1" 200 -
+2025-02-10 14:03:50,055 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\analytics_dao.py', reloading
+2025-02-10 14:03:50,283 - werkzeug - INFO -  * Restarting with stat
+2025-02-10 14:03:51,919 - werkzeug - WARNING -  * Debugger is active!
+2025-02-10 14:03:51,925 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 14:03:52,283 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /analytics/dashboard
+2025-02-10 14:03:52,292 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:03:52] "[31m[1mGET /analytics/dashboard HTTP/1.1[0m" 401 -
+2025-02-10 14:03:53,595 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:03:53] "GET /login HTTP/1.1" 200 -
+2025-02-10 14:03:54,618 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-10 14:03:54,624 - sql - INFO - Found admin record for username: admin
+2025-02-10 14:03:54,625 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-10 14:03:54,627 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:03:54] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-10 14:03:54,639 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:03:54] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 14:03:58,068 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:03:58] "GET /analytics/dashboard HTTP/1.1" 200 -
+2025-02-10 14:04:02,278 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:04:02] "GET /analytics/dashboard HTTP/1.1" 200 -
+2025-02-10 14:04:27,251 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\dal\\analytics_dao.py', reloading
+2025-02-10 14:04:27,412 - werkzeug - INFO -  * Restarting with stat
+2025-02-10 14:04:31,439 - werkzeug - WARNING -  * Debugger is active!
+2025-02-10 14:04:31,446 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 14:04:51,654 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\analytics_service.py', reloading
+2025-02-10 14:04:51,844 - werkzeug - INFO -  * Restarting with stat
+2025-02-10 14:04:53,387 - werkzeug - WARNING -  * Debugger is active!
+2025-02-10 14:04:53,393 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 14:04:53,446 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /analytics/dashboard
+2025-02-10 14:04:53,470 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:04:53] "[31m[1mGET /analytics/dashboard HTTP/1.1[0m" 401 -
+2025-02-10 14:04:54,629 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:04:54] "GET /login HTTP/1.1" 200 -
+2025-02-10 14:04:55,646 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-10 14:04:55,652 - sql - INFO - Found admin record for username: admin
+2025-02-10 14:04:55,654 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-10 14:04:55,656 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:04:55] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-10 14:04:55,684 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:04:55] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 14:04:59,370 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:04:59] "GET /analytics/dashboard HTTP/1.1" 200 -
+2025-02-10 14:05:38,059 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\analytics_service.py', reloading
+2025-02-10 14:05:38,312 - werkzeug - INFO -  * Restarting with stat
+2025-02-10 14:05:39,958 - werkzeug - WARNING -  * Debugger is active!
+2025-02-10 14:05:39,967 - werkzeug - INFO -  * Debugger PIN: 939-336-666
+2025-02-10 14:05:39,983 - app.logger.app_logging - WARNING - 401 Unauthorized error for path: /analytics/dashboard
+2025-02-10 14:05:39,990 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:05:39] "[31m[1mGET /analytics/dashboard HTTP/1.1[0m" 401 -
+2025-02-10 14:05:41,272 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:05:41] "GET /login HTTP/1.1" 200 -
+2025-02-10 14:05:42,330 - sql - INFO - Executing query: SELECT * FROM admins WHERE username = %s with username: admin
+2025-02-10 14:05:42,336 - sql - INFO - Found admin record for username: admin
+2025-02-10 14:05:42,337 - app.logger.app_logging - INFO - Admin admin logged in successfully
+2025-02-10 14:05:42,339 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:05:42] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-02-10 14:05:42,353 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:05:42] "GET /bank/menu HTTP/1.1" 200 -
+2025-02-10 14:05:46,120 - werkzeug - INFO - 127.0.0.1 - - [10/Feb/2025 14:05:46] "GET /analytics/dashboard HTTP/1.1" 200 -
+2025-02-10 14:06:37,787 - werkzeug - INFO -  * Detected change in 'c:\\Users\\AMINE\\Desktop\\github\\ATLASBank_Admin_App\\app\\services\\analytics_service.py', reloading
+2025-02-10 14:06:37,996 - werkzeug - INFO -  * Restarting with stat

@@ -4,104 +4,119 @@
     <title>Analytics Dashboard</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 0;
+            background-color: #f8f9fa;
         }
-        
-        .dashboard-container {
+
+        .dashboard {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
-        .summary-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+
+        .dashboard h1 {
+            font-size: 32px;
+            color: #333;
             margin-bottom: 30px;
         }
-        
-        .card {
-            background: white;
+
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .summary-card {
+            width: 18%;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        
-        .card h3 {
-            margin: 0 0 10px 0;
-            color: #333;
+
+        .summary-card h3 {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
         }
-        
-        .card .value {
-            font-size: 24px;
+
+        .summary-card .value {
+            font-size: 28px;
             font-weight: bold;
-            color: #0066cc;
+            color: #007bff;
         }
-        
-        .chart-container {
-            background: white;
+
+        .chart {
+            margin-bottom: 40px;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart h2 {
+            font-size: 24px;
+            color: #333;
             margin-bottom: 20px;
         }
-        
-        .chart-container h2 {
-            margin: 0 0 20px 0;
-            color: #333;
-        }
-        
-        .chart-image {
-            width: 100%;
-            max-width: 800px;
+
+        .chart img {
+            max-width: 100%;
             height: auto;
-            margin: 0 auto;
-            display: block;
         }
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
+    <div class="dashboard">
         <h1>Analytics Dashboard</h1>
         
-        <div class="summary-cards">
-            <div class="card">
+        <div class="summary">
+            <div class="summary-card">
                 <h3>Total Accounts</h3>
                 <div class="value">{{ data.summary.total_accounts }}</div>
             </div>
-            <div class="card">
+            <div class="summary-card">
                 <h3>Total Balance</h3>
                 <div class="value">${{ "{:,.2f}".format(data.summary.total_balance) }}</div>
             </div>
-            <div class="card">
+            <div class="summary-card">
                 <h3>Average Balance</h3>
                 <div class="value">${{ "{:,.2f}".format(data.summary.avg_balance) }}</div>
             </div>
-            <div class="card">
+            <div class="summary-card">
                 <h3>Savings Accounts</h3>
                 <div class="value">{{ data.summary.savings_count }}</div>
             </div>
-            <div class="card">
+            <div class="summary-card">
                 <h3>Checking Accounts</h3>
                 <div class="value">{{ data.summary.checking_count }}</div>
             </div>
         </div>
         
-        <div class="chart-container">
+        <div class="chart">
             <h2>Transaction Trends</h2>
-            <img src="data:image/png;base64,{{ data.trends_chart }}" class="chart-image" alt="Transaction Trends">
+            <img src="data:image/png;base64,{{ data.trends_chart }}" alt="Transaction Trends">
         </div>
         
-        <div class="chart-container">
+        <div class="chart">
             <h2>User Demographics</h2>
-            <img src="data:image/png;base64,{{ data.demographics_chart }}" class="chart-image" alt="User Demographics">
+            <img src="data:image/png;base64,{{ data.demographics_chart }}" alt="User Demographics">
         </div>
         
-        <div class="chart-container">
+        <div class="chart">
             <h2>Balance Distribution</h2>
-            <img src="data:image/png;base64,{{ data.balance_chart }}" class="chart-image" alt="Balance Distribution">
+            <img src="data:image/png;base64,{{ data.balance_chart }}" alt="Balance Distribution">
+        </div>
+
+        <div class="chart">
+            <h2>Account Type Distribution</h2>
+            <img src="data:image/png;base64,{{ data.account_type_chart }}" alt="Account Type Distribution">
         </div>
     </div>
 </body>

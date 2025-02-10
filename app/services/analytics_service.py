@@ -18,6 +18,7 @@ class AnalyticsService:
             trends = self.analytics_dao.get_transaction_trends()
             demographics = self.analytics_dao.get_user_demographics()
             balance_dist = self.analytics_dao.get_balance_distribution()
+            account_types = self.analytics_dao.get_account_type_distribution()
 
             # Create transaction trends chart
             trends_df = pd.DataFrame(trends)
@@ -36,11 +37,9 @@ class AnalyticsService:
 
             # Create demographics chart
             demo_df = pd.DataFrame(demographics)
-            plt.figure(figsize=(8, 6))
-            plt.bar(demo_df['gender'], demo_df['count'])
+            plt.figure(figsize=(8, 8))
+            plt.pie(demo_df['count'], labels=demo_df['gender'], autopct='%1.1f%%', startangle=140)
             plt.title('User Gender Distribution')
-            plt.xlabel('Gender')
-            plt.ylabel('Count')
             plt.tight_layout()
             
             demographics_img = self._get_plot_image()
@@ -57,15 +56,26 @@ class AnalyticsService:
             
             balance_img = self._get_plot_image()
 
+            # Create account type distribution pie chart
+            account_type_df = pd.DataFrame(account_types)
+            plt.figure(figsize=(8, 8))
+            plt.pie(account_type_df['count'], labels=account_type_df['type'], autopct='%1.1f%%', startangle=140)
+            plt.title('Account Type Distribution')
+            plt.tight_layout()
+            
+            account_type_img = self._get_plot_image()
+
             return {
                 'summary': summary,
                 'trends_chart': trends_img,
                 'demographics_chart': demographics_img,
                 'balance_chart': balance_img,
+                'account_type_chart': account_type_img,
                 'raw_data': {
                     'trends': trends,
                     'demographics': demographics,
-                    'balance_distribution': balance_dist
+                    'balance_distribution': balance_dist,
+                    'account_types': account_types
                 }
             }
         except Exception as e:
@@ -82,6 +92,7 @@ class AnalyticsService:
                     'checking_count': 0
                 }
             }
+        
 
     def _get_plot_image(self) -> str:
         """Convert matplotlib plot to base64 string"""
