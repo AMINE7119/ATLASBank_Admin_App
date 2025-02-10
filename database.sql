@@ -11,6 +11,7 @@ CREATE TABLE admins (
 -- Default admin
 INSERT INTO admins (username, password, email, role) 
 VALUES ('admin', 'admin123', 'admin@bank.com', 'ADMIN');
+VALUES ('amine', '069151', 'amine@bank.com', 'SUPERADMIN');
 
 -- Users table  
 CREATE TABLE users (

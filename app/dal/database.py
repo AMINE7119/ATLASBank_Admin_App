@@ -3,10 +3,8 @@ from dotenv import load_dotenv
 import psycopg2
 from contextlib import contextmanager
 
-# Load environment variables from .env file
 load_dotenv()
 
-# Database configuration
 DB_CONFIG = {
     'host': os.getenv('DB_HOST'),
     'port': os.getenv('DB_PORT'),
@@ -29,7 +27,6 @@ def get_cursor():
         cursor.close()
         conn.close()
 
-# Test connection on main and return connection successful
 if __name__ == "__main__":
     try:
         with get_cursor() as cursor:

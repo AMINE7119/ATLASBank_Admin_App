@@ -1,82 +1,149 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Bank Management - Menu</title>
+  <title>Bank Admin - Menu</title>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(45deg, #0f323b, #384654);
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-menu {
+        background-color: #0f323b;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .nav-menu a {
+        color: #ecf0f1;
+        text-decoration: none; 
+        margin: 0 15px;
+        font-size: 18px;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+    }
+
+    .nav-menu a:hover {
+        color: #3498db;
+    }
+
+    .menu-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-size: 36px;
+        text-align: center;
+        margin: 0 0 20px;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    .menu-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .menu-list li {
+        background: #0f323b;
+        border: 1px solid #bdc3c7;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .menu-list li h3 {
+        font-size: 20px;
+        margin: 0 0 10px;
+        font-weight: 500;
+        color: #ffffff;
+    }
+
+    .menu-list li a {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 14px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .menu-list li a:hover {
+        background-color: #2980b9;
+    }
+
+    @media screen and (max-width: 600px) {
+        .menu-list li {
+            margin-bottom: 10px;
+        }
+    }
+</style>
 </head>
 <body>
-   <div class="nav-menu">
-       <a href="{{ url_for('index') }}">Home</a>
-       <a href="{{ url_for('bank.menu') }}">Menu</a>
-       <a href="{{ url_for('bank.list') }}">Account List</a>
-       <a href="{{ url_for('auth.logout') }}">Logout</a>
-   </div>
-   
-   <div class="menu-container">
-       <h1>Bank Management Menu</h1>
-       
-       {% if session.get('admin_id') %}
-           <div class="menu-grid">
-               <div class="menu-card create-account-card">
-                   <h3>Create New Account</h3>
-                   <p>Create a new bank account with associated user profile</p>
-                   <a href="{{ url_for('bank.create') }}">Create Account</a>
-               </div>
+  <div class="nav-menu">
+    
+    <a href="{{ url_for('auth.logout') }}">Se déconnecter</a>
+  </div>
 
-               <div class="menu-card">
-                   <h3>View Accounts</h3>
-                   <p>View and manage all existing bank accounts</p>
-                   <a href="{{ url_for('bank.list') }}">View Accounts</a>
-               </div>  
+  <div class="menu-container">
+    <h1>Bienvenue admin</h1>
 
-               <div class="menu-card">
-                   <h3>Search Account</h3>
-                   <p>Search for accounts by name or number</p>
-                   <a href="{{ url_for('bank.search') }}">Search Account</a>
-               </div>
-
-               <div class="menu-card transaction-card">
-                   <h3>Deposit</h3>
-                   <p>Make a deposit to an existing account</p>
-                   <a href="{{ url_for('bank.search') }}?action=deposit">Make Deposit</a>
-               </div>
-
-               <div class="menu-card transaction-card">
-                   <h3>Withdraw</h3>
-                   <p>Process a withdrawal from an account</p>
-                   <a href="{{ url_for('bank.search') }}?action=withdraw">Make Withdrawal</a>
-               </div>
-
-               <div class="menu-card transaction-card">
-                   <h3>Transfer</h3>
-                   <p>Transfer money between accounts</p>
-                   <a href="{{ url_for('bank.search') }}?action=transfer">Make Transfer</a>
-               </div>
-
-               <div class="menu-card statement-card">
-                   <h3>Bank Statement</h3>
-                   <p>View account transactions and generate statements</p>
-                   <a href="{{ url_for('bank.search') }}?action=statement">View Statement</a>
-               </div>
-
-               <div class="menu-card analytics-card">
-                   <h3>Analytics Dashboard</h3>
-                   <p>View bank statistics and performance metrics</p>
-                   <a href="{{ url_for('analytics.dashboard') }}">View Analytics</a>
-               </div>
-
-               <div class="error-test-card">
-                   <h3>Error Page Testing</h3>
-                   <div class="error-buttons">
-                       <a href="{{ url_for('bank.test_error', error_code=401) }}" class="error-btn error-401">Test 401 Unauthorized</a>
-                       <a href="{{ url_for('bank.test_error', error_code=403) }}" class="error-btn error-403">Test 403 Forbidden</a>
-                       <a href="{{ url_for('bank.test_error', error_code=404) }}" class="error-btn error-404">Test 404 Not Found</a>
-                       <a href="{{ url_for('bank.test_error', error_code=500) }}" class="error-btn error-500">Test 500 Server Error</a>
-                   </div>
-               </div>
-           </div>
-       {% else %}
-           <p>Please <a href="{{ url_for('auth.login') }}">login</a> to access the menu.</p>
-       {% endif %}
-   </div>
+    {% if session.get('admin_id') %}
+      <ul class="menu-list">
+        <li>
+          
+          <a href="{{ url_for('bank.create') }}">Créer un compte</a>
+        </li>
+        <li>
+          
+          <a href="{{ url_for('bank.list') }}">Voir les comptes</a>
+        </li>
+        <li>
+          
+          <a href="{{ url_for('bank.search') }}">Rechercher un compte</a>
+        </li>
+        <li>
+          
+          <a href="{{ url_for('bank.search') }}?action=deposit">Faire un dépôt</a>
+        </li>
+        <li>
+          
+          <a href="{{ url_for('bank.search') }}?action=withdraw">Faire un retrait</a>
+        </li>
+        <li>
+          <a href="{{ url_for('bank.search') }}?action=transfer">Faire un transfert</a>
+        </li>
+        <li>
+          <a href="{{ url_for('bank.search') }}?action=statement">Voir le relevé</a>
+        </li>
+        <li>
+          <a href="{{ url_for('analytics.dashboard') }}">Voir les analyses</a>
+        </li>
+        <li>
+          <h3>Test de page d'erreur</h3>
+          <div class="error-buttons">
+            <a href="{{ url_for('bank.test_error', error_code=401) }}" class="error-btn error-401">Tester 401 Non autorisé</a>
+            <a href="{{ url_for('bank.test_error', error_code=403) }}" class="error-btn error-403">Tester 403 Interdit</a>
+            <a href="{{ url_for('bank.test_error', error_code=404) }}" class="error-btn error-404">Tester 404 Non trouvé</a>
+            <a href="{{ url_for('bank.test_error', error_code=500) }}" class="error-btn error-500">Tester 500 Erreur serveur</a>
+          </div>
+        </li>
+      </ul>
+    {% else %}
+      <p>Veuillez <a href="{{ url_for('auth.login') }}">vous connecter</a> pour accéder au menu.</p>
+    {% endif %}
+  </div>
 </body>
 </html>

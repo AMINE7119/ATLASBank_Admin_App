@@ -9,7 +9,6 @@ class TransactionDAO:
         self.sql_logger = setup_sql_logging()
 
     def create_transaction(self, data: Dict[str, Any]) -> Optional[int]:
-        """Create a new transaction"""
         with get_cursor() as cursor:
             query = """
                 INSERT INTO transactions (account_id, type, amount, 
@@ -30,7 +29,6 @@ class TransactionDAO:
             return cursor.fetchone()[0]
 
     def get_account_transactions(self, account_number: int) -> List[Dict]:
-        """Get all transactions for an account"""
         with get_cursor() as cursor:
             query = """
                 SELECT id, type, amount, recipient_account, description, date
@@ -54,10 +52,8 @@ class TransactionDAO:
             return transactions
 
     def deposit(self, account_number: int, amount: Decimal, description: str = None) -> bool:
-        """Process a deposit transaction"""
         with get_cursor() as cursor:
             try:
-                # Update account balance
                 cursor.execute("""
                     UPDATE accounts 
                     SET balance = balance + %s 
@@ -67,7 +63,6 @@ class TransactionDAO:
                 )
                 new_balance = cursor.fetchone()[0]
                 
-                # Create transaction record
                 cursor.execute("""
                     INSERT INTO transactions (account_id, type, amount, description)
                     VALUES (%s, 'DEPOSIT', %s, %s)""",
@@ -82,17 +77,14 @@ class TransactionDAO:
                 raise
 
     def withdraw(self, account_number: int, amount: Decimal, description: str = None) -> bool:
-        """Process a withdrawal transaction"""
         with get_cursor() as cursor:
             try:
-                # Check sufficient balance
                 cursor.execute("SELECT balance FROM accounts WHERE number = %s", (account_number,))
                 current_balance = cursor.fetchone()[0]
                 
                 if current_balance < amount:
                     raise ValueError("Insufficient funds")
                 
-                # Update account balance
                 cursor.execute("""
                     UPDATE accounts 
                     SET balance = balance - %s 
@@ -102,7 +94,6 @@ class TransactionDAO:
                 )
                 new_balance = cursor.fetchone()[0]
                 
-                # Create transaction record
                 cursor.execute("""
                     INSERT INTO transactions (account_id, type, amount, description)
                     VALUES (%s, 'WITHDRAW', %s, %s)""",
@@ -117,10 +108,8 @@ class TransactionDAO:
                 raise
 
     def transfer(self, from_account: int, to_account: int, amount: Decimal, description: str = None) -> bool:
-        """Process a transfer between accounts"""
         with get_cursor() as cursor:
             try:
-                # Verify accounts exist
                 cursor.execute("SELECT balance FROM accounts WHERE number = %s", (from_account,))
                 from_balance = cursor.fetchone()
                 if not from_balance:
@@ -130,11 +119,9 @@ class TransactionDAO:
                 if not cursor.fetchone():
                     raise ValueError(f"Destination account {to_account} not found")
                 
-                # Check sufficient balance
                 if from_balance[0] < amount:
                     raise ValueError("Insufficient funds")
                 
-                # Update both accounts
                 cursor.execute("""
                     UPDATE accounts SET balance = balance - %s WHERE number = %s;
                     UPDATE accounts SET balance = balance + %s WHERE number = %s;
@@ -142,7 +129,6 @@ class TransactionDAO:
                     (amount, from_account, amount, to_account)
                 )
                 
-                # Create transaction record
                 cursor.execute("""
                     INSERT INTO transactions (account_id, type, amount, recipient_account, description)
                     VALUES (%s, 'TRANSFER', %s, %s, %s)""",
@@ -156,4 +142,3 @@ class TransactionDAO:
                 self.sql_logger.error(f"Error processing transfer: {e}")
                 raise
 
-    

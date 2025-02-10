@@ -10,7 +10,6 @@ class AccountDAO:
         self.sql_logger = setup_sql_logging()
 
     def get_all_accounts(self) -> List[Account]:
-        """Fetch all accounts with basic user information"""
         with get_cursor() as cursor:
             query = """
                 SELECT a.number, a.user_id, a.type, 
@@ -40,7 +39,6 @@ class AccountDAO:
             return accounts
 
     def get_account_by_number(self, account_number: int) -> Optional[Account]:
-        """Fetch a specific account by its number with user information"""
         with get_cursor() as cursor:
             query = """
                 SELECT a.number, a.user_id, a.type, 
@@ -70,7 +68,6 @@ class AccountDAO:
             return None
     
     def create_account(self, data: Dict[str, Any]) -> Optional[Account]:
-        """Create a new account"""
         with get_cursor() as cursor:
             try:
                 query = """
@@ -99,7 +96,6 @@ class AccountDAO:
                 raise
 
     def update_account(self, account_number: int, data: Dict[str, Any]) -> Optional[Account]:
-        """Update an existing account"""
         with get_cursor() as cursor:
             query = """
                 UPDATE accounts
@@ -122,17 +118,14 @@ class AccountDAO:
             return self.get_account_by_number(account_number)
 
     def delete_account(self, account_number: int) -> None:
-        """Delete an account"""
         with get_cursor() as cursor:
             query = "DELETE FROM accounts WHERE number = %s"
             self.sql_logger.info(f"Executing query: {query} with account_number: {account_number}")
             cursor.execute(query, (account_number,))
 
     def search_accounts(self, search_term: str) -> List[Account]:
-        """Search accounts by first name, last name, or account number"""
         with get_cursor() as cursor:
             try:
-                # Try to convert search term to number for account number search
                 try:
                     account_number = int(search_term)
                     number_search = True
@@ -187,10 +180,8 @@ class AccountDAO:
                 raise
     
     def get_bank_statement(self, account_number: int, start_date: datetime = None, end_date: datetime = None) -> Dict:
-        """Get bank statement for an account with optional date range"""
         with get_cursor() as cursor:
             try:
-                # Build transaction query
                 query = """
                     SELECT t.id, t.type, t.amount, t.recipient_account, 
                            t.description, t.date,
@@ -235,12 +226,11 @@ class AccountDAO:
                         'running_balance': running_balance
                     })
 
-                # Get current account balance
                 cursor.execute("SELECT balance FROM accounts WHERE number = %s", (account_number,))
                 current_balance = cursor.fetchone()[0]
 
                 statement = {
-                    'account': self.get_account_by_number(account_number),  # Add account details
+                    'account': self.get_account_by_number(account_number),
                     'transactions': transactions,
                     'start_date': start_date or transactions[0]['date'] if transactions else None,
                     'end_date': end_date or transactions[-1]['date'] if transactions else None,

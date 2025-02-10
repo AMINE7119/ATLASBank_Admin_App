@@ -10,7 +10,7 @@
         
         <div class="account-info">
             <p><strong>From Account:</strong> #{{ account.account_number }} ({{ account.holder_name }})</p>
-            <p><strong>Available Balance:</strong> ${{ "%.2f"|format(account.balance) }}</p>
+            <p><strong>Available Balance:</strong> MAD{{ "%.2f"|format(account.balance) }}</p>
         </div>
 
         <form method="POST">

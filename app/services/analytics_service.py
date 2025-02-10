@@ -61,6 +61,7 @@ class AnalyticsService:
             plt.figure(figsize=(8, 8))
             plt.pie(account_type_df['count'], labels=account_type_df['type'], autopct='%1.1f%%', startangle=140)
             plt.title('Account Type Distribution')
+            
             plt.tight_layout()
             
             account_type_img = self._get_plot_image()

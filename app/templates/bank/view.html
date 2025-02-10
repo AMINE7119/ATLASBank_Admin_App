@@ -173,9 +173,7 @@
             <div>{{ account.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</div>
         </div>
 
-        <div class="action-links">
-            <a href="{{ url_for('bank.edit', account_number=account.account_number) }}">Edit Account</a>
-        </div>
+        
         <!-- Dans la section action-links de view.html -->
 <div class="action-links">
     <a href="{{ url_for('bank.deposit', account_number=account.account_number) }}" class="action-btn deposit">Deposit</a>
@@ -184,6 +182,8 @@
     <a href="{{ url_for('bank.edit', account_number=account.account_number) }}" class="action-btn edit">Edit Account</a>
     
     <a href="{{ url_for('bank.statement', account_number=account.account_number) }}" class="action-btn">View Statement</a>
+    <a href="{{ url_for('bank.list') }}" class="action-btn">Back to List</a>
+    
     
 </div>
     </div>

@@ -1,39 +1,40 @@
-# app/controllers/bank_controller.py
 from flask import Blueprint, render_template, session, redirect, url_for, request, flash
 from app.services.bank_service import BankService
 from app.logger.app_logging import setup_logging
 from functools import wraps
-from app.errors.error import NotFound
+from app.errors.error import NotFound, handle_401, handle_404, handle_500
 
 logger = setup_logging()
 bank_bp = Blueprint('bank', __name__)
 bank_service = BankService()
 
-def login_required(f):
+def auth_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        return bank_service.check_auth(f, *args, **kwargs)
+        if not session.get('admin_id'):
+            return handle_401("Authentication required")
+        return f(*args, **kwargs)
     return decorated_function
 
 @bank_bp.route('/menu')
-@login_required
+@auth_required
 def menu():
     return render_template('bank/menu.html')
 
 @bank_bp.route('/list')
-@login_required
+@auth_required
 def list():
     accounts = bank_service.list_accounts()
     return render_template('bank/list.html', accounts=accounts)
 
 @bank_bp.route('/view/<int:account_number>')
-@login_required
+@auth_required
 def view(account_number):
     account = bank_service.get_account(account_number)
     return render_template('bank/view.html', account=account)
 
 @bank_bp.route('/edit/<int:account_number>', methods=['GET', 'POST'])
-@login_required
+@auth_required
 def edit(account_number):
     if request.method == 'POST':
         data = request.form
@@ -43,13 +44,11 @@ def edit(account_number):
     return render_template('bank/edit.html', account=account)
 
 @bank_bp.route('/create', methods=['GET', 'POST'])
-@login_required
+@auth_required
 def create():
     if request.method == 'POST':
         try:
-            # Retrieve and validate form data
             data = {
-                # User data
                 'first_name': request.form.get('first_name'),
                 'last_name': request.form.get('last_name'),
                 'email': request.form.get('email'),
@@ -58,8 +57,6 @@ def create():
                 'date_of_birth': request.form.get('date_of_birth'),
                 'gender': request.form.get('gender'),
                 'job': request.form.get('job'),
-                
-                # Account data
                 'type': request.form.get('type'),
                 'balance': float(request.form.get('balance', 0)),
                 'interest_rate': float(request.form.get('interest_rate', 0))
@@ -80,15 +77,15 @@ def create():
     return render_template('bank/create.html')
 
 @bank_bp.route('/delete/<int:account_number>', methods=['POST'])
-@login_required
+@auth_required
 def delete(account_number):
     bank_service.delete_account(account_number)
     return redirect(url_for('bank.list'))
 
 @bank_bp.route('/search', methods=['GET', 'POST'])
-@login_required
+@auth_required
 def search():
-    action = request.args.get('action')  # Get the action from URL parameters
+    action = request.args.get('action')
     
     if request.method == 'POST':
         search_term = request.form.get('search_term', '').strip()
@@ -104,7 +101,6 @@ def search():
                 return render_template('bank/search.html', action=action)
                 
             if len(accounts) == 1:
-                # If only one account found, redirect based on action
                 account = accounts[0]
                 if action == 'deposit':
                     return redirect(url_for('bank.deposit', account_number=account.account_number))
@@ -113,12 +109,10 @@ def search():
                 elif action == 'transfer':
                     return redirect(url_for('bank.transfer', account_number=account.account_number))
                 elif action == 'statement':
-                    # Directly redirect to statement route instead of view
                     return redirect(url_for('bank.statement', account_number=account.account_number))
                 else:
                     return redirect(url_for('bank.view', account_number=account.account_number))
             
-            # If multiple accounts found, show list with action context
             return render_template('bank/search.html', accounts=accounts, search_term=search_term, action=action)
             
         except ValueError as e:
@@ -131,7 +125,7 @@ def search():
     return render_template('bank/search.html', action=action)
 
 @bank_bp.route('/account/<int:account_number>/deposit', methods=['GET', 'POST'])
-@login_required
+@auth_required
 def deposit(account_number):
     try:
         account = bank_service.get_account(account_number)
@@ -150,7 +144,7 @@ def deposit(account_number):
         return redirect(url_for('bank.view', account_number=account_number))
 
 @bank_bp.route('/account/<int:account_number>/withdraw', methods=['GET', 'POST'])
-@login_required
+@auth_required
 def withdraw(account_number):
     try:
         account = bank_service.get_account(account_number)
@@ -169,7 +163,7 @@ def withdraw(account_number):
         return redirect(url_for('bank.view', account_number=account_number))
 
 @bank_bp.route('/account/<int:account_number>/transfer', methods=['GET', 'POST'])
-@login_required
+@auth_required
 def transfer(account_number):
     try:
         from_account = bank_service.get_account(account_number)
@@ -189,7 +183,7 @@ def transfer(account_number):
         return redirect(url_for('bank.view', account_number=account_number))
 
 @bank_bp.route('/account/<int:account_number>/statement', methods=['GET', 'POST'])
-@login_required
+@auth_required
 def statement(account_number):
     try:
         if request.method == 'POST':
@@ -209,13 +203,12 @@ def statement(account_number):
         logger.error(f"Error generating statement: {str(e)}")
         flash("Error generating bank statement", 'error')
         return redirect(url_for('bank.view', account_number=account_number))
-    
+
 from werkzeug.exceptions import abort
 
 @bank_bp.route('/errors/<error_code>')
-@login_required
+@auth_required
 def test_error(error_code):
-    """Test route to trigger different error pages"""
     try:
         error_code = int(error_code)
         abort(error_code)

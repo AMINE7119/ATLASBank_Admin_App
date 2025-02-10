@@ -3,7 +3,6 @@ from app.models.admin import Admin
 from app.dal.database import get_cursor
 from app.logger.sql_logging import setup_sql_logging
 
-# Get the SQL logger specifically
 sql_logger = setup_sql_logging()
 
 def get_admin_by_username(username):

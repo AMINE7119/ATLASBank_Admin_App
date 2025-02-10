@@ -7,7 +7,6 @@ class UserDAO:
         self.sql_logger = setup_sql_logging()
 
     def create_user(self, data: Dict[str, Any]) -> Optional[int]:
-        """Create a new user and return the user ID"""
         with get_cursor() as cursor:
             query = """
                 INSERT INTO users (first_name, last_name, email, phone, address, 

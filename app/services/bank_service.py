@@ -203,7 +203,7 @@ class BankService:
             amount_decimal = Decimal(str(amount))
             logger.info(f"Processing deposit: Account={account_number}, Amount={amount_decimal}")
             
-            return self.account_dao.deposit(account_number, amount_decimal, description)
+            return self.transactiondao.deposit(account_number, amount_decimal, description)
             
         except Exception as e:
             logger.error(f"Error processing deposit: {str(e)}")
@@ -218,7 +218,7 @@ class BankService:
             amount_decimal = Decimal(str(amount))
             logger.info(f"Processing withdrawal: Account={account_number}, Amount={amount_decimal}")
             
-            return self.account_dao.withdraw(account_number, amount_decimal, description)
+            return self.transaction_dao.withdraw(account_number, amount_decimal, description)
             
         except Exception as e:
             logger.error(f"Error processing withdrawal: {str(e)}")
@@ -236,7 +236,7 @@ class BankService:
             amount_decimal = Decimal(str(amount))
             logger.info(f"Processing transfer: From={from_account}, To={to_account}, Amount={amount_decimal}")
             
-            return self.account_dao.transfer(from_account, to_account, amount_decimal, description)
+            return self.transaction_dao.transfer(from_account, to_account, amount_decimal, description)
             
         except Exception as e:
             logger.error(f"Error processing transfer: {str(e)}")

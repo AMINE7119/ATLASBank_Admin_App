@@ -8,7 +8,6 @@ class AnalyticsDAO:
         self.sql_logger = setup_sql_logging()
 
     def get_accounts_summary(self) -> Dict[str, Any]:
-        """Get summary statistics for all accounts"""
         with get_cursor() as cursor:
             query = """
                 SELECT 
@@ -20,11 +19,11 @@ class AnalyticsDAO:
                 FROM accounts
                 WHERE status = true
             """
+            self.sql_logger.info(f"Executing query: {query}")
             cursor.execute(query)
             return dict(zip([desc[0] for desc in cursor.description], cursor.fetchone()))
 
     def get_transaction_trends(self, days: int = 30) -> List[Dict[str, Any]]:
-        """Get transaction trends for the specified period"""
         with get_cursor() as cursor:
             query = """
                 SELECT 
@@ -37,12 +36,12 @@ class AnalyticsDAO:
                 GROUP BY DATE(date), type
                 ORDER BY trans_date, type
             """
+            self.sql_logger.info(f"Executing query: {query} with days: {days}")
             cursor.execute(query, (days,))
             columns = [desc[0] for desc in cursor.description]
             return [dict(zip(columns, row)) for row in cursor.fetchall()]
 
     def get_user_demographics(self) -> Dict[str, Any]:
-        """Get user demographic statistics"""
         with get_cursor() as cursor:
             query = """
                 SELECT 
@@ -53,12 +52,12 @@ class AnalyticsDAO:
                 FROM users
                 GROUP BY gender
             """
+            self.sql_logger.info(f"Executing query: {query}")
             cursor.execute(query)
             columns = [desc[0] for desc in cursor.description]
             return [dict(zip(columns, row)) for row in cursor.fetchall()]
 
     def get_balance_distribution(self) -> List[Dict[str, float]]:
-        """Get account balance distribution"""
         with get_cursor() as cursor:
             query = """
                 SELECT 
@@ -76,12 +75,12 @@ class AnalyticsDAO:
                 GROUP BY 1
                 ORDER BY 1
             """
+            self.sql_logger.info(f"Executing query: {query}")
             cursor.execute(query)
             columns = [desc[0] for desc in cursor.description]
             return [dict(zip(columns, row)) for row in cursor.fetchall()]
 
     def get_account_type_distribution(self) -> List[Dict[str, Any]]:
-        """Get account type distribution"""
         with get_cursor() as cursor:
             query = """
                 SELECT 
@@ -91,6 +90,7 @@ class AnalyticsDAO:
                 WHERE status = true
                 GROUP BY type
             """
+            self.sql_logger.info(f"Executing query: {query}")
             cursor.execute(query)
             columns = [desc[0] for desc in cursor.description]
             return [dict(zip(columns, row)) for row in cursor.fetchall()]

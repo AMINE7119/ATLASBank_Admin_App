@@ -72,10 +72,10 @@
 
         <div class="statement-summary">
             <h3>Summary</h3>
-            <p><strong>Opening Balance:</strong> ${{ "%.2f"|format(statement.opening_balance) }}</p>
-            <p><strong>Total Deposits:</strong> ${{ "%.2f"|format(statement.total_deposits) }}</p>
-            <p><strong>Total Withdrawals:</strong> ${{ "%.2f"|format(statement.total_withdrawals) }}</p>
-            <p><strong>Closing Balance:</strong> ${{ "%.2f"|format(statement.closing_balance) }}</p>
+            <p><strong>Opening Balance:</strong> MAD{{ "%.2f"|format(statement.opening_balance) }}</p>
+            <p><strong>Total Deposits:</strong> MAD{{ "%.2f"|format(statement.total_deposits) }}</p>
+            <p><strong>Total Withdrawals:</strong> MAD{{ "%.2f"|format(statement.total_withdrawals) }}</p>
+            <p><strong>Closing Balance:</strong> MAD{{ "%.2f"|format(statement.closing_balance) }}</p>
         </div>
 
         <table class="transaction-table">
@@ -97,7 +97,7 @@
                         <td class="{{ 'amount-positive' if transaction.transaction_amount > 0 else 'amount-negative' }}">
                             {{ "%.2f"|format(transaction.amount) }}
                         </td>
-                        <td>${{ "%.2f"|format(transaction.running_balance) }}</td>
+                        <td>MAD{{ "%.2f"|format(transaction.running_balance) }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

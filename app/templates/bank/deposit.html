@@ -58,12 +58,12 @@
         
         <div class="account-info">
             <p><strong>Account Holder:</strong> {{ account.holder_name }}</p>
-            <p><strong>Current Balance:</strong> ${{ "%.2f"|format(account.balance) }}</p>
+            <p><strong>Current Balance:</strong> MAD{{ "%.2f"|format(account.balance) }}</p>
         </div>
 
         <form method="POST">
             <div class="form-group">
-                <label for="amount">Amount ($)</label>
+                <label for="amount">Amount (MAD)</label>
                 <input type="number" 
                        name="amount" 
                        step="0.01" 

@@ -83,7 +83,7 @@
                             <small>{{ account.holder_email }}</small>
                         </td>
                         <td>{{ account.account_type }}</td>
-                        <td>${{ "%.2f"|format(account.balance) }}</td>
+                        <td>MAD{{ "%.2f"|format(account.balance) }}</td>
                         <td class="status-{{ 'active' if account.is_active else 'inactive' }}">
                             {{ 'Active' if account.is_active else 'Inactive' }}
                         </td>

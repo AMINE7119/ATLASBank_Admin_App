@@ -138,7 +138,7 @@
                         <h3>Account #{{ account.account_number }}</h3>
                         <p>Holder: {{ account.holder_name }}</p>
                         <p>Type: {{ account.account_type }}</p>
-                        <p>Balance: ${{ "%.2f"|format(account.balance) }}</p>
+                        <p>Balance: MAD{{ "%.2f"|format(account.balance) }}</p>
                         {% if action == 'deposit' %}
                             <a href="{{ url_for('bank.deposit', account_number=account.account_number) }}" class="action-btn">Make Deposit</a>
                         {% elif action == 'withdraw' %}
