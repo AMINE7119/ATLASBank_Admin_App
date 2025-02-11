@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>401 - Unauthorized</title>
+    <title>401</title>
     <style>
         .error-container {
             text-align: center;
@@ -36,9 +36,9 @@
 <body>
     <div class="error-container">
         <h1 class="error-code">401</h1>
-        <h2 class="error-message">Authentication Required</h2>
-        <p class="error-description">Please log in to access this resource.</p>
-        <a href="{{ url_for('auth.login') }}" class="home-link">Login</a>
+        <h2 class="error-message">Authentification Requise</h2>
+        <p class="error-description">Veuillez vous connecter pour accéder à cette ressource.</p>
+        <a href="{{ url_for('auth.login') }}" class="home-link">Connexion</a>
     </div>
 </body>
 </html>

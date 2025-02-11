@@ -1,148 +1,202 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>Bank Admin - Menu</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Banque - Menu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     body {
-        font-family: 'Roboto', sans-serif;
-        background: linear-gradient(45deg, #0f323b, #384654);
-        color: #333;
-        margin: 0;
-        padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(45deg, #4e6e6e, #acbccc);
+      padding: 20px;
+      color: #333;
     }
 
     .nav-menu {
-        background-color: #0f323b;
-        padding: 20px;
-        text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: flex-end;
     }
 
     .nav-menu a {
-        color: #ecf0f1;
-        text-decoration: none; 
-        margin: 0 15px;
-        font-size: 18px;
-        letter-spacing: 1px;
-        transition: color 0.3s;
+      text-decoration: none;
+      color: #0f323b;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
     }
 
     .nav-menu a:hover {
-        color: #3498db;
+      background: rgba(15, 50, 59, 0.1);
     }
 
     .menu-container {
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 0 20px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 800px;
+      backdrop-filter: blur(10px);
+      margin: 0 auto;
     }
 
     h1 {
-        font-size: 36px;
-        text-align: center;
-        margin: 0 0 20px;
-        font-weight: 700;
-        color: #ffffff;
+      text-align: center;
+      color: #0f323b;
+      margin-bottom: 2rem;
+      font-size: 2rem;
     }
 
     .menu-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      list-style: none;
     }
 
     .menu-list li {
-        background: #0f323b;
-        border: 1px solid #bdc3c7;
-        border-radius: 10px;
-        padding: 20px;
-        text-align: center;
-        margin-bottom: 20px;
-        transition: transform 0.3s, box-shadow 0.3s;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      border: 2px solid rgba(15, 50, 59, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
     }
 
-    .menu-list li h3 {
-        font-size: 20px;
-        margin: 0 0 10px;
-        font-weight: 500;
-        color: #ffffff;
+    .menu-list li:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .menu-list li a {
-        background-color: #3498db;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 14px;
-        transition: background-color 0.3s, color 0.3s;
+    .menu-list h3 {
+      color: #0f323b;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
     }
 
-    .menu-list li a:hover {
-        background-color: #2980b9;
+    .menu-list a {
+      background: #0f323b;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-align: center;
+      width: 100%;
     }
 
-    @media screen and (max-width: 600px) {
-        .menu-list li {
-            margin-bottom: 10px;
-        }
+    .menu-list a:hover {
+      background: #164854;
+      transform: translateY(-2px);
     }
-</style>
+
+    .error-buttons {
+      display: grid;
+      gap: 0.75rem;
+      width: 100%;
+    }
+
+    .error-btn {
+      font-size: 0.9rem;
+    }
+
+    .error-401 { background: #F59E0B; }
+    .error-403 { background: #EF4444; }
+    .error-404 { background: #6366F1; }
+    .error-500 { background: #DC2626; }
+
+    .error-401:hover { background: #D97706; }
+    .error-403:hover { background: #DC2626; }
+    .error-404:hover { background: #4F46E5; }
+    .error-500:hover { background: #B91C1C; }
+
+    @media (max-width: 768px) {
+      .menu-container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      .nav-menu {
+        padding: 1rem;
+        justify-content: center;
+      }
+
+      .menu-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="nav-menu">
-    
-    <a href="{{ url_for('auth.logout') }}">Se déconnecter</a>
+    <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
   </div>
 
   <div class="menu-container">
-    <h1>Bienvenue admin</h1>
+    <h1>Bienvenue Admin</h1>
 
     {% if session.get('admin_id') %}
-      <ul class="menu-list">
-        <li>
-          
-          <a href="{{ url_for('bank.create') }}">Créer un compte</a>
-        </li>
-        <li>
-          
-          <a href="{{ url_for('bank.list') }}">Voir les comptes</a>
-        </li>
-        <li>
-          
-          <a href="{{ url_for('bank.search') }}">Rechercher un compte</a>
-        </li>
-        <li>
-          
-          <a href="{{ url_for('bank.search') }}?action=deposit">Faire un dépôt</a>
-        </li>
-        <li>
-          
-          <a href="{{ url_for('bank.search') }}?action=withdraw">Faire un retrait</a>
-        </li>
-        <li>
-          <a href="{{ url_for('bank.search') }}?action=transfer">Faire un transfert</a>
-        </li>
-        <li>
-          <a href="{{ url_for('bank.search') }}?action=statement">Voir le relevé</a>
-        </li>
-        <li>
-          <a href="{{ url_for('analytics.dashboard') }}">Voir les analyses</a>
-        </li>
-        <li>
-          <h3>Test de page d'erreur</h3>
-          <div class="error-buttons">
-            <a href="{{ url_for('bank.test_error', error_code=401) }}" class="error-btn error-401">Tester 401 Non autorisé</a>
-            <a href="{{ url_for('bank.test_error', error_code=403) }}" class="error-btn error-403">Tester 403 Interdit</a>
-            <a href="{{ url_for('bank.test_error', error_code=404) }}" class="error-btn error-404">Tester 404 Non trouvé</a>
-            <a href="{{ url_for('bank.test_error', error_code=500) }}" class="error-btn error-500">Tester 500 Erreur serveur</a>
-          </div>
-        </li>
-      </ul>
+    <ul class="menu-list">
+      <li>
+        <a href="{{ url_for('bank.create') }}">Créer un compte</a>
+      </li>
+      <li>
+        <a href="{{ url_for('bank.list') }}">Voir les comptes</a>
+      </li>
+      <li>
+        <a href="{{ url_for('bank.search') }}">Rechercher un compte</a>
+      </li>
+      <li>
+        <a href="{{ url_for('bank.search') }}?action=deposit">Faire un dépôt</a>
+      </li>
+      <li>
+        <a href="{{ url_for('bank.search') }}?action=withdraw">Faire un retrait</a>
+      </li>
+      <li>
+        <a href="{{ url_for('bank.search') }}?action=transfer">Faire un transfert</a>
+      </li>
+      <li>
+        <a href="{{ url_for('bank.search') }}?action=statement">Voir le relevé</a>
+      </li>
+      <li>
+        <a href="{{ url_for('analytics.dashboard') }}">Voir les analyses</a>
+      </li>
+      <li>
+        <h3>Test de page d'erreur</h3>
+        <div class="error-buttons">
+          <a href="{{ url_for('bank.test_error', error_code=401) }}" class="error-btn error-401">Tester 401 Non autorisé</a>
+          <a href="{{ url_for('bank.test_error', error_code=403) }}" class="error-btn error-403">Tester 403 Interdit</a>
+          <a href="{{ url_for('bank.test_error', error_code=404) }}" class="error-btn error-404">Tester 404 Non trouvé</a>
+          <a href="{{ url_for('bank.test_error', error_code=500) }}" class="error-btn error-500">Tester 500 Erreur serveur</a>
+        </div>
+      </li>
+    </ul>
     {% else %}
-      <p>Veuillez <a href="{{ url_for('auth.login') }}">vous connecter</a> pour accéder au menu.</p>
+    <p>Veuillez <a href="{{ url_for('auth.login') }}">vous connecter</a> pour accéder au menu.</p>
     {% endif %}
   </div>
 </body>

@@ -1,154 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Edit Account</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un compte</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #4e6e6e, #acbccc);
             padding: 20px;
-            background-color: #f5f5f5;
+            color: #333;
         }
 
         .nav-menu {
-            background-color: #fff;
-            padding: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .nav-menu a {
-            margin-right: 15px;
             text-decoration: none;
-            color: #333;
-            padding: 5px 10px;
+            color: #0f323b;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
 
         .nav-menu a:hover {
-            color: #007bff;
+            background: rgba(15, 50, 59, 0.1);
         }
 
         .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
             max-width: 800px;
+            backdrop-filter: blur(10px);
             margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         h1 {
-            color: #2c3e50;
-            margin-bottom: 30px;
+            text-align: center;
+            color: #0f323b;
+            margin-bottom: 2rem;
+            font-size: 2rem;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #444;
-        }
-
-        .form-group input, 
-        .form-group select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #007bff;
-            outline: none;
+        h3 {
+            color: #0f323b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
 
         .info-group {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(15, 50, 59, 0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-group:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         }
 
         .info-group p {
-            margin: 5px 0;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .info-group p:last-child {
+            margin-bottom: 0;
         }
 
         .info-label {
-            font-weight: bold;
-            color: #666;
+            color: #0f323b;
+            font-weight: 600;
+            margin-right: 0.5rem;
         }
 
-        .button-group {
-            margin-top: 30px;
-            display: flex;
-            gap: 10px;
+        .form-group {
+            margin-bottom: 1.5rem;
         }
 
-        .submit-btn {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        label {
+            color: #0f323b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
-        .cancel-btn {
-            background-color: #6c757d;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
         }
 
-        .submit-btn:hover {
-            background-color: #218838;
-        }
-
-        .cancel-btn:hover {
-            background-color: #5a6268;
+        input:focus, select:focus {
+            outline: none;
+            border-color: #0f323b;
+            box-shadow: 0 0 0 2px rgba(15, 50, 59, 0.1);
         }
 
         .alert {
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid transparent;
         }
 
         .alert-error {
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
+            background-color: #FEE2E2;
+            border-color: #FCA5A5;
+            color: #B91C1C;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .submit-btn, .cancel-btn {
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .submit-btn {
+            background: #10B981;
+            color: white;
+            border: none;
+        }
+
+        .cancel-btn {
+            background: #EF4444;
+            color: white;
+            border: none;
+        }
+
+        .submit-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .cancel-btn:hover {
+            background: #DC2626;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .nav-menu {
+                padding: 1rem;
+                justify-content: center;
+            }
+
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+
+            .info-group {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="nav-menu">
-        <a href="{{ url_for('index') }}">Home</a>
         <a href="{{ url_for('bank.menu') }}">Menu</a>
-        <a href="{{ url_for('bank.list') }}">Account List</a>
-        <a href="{{ url_for('auth.logout') }}">Logout</a>
+        <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
     </div>
 
     <div class="form-container">
-        <h1>Edit Account</h1>
+        <h1>Modifier un compte</h1>
 
-        <!-- Account Holder Information -->
         <div class="info-group">
-            <h3>Account Information</h3>
-            <p><span class="info-label">Account Number:</span> {{ account.account_number }}</p>
-            <p><span class="info-label">Account Holder:</span> {{ account.holder_name }}</p>
-            <p><span class="info-label">Email:</span> {{ account.holder_email }}</p>
-            <p><span class="info-label">Created On:</span> {{ account.created_at.strftime('%Y-%m-%d') }}</p>
+            <h3>Informations sur le compte</h3>
+            <p><span class="info-label">Numéro de compte :</span> {{ account.account_number }}</p>
+            <p><span class="info-label">Titulaire du compte :</span> {{ account.holder_name }}</p>
+            <p><span class="info-label">Email :</span> {{ account.holder_email }}</p>
+            <p><span class="info-label">Créé le :</span> {{ account.created_at.strftime('%Y-%m-%d') }}</p>
         </div>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -161,15 +228,15 @@
 
         <form method="POST">
             <div class="form-group">
-                <label for="type">Account Type</label>
+                <label for="type">Type de compte</label>
                 <select name="type" id="type" required>
-                    <option value="savings" {% if account.account_type == 'savings' %}selected{% endif %}>Savings</option>
-                    <option value="checking" {% if account.account_type == 'checking' %}selected{% endif %}>Checking</option>
+                    <option value="savings" {% if account.account_type == 'savings' %}selected{% endif %}>Épargne</option>
+                    <option value="checking" {% if account.account_type == 'checking' %}selected{% endif %}>Courant</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="balance">Balance</label>
+                <label for="balance">Solde (MAD)</label>
                 <input type="number" 
                        name="balance" 
                        id="balance" 
@@ -180,7 +247,7 @@
             </div>
 
             <div class="form-group">
-                <label for="interest_rate">Interest Rate (%)</label>
+                <label for="interest_rate">Taux d'intérêt (%)</label>
                 <input type="number" 
                        name="interest_rate" 
                        id="interest_rate" 
@@ -191,16 +258,16 @@
             </div>
 
             <div class="form-group">
-                <label for="status">Status</label>
+                <label for="status">Statut</label>
                 <select name="status" id="status">
-                    <option value="true" {% if account.is_active %}selected{% endif %}>Active</option>
-                    <option value="false" {% if not account.is_active %}selected{% endif %}>Inactive</option>
+                    <option value="true" {% if account.is_active %}selected{% endif %}>Actif</option>
+                    <option value="false" {% if not account.is_active %}selected{% endif %}>Inactif</option>
                 </select>
             </div>
 
             <div class="button-group">
-                <button type="submit" class="submit-btn">Save Changes</button>
-                <a href="{{ url_for('bank.view', account_number=account.account_number) }}" class="cancel-btn">Cancel</a>
+                <button type="submit" class="submit-btn">Enregistrer les modifications</button>
+                <a href="{{ url_for('bank.view', account_number=account.account_number) }}" class="cancel-btn">Annuler</a>
             </div>
         </form>
     </div>

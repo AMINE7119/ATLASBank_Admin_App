@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>404 - Not Found</title>
+    <title>404</title>
     <style>
         .error-container {
             text-align: center;
@@ -35,9 +35,9 @@
 <body>
     <div class="error-container">
         <h1 class="error-code">404</h1>
-        <h2 class="error-message">Page Not Found</h2>
-        <p class="error-description">The requested path '{{ path }}' could not be found.</p>
-        <a href="{{ url_for('index') }}" class="home-link">Return to Home</a>
+        <h2 class="error-message">Page Non Trouvée</h2>
+        <p class="error-description">Le chemin demandé '{{ path }}' n'a pas pu être trouvé.</p>
+        <a href="{{ url_for('index') }}" class="home-link">Retour à l'accueil</a>
     </div>
 </body>
 </html>

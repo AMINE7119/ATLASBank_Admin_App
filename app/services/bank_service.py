@@ -82,7 +82,7 @@ class BankService:
             raise
 
     def create_account(self, data: Dict[str, Any]) -> Account:
-        """Create new user and account"""
+        
         try:
             logger.info("Creating new user and account")
             

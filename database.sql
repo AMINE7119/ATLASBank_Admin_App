@@ -8,12 +8,10 @@ CREATE TABLE admins (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Default admin
 INSERT INTO admins (username, password, email, role) 
 VALUES ('admin', 'admin123', 'admin@bank.com', 'ADMIN');
 VALUES ('amine', '069151', 'amine@bank.com', 'SUPERADMIN');
-
--- Users table  
+  
 CREATE TABLE users (
    id SERIAL PRIMARY KEY,
    first_name VARCHAR(50) NOT NULL,

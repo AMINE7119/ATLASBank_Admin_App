@@ -3,189 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Details</title>
+    <title>Detail du compte</title>
     <style>
-        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #4e6e6e, #acbccc);
+            padding: 20px;
             color: #333;
-            background-color: #f8f9fa;
         }
 
-        /* Navigation styles */
         .nav-menu {
-            background-color: #fff;
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
             margin-bottom: 2rem;
         }
 
         .nav-menu a {
             text-decoration: none;
-            color: #0066cc;
-            margin-right: 1.5rem;
-            padding: 0.5rem 0;
+            color: #0f323b;
             font-weight: 500;
-            transition: color 0.2s;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
 
         .nav-menu a:hover {
-            color: #004499;
+            background: rgba(15, 50, 59, 0.1);
         }
 
-        /* Account details container */
         .account-details {
-            max-width: 800px;
-            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
             padding: 2rem;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+            margin: 0 auto;
         }
 
         h1 {
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+            text-align: center;
+            color: #0f323b;
+            margin-bottom: 2rem;
+            font-size: 2rem;
         }
 
-        /* Detail groups */
         .detail-group {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 2px solid rgba(15, 50, 59, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .detail-group:last-child {
-            border-bottom: none;
+        .detail-group:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .detail-label {
+            color: #0f323b;
             font-weight: 600;
-            color: #666;
             margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* Status indicators */
+        .detail-group div:not(.detail-label) {
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+
         .status-active {
-            color: #28a745;
-            font-weight: 500;
+            color: #10B981;
+            font-weight: 600;
         }
 
         .status-inactive {
-            color: #dc3545;
-            font-weight: 500;
+            color: #EF4444;
+            font-weight: 600;
         }
 
-        /* Action links */
         .action-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
             margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(15, 50, 59, 0.1);
         }
 
-        .action-links a {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: #0066cc;
-            color: #fff;
+        .action-btn {
+            background: #0f323b;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
             text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.2s;
+            text-align: center;
+            display: inline-block;
         }
 
-        .action-links a:hover {
-            background-color: #004499;
+        .action-btn:hover {
+            background: #164854;
+            transform: translateY(-2px);
         }
 
-        /* Responsive adjustments */
+        .action-btn.deposit {
+            background: #10B981;
+        }
+
+        .action-btn.withdraw {
+            background: #F59E0B;
+        }
+
+        .action-btn.transfer {
+            background: #3B82F6;
+        }
+
+        .action-btn.edit {
+            background: #6366F1;
+        }
+
+        .action-btn.delete {
+            background: #EF4444;
+        }
+
+        .action-btn.deposit:hover { background: #059669; }
+        .action-btn.withdraw:hover { background: #D97706; }
+        .action-btn.transfer:hover { background: #2563EB; }
+        .action-btn.edit:hover { background: #4F46E5; }
+        .action-btn.delete:hover { background: #DC2626; }
+
         @media (max-width: 768px) {
             .account-details {
                 margin: 1rem;
-                padding: 1rem;
+                padding: 1.5rem;
             }
 
             .nav-menu {
-                padding: 0.5rem;
-                text-align: center;
+                padding: 1rem;
+                justify-content: center;
             }
 
-            .nav-menu a {
-                display: inline-block;
-                margin: 0.25rem 0.5rem;
+            .detail-group {
+                padding: 1rem;
+            }
+
+            .action-links {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="nav-menu">
-        <a href="{{ url_for('index') }}">Home</a>
         <a href="{{ url_for('bank.menu') }}">Menu</a>
-        <a href="{{ url_for('bank.list') }}">Back to List</a>
-        <a href="{{ url_for('auth.logout') }}">Logout</a>
+        <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
     </div>
-
     <div class="account-details">
-        <h1>Account Details</h1>
+        <h1>Détails du Compte</h1>
         
         <div class="detail-group">
-            <div class="detail-label">Account Number</div>
+            <div class="detail-label">Numéro de Compte</div>
             <div>{{ account.account_number }}</div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Account Holder</div>
+            <div class="detail-label">Titulaire du Compte</div>
             <div>{{ account.holder_name }}</div>
             <div>{{ account.holder_email }}</div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Account Type</div>
+            <div class="detail-label">Type de Compte</div>
             <div>{{ account.account_type }}</div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Balance</div>
-            <div>${{ "%.2f"|format(account.balance) }}</div>
+            <div class="detail-label">Solde</div>
+            <div>MAD{{ "%.2f"|format(account.balance) }}</div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Status</div>
+            <div class="detail-label">Statut</div>
             <div class="status-{{ 'active' if account.is_active else 'inactive' }}">
-                {{ 'Active' if account.is_active else 'Inactive' }}
+                {{ 'Actif' if account.is_active else 'Inactif' }}
             </div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Interest Rate</div>
+            <div class="detail-label">Taux d'Intérêt</div>
             <div>{{ "%.2f"|format(account.interest_rate) }}%</div>
         </div>
 
         <div class="detail-group">
-            <div class="detail-label">Created At</div>
+            <div class="detail-label">Créé le</div>
             <div>{{ account.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</div>
         </div>
 
-        
-        <!-- Dans la section action-links de view.html -->
-<div class="action-links">
-    <a href="{{ url_for('bank.deposit', account_number=account.account_number) }}" class="action-btn deposit">Deposit</a>
-    <a href="{{ url_for('bank.withdraw', account_number=account.account_number) }}" class="action-btn withdraw">Withdraw</a>
-    <a href="{{ url_for('bank.transfer', account_number=account.account_number) }}" class="action-btn transfer">Transfer</a>
-    <a href="{{ url_for('bank.edit', account_number=account.account_number) }}" class="action-btn edit">Edit Account</a>
-    
-    <a href="{{ url_for('bank.statement', account_number=account.account_number) }}" class="action-btn">View Statement</a>
-    <a href="{{ url_for('bank.list') }}" class="action-btn">Back to List</a>
-    
-    
-</div>
+        <div class="action-links">
+            <a href="{{ url_for('bank.deposit', account_number=account.account_number) }}" class="action-btn deposit">Deposit</a>
+            <a href="{{ url_for('bank.withdraw', account_number=account.account_number) }}" class="action-btn withdraw">Withdraw</a>
+            <a href="{{ url_for('bank.transfer', account_number=account.account_number) }}" class="action-btn transfer">Transfer</a>
+            <a href="{{ url_for('bank.edit', account_number=account.account_number) }}" class="action-btn edit">Edit Account</a>
+            <a href="{{ url_for('bank.statement', account_number=account.account_number) }}" class="action-btn">View Statement</a>
+            <a href="{{ url_for('bank.list') }}" class="action-btn">Back to List</a>
+            <a href="{{ url_for('bank.delete', account_number=account.account_number) }}" class="action-btn delete" ">Delete Account</a>
+        </div>
     </div>
 </body>
 </html>
