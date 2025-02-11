@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #4e6e6e, #acbccc);
+            padding: 20px;
+            color: #333;
+        }
+
+        .nav-menu {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #0f323b;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(15, 50, 59, 0.1);
+        }
+
+        .dashboard {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1400px;
+            backdrop-filter: blur(10px);
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0f323b;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(15, 50, 59, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #4e6e6e, #acbccc);
+        }
+
+        .summary-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-card h3 {
+            color: #0f323b;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .summary-card .value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0f323b;
+            line-height: 1.2;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(15, 50, 59, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chart.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .chart:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart h2 {
+            color: #0f323b;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .chart img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1200px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .nav-menu {
+                padding: 1rem;
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .chart {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-menu">
+        <a href="{{ url_for('bank.menu') }}">Menu</a>
+        <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
+    </div>
+    <div class="dashboard">
+        <h1>Tableau de Bord Analytique</h1>
+        
+        <div class="summary">
+            <div class="summary-card">
+                <h3>Comptes Totals</h3>
+                <div class="value">{{ data.summary.total_accounts }}</div>
+            </div>
+            <div class="summary-card">
+                <h3>Solde Total</h3>
+                <div class="value">MAD{{ "{:,.2f}".format(data.summary.total_balance) }}</div>
+            </div>
+            <div class="summary-card">
+                <h3>Solde Moyen</h3>
+                <div class="value">MAD{{ "{:,.2f}".format(data.summary.avg_balance) }}</div>
+            </div>
+            <div class="summary-card">
+                <h3>Comptes d'Épargne</h3>
+                <div class="value">{{ data.summary.savings_count }}</div>
+            </div>
+            <div class="summary-card">
+                <h3>Comptes Courants</h3>
+                <div class="value">{{ data.summary.checking_count }}</div>
+            </div>
+        </div>
+        
+        <div class="charts-grid">
+            <!-- Tendances des Transactions (Pleine Largeur) -->
+            <div class="chart full-width">
+                <h2>Tendances des Transactions (90 Jours)</h2>
+                <img src="data:image/png;base64,{{ data.trends_chart }}" alt="Tendances des Transactions">
+            </div>
+            
+            <!-- Volume des Transactions Quotidiennes (Pleine Largeur) -->
+            <div class="chart full-width">
+                <h2>Volume des Transactions Quotidiennes</h2>
+                <img src="data:image/png;base64,{{ data.volume_chart }}" alt="Volume des Transactions Quotidiennes">
+            </div>
+            
+            <!-- Démographie des Utilisateurs -->
+            <div class="chart">
+                <h2>Démographie des Utilisateurs</h2>
+                <img src="data:image/png;base64,{{ data.demographics_chart }}" alt="Démographie des Utilisateurs">
+            </div>
+            
+            <!-- Répartition des Types de Comptes -->
+            <div class="chart">
+                <h2>Répartition des Types de Comptes</h2>
+                <img src="data:image/png;base64,{{ data.account_type_chart }}" alt="Répartition des Types de Comptes">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

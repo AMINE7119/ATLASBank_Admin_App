@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Accounts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #4e6e6e, #acbccc);
+            color: #333;
+        }
+
+        .nav-menu {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #0f323b;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(15, 50, 59, 0.1);
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0f323b;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        p {
+            text-align: center;
+            color: #4e6e6e;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #0f323b;
+            box-shadow: 0 0 0 2px rgba(15, 50, 59, 0.1);
+        }
+
+        .search-button {
+            background: #0f323b;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
+
+        .search-button:hover {
+            background: #164854;
+        }
+
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .alert-warning {
+            background-color: #fff3cd;
+            border: 2px solid #ffeeba;
+            color: #856404;
+        }
+
+        .alert-info {
+            background-color: #d1ecf1;
+            border: 2px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .search-results h2 {
+            color: #0f323b;
+            margin: 2rem 0 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .account-card {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(15, 50, 59, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .account-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-card h3 {
+            margin: 0 0 1rem 0;
+            color: #0f323b;
+            font-size: 1.25rem;
+        }
+
+        .account-card p {
+            margin: 0.5rem 0;
+            text-align: left;
+            color: #333;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #0f323b;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #164854;
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-button {
+                width: 100%;
+            }
+
+            .nav-menu {
+                padding: 1rem;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-menu">
+        <a href="{{ url_for('bank.menu') }}">Menu</a>
+        <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
+    </div>
+
+    <div class="search-container">
+        <h1>Rechercher des Comptes</h1>
+        {% if action == 'statement' %}
+            <p>Recherchez un compte pour voir son relevé</p>
+        {% elif action == 'deposit' %}
+            <p>Recherchez un compte pour effectuer un dépôt</p>
+        {% elif action == 'withdraw' %}
+            <p>Recherchez un compte pour effectuer un retrait</p>
+        {% elif action == 'transfer' %}
+            <p>Recherchez un compte pour effectuer un transfert</p>
+        {% else %}
+            <p>Recherchez un compte par numéro ou nom du titulaire</p>
+        {% endif %}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" class="search-form">
+            <input type="text" 
+                   name="search_term" 
+                   class="search-input"
+                   placeholder="Entrez le numéro de compte ou le nom du titulaire" 
+                   value="{{ search_term or '' }}"
+                   required>
+            <button type="submit" class="search-button">Rechercher</button>
+        </form>
+
+        {% if accounts %}
+            <div class="search-results">
+                <h2>Résultats de la Recherche</h2>
+                {% for account in accounts %}
+                    <div class="account-card">
+                        <h3>Compte #{{ account.account_number }}</h3>
+                        <p><strong>Titulaire:</strong> {{ account.holder_name }}</p>
+                        <p><strong>Type:</strong> {{ account.account_type }}</p>
+                        <p><strong>Solde:</strong> MAD{{ "%.2f"|format(account.balance) }}</p>
+                        {% if action == 'deposit' %}
+                            <a href="{{ url_for('bank.deposit', account_number=account.account_number) }}" class="action-btn">Effectuer un Dépôt</a>
+                        {% elif action == 'withdraw' %}
+                            <a href="{{ url_for('bank.withdraw', account_number=account.account_number) }}" class="action-btn">Effectuer un Retrait</a>
+                        {% elif action == 'transfer' %}
+                            <a href="{{ url_for('bank.transfer', account_number=account.account_number) }}" class="action-btn">Effectuer un Transfert</a>
+                        {% elif action == 'statement' %}
+                            <a href="{{ url_for('bank.statement', account_number=account.account_number) }}" class="action-btn">Voir le Relevé</a>
+                        {% else %}
+                            <a href="{{ url_for('bank.view', account_number=account.account_number) }}" class="action-btn">Voir les Détails</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

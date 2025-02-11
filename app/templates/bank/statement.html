@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relevé Bancaire - Compte #{{ statement.account.account_number }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #4e6e6e, #acbccc);
+            padding: 20px;
+            color: #333;
+        }
+
+        .nav-menu {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #0f323b;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(15, 50, 59, 0.1);
+        }
+
+        .statement-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1000px;
+            backdrop-filter: blur(10px);
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0f323b;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .account-summary, .statement-summary {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(15, 50, 59, 0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .account-summary:hover, .statement-summary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3 {
+            color: #0f323b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .account-summary p, .statement-summary p {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .account-summary p:last-child, .statement-summary p:last-child {
+            margin-bottom: 0;
+        }
+
+        strong {
+            color: #0f323b;
+            font-weight: 600;
+        }
+
+        .date-filter {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(15, 50, 59, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .date-filter form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .date-filter label {
+            color: #0f323b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .date-filter input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .date-filter input:focus {
+            outline: none;
+            border-color: #0f323b;
+            box-shadow: 0 0 0 2px rgba(15, 50, 59, 0.1);
+        }
+
+        .date-filter button {
+            background: #0f323b;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .date-filter button:hover {
+            background: #164854;
+        }
+
+        .transaction-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        .transaction-table th,
+        .transaction-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(15, 50, 59, 0.1);
+        }
+
+        .transaction-table th {
+            background: rgba(15, 50, 59, 0.05);
+            color: #0f323b;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .transaction-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .transaction-table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        .transaction-table tbody tr:hover {
+            background-color: rgba(15, 50, 59, 0.02);
+        }
+
+        .amount-positive {
+            color: #10B981;
+            font-weight: 600;
+        }
+
+        .amount-negative {
+            color: #EF4444;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .statement-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .nav-menu {
+                padding: 1rem;
+                justify-content: center;
+            }
+
+            .date-filter form {
+                grid-template-columns: 1fr;
+            }
+
+            .transaction-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .account-summary, .statement-summary, .date-filter {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-menu">
+        <a href="{{ url_for('bank.menu') }}">Menu</a>
+        <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
+    </div>
+    <div class="statement-container">
+        <h1>Relevé Bancaire</h1>
+        
+        <div class="account-summary">
+            <h2>Informations sur le Compte</h2>
+            <p><strong>Numéro de Compte:</strong> {{ statement.account.account_number }}</p>
+            <p><strong>Titulaire du Compte:</strong> {{ statement.account.holder_name }}</p>
+            <p><strong>Type de Compte:</strong> {{ statement.account.account_type }}</p>
+            <p><strong>Période du Relevé:</strong> {{ statement.start_date.strftime('%Y-%m-%d') }} au {{ statement.end_date.strftime('%Y-%m-%d') }}</p>
+        </div>
+
+        <div class="date-filter">
+            <form method="POST">
+                <div>
+                    <label for="start_date">Date de Début</label>
+                    <input type="date" id="start_date" name="start_date" value="{{ request.form.get('start_date', '') }}">
+                </div>
+                
+                <div>
+                    <label for="end_date">Date de Fin</label>
+                    <input type="date" id="end_date" name="end_date" value="{{ request.form.get('end_date', '') }}">
+                </div>
+                
+                <button type="submit">Filtrer les Transactions</button>
+            </form>
+        </div>
+
+        <div class="statement-summary">
+            <h3>Résumé</h3>
+            <p><strong>Solde d'Ouverture:</strong> MAD{{ "%.2f"|format(statement.opening_balance) }}</p>
+            <p><strong>Total des Dépôts:</strong> MAD{{ "%.2f"|format(statement.total_deposits) }}</p>
+            <p><strong>Total des Retraits:</strong> MAD{{ "%.2f"|format(statement.total_withdrawals) }}</p>
+            <p><strong>Solde de Clôture:</strong> MAD{{ "%.2f"|format(statement.closing_balance) }}</p>
+        </div>
+
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Montant</th>
+                    <th>Solde</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in statement.transactions %}
+                    <tr>
+                        <td>{{ transaction.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td>{{ transaction.description or transaction.type }}</td>
+                        <td>{{ transaction.type }}</td>
+                        <td class="{{ 'amount-positive' if transaction.transaction_amount > 0 else 'amount-negative' }}">
+                            MAD{{ "%.2f"|format(transaction.amount) }}
+                        </td>
+                        <td>MAD{{ "%.2f"|format(transaction.running_balance) }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

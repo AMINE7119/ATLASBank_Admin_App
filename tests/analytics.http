@@ -1,0 +1,7 @@
+# Analytics Tests
+
+### Get Dashboard
+GET http://localhost:5000/analytics/dashboard
+
+### Get Dashboard with Unauthorized Access
+GET http://localhost:5000/analytics/dashboard

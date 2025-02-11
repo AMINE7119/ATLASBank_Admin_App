@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un nouveau compte</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #4e6e6e, #acbccc);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0f323b;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        h2 {
+            color: #0f323b;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .form-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            color: #0f323b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #0f323b;
+            box-shadow: 0 0 0 2px rgba(15, 50, 59, 0.1);
+        }
+
+        button {
+            background: #0f323b;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            width: 100%;
+            max-width: 200px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        button:hover {
+            background: #164854;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 1.5rem;
+            }
+            
+            .form-section {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+        .nav-menu {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+
+        .nav-menu a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+        }
+
+        .nav-menu a:hover {
+            color: #007bff;
+        }
+
+    </style>
+    </head>
+    <body>
+        <div class="nav-menu">
+            <a href="{{ url_for('bank.menu') }}">Menu</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </div>
+        <div class="form-container">
+            <h1>Créer un nouveau compte</h1>
+            <form method="POST">
+                <h2>Informations utilisateur</h2>
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="first_name">Prénom</label>
+                        <input type="text" id="first_name" name="first_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Nom</label>
+                        <input type="text" id="last_name" name="last_name" required>
+                    </div>
+                </div>
+
+                <div class=
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="date_of_birth">Date of Birth</label>
+                    <input type="date" id="date_of_birth" name="date_of_birth" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select gender</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="job">Job</label>
+                    <input type="text" id="job" name="job">
+                </div>
+            </div>
+
+            <h2>Account Information</h2>
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="type">Account Type</label>
+                    <select id="type" name="type" required>
+                        <option value="">Select account type</option>
+                        <option value="savings">Savings</option>
+                        <option value="checking">Checking</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="balance">Initial Balance</label>
+                    <input type="number" id="balance" name="balance" step="0.01" min="0" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="interest_rate">Interest Rate (%)</label>
+                    <input type="number" id="interest_rate" name="interest_rate" step="0.01" min="0" max="100">
+                </div>
+            </div>
+            
+            <button type="submit">Create Account</button>
+        </form>
+    </div>
+</body>
+</html>

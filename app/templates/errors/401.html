@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>401</title>
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 50px;
+            font-family: Arial, sans-serif;
+        }
+        .error-code {
+            font-size: 72px;
+            color: #e74c3c;
+            margin: 0;
+        }
+        .error-message {
+            font-size: 24px;
+            color: #555;
+            margin: 20px 0;
+        }
+        .error-description {
+            color: #777;
+            margin: 20px 0;
+        }
+        .home-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-code">401</h1>
+        <h2 class="error-message">Authentification Requise</h2>
+        <p class="error-description">Veuillez vous connecter pour accéder à cette ressource.</p>
+        <a href="{{ url_for('auth.login') }}" class="home-link">Connexion</a>
+    </div>
+</body>
+</html>

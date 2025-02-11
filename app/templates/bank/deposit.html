@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dépôt - Compte #{{ account.account_number }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #4e6e6e, #acbccc);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .transaction-form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0f323b;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .account-info {
+            background: rgba(15, 50, 59, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(15, 50, 59, 0.1);
+        }
+
+        .account-info p {
+            margin-bottom: 0.5rem;
+            color: #0f323b;
+            font-size: 1rem;
+        }
+
+        .account-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .account-info strong {
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            color: #0f323b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #0f323b;
+            box-shadow: 0 0 0 2px rgba(15, 50, 59, 0.1);
+        }
+
+        button {
+            background: #0f323b;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: #164854;
+        }
+
+        @media (max-width: 480px) {
+            .transaction-form {
+                padding: 1.5rem;
+            }
+            
+            .account-info {
+                padding: 1rem;
+            }
+        }
+        .nav-menu {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+
+        .nav-menu a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+        }
+
+        .nav-menu a:hover {
+            color: #007bff;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="nav-menu">
+        <a href="{{ url_for('bank.menu') }}">Menu</a>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+    </div>
+    <div class="transaction-form">
+        <h2>Dépôt sur le compte #{{ account.account_number }}</h2>
+        
+        <div class="account-info">
+            <p><strong>Titulaire du compte :</strong> {{ account.holder_name }}</p>
+            <p><strong>Solde actuel :</strong> MAD{{ "%.2f"|format(account.balance) }}</p>
+        </div>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="amount">Montant (MAD)</label>
+                <input type="number"
+                       id="amount"
+                       name="amount"
+                       step="0.01"
+                       min="0.01"
+                       placeholder="Entrez le montant du dépôt"
+                       required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea 
+                    id="description"
+                    name="description" 
+                    rows="3"
+                    placeholder="Entrez la description de la transaction"></textarea>
+            </div>
+
+            <button type="submit">Effectuer le dépôt</button>
+            
+        </form>
+    </div>
+</body>
+</html>
