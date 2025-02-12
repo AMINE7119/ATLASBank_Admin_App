@@ -99,61 +99,7 @@
             font-weight: 600;
         }
 
-        .date-filter {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-            border: 2px solid rgba(15, 50, 59, 0.1);
-            margin-bottom: 2rem;
-        }
-
-        .date-filter form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            align-items: end;
-        }
-
-        .date-filter label {
-            color: #0f323b;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .date-filter input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .date-filter input:focus {
-            outline: none;
-            border-color: #0f323b;
-            box-shadow: 0 0 0 2px rgba(15, 50, 59, 0.1);
-        }
-
-        .date-filter button {
-            background: #0f323b;
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-weight: 600;
-            width: 100%;
-        }
-
-        .date-filter button:hover {
-            background: #164854;
-        }
-
+        
         .transaction-table {
             width: 100%;
             border-collapse: separate;
@@ -243,21 +189,7 @@
             <p><strong>Période du Relevé:</strong> {{ statement.start_date.strftime('%Y-%m-%d') }} au {{ statement.end_date.strftime('%Y-%m-%d') }}</p>
         </div>
 
-        <div class="date-filter">
-            <form method="POST">
-                <div>
-                    <label for="start_date">Date de Début</label>
-                    <input type="date" id="start_date" name="start_date" value="{{ request.form.get('start_date', '') }}">
-                </div>
-                
-                <div>
-                    <label for="end_date">Date de Fin</label>
-                    <input type="date" id="end_date" name="end_date" value="{{ request.form.get('end_date', '') }}">
-                </div>
-                
-                <button type="submit">Filtrer les Transactions</button>
-            </form>
-        </div>
+        
 
         <div class="statement-summary">
             <h3>Résumé</h3>
