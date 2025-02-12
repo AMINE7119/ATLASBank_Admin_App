@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:5000
+@username = admin
+@password = admin123
+
+### Login first
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/x-www-form-urlencoded
+
+username={{username}}&password={{password}}
+
+### Deposit
+POST {{baseUrl}}/bank/account/600/deposit
+Content-Type: application/x-www-form-urlencoded
+
+amount=5000&description=Salary deposit
+
+### Withdraw
+POST {{baseUrl}}/bank/account/604/withdraw
+Content-Type: application/x-www-form-urlencoded
+
+amount=1000&description=ATM withdrawal
+
+### Transfer
+POST {{baseUrl}}/bank/account/604/transfer
+Content-Type: application/x-www-form-urlencoded
+
+to_account=601&amount=2000&description=Rent payment
+
+### View Statement
+GET {{baseUrl}}/bank/account/604/statement
+
+### View Statement with Date Range
+POST {{baseUrl}}/bank/account/604/statement
+Content-Type: application/x-www-form-urlencoded
+
+start_date=2025-01-01&end_date=2025-02-12

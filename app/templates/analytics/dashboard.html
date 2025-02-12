@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics Dashboard</title>
+    <title>Enhanced Analytics Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -67,52 +67,52 @@
             letter-spacing: 1px;
         }
 
-        .summary {
+        .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2.5rem;
         }
 
-        .summary-card {
+        .metric-card {
             background: white;
             padding: 1.5rem;
             border-radius: 12px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
             border: 2px solid rgba(15, 50, 59, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .summary-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #4e6e6e, #acbccc);
-        }
-
-        .summary-card:hover {
+        .metric-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .summary-card h3 {
+        .metric-card h3 {
             color: #0f323b;
             font-size: 1.1rem;
             margin-bottom: 1rem;
             font-weight: 600;
         }
 
-        .summary-card .value {
+        .metric-value {
             font-size: 1.8rem;
             font-weight: bold;
             color: #0f323b;
-            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-trend {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .metric-trend.positive {
+            color: #10B981;
+        }
+
+        .metric-trend.negative {
+            color: #EF4444;
         }
 
         .charts-grid {
@@ -128,16 +128,15 @@
             border-radius: 12px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
             border: 2px solid rgba(15, 50, 59, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .chart.full-width {
-            grid-column: 1 / -1;
+            transition: transform 0.3s ease;
         }
 
         .chart:hover {
             transform: translateY(-4px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart.full-width {
+            grid-column: 1 / -1;
         }
 
         .chart h2 {
@@ -155,6 +154,37 @@
             display: block;
             margin: 0 auto;
         }
+
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(15, 50, 59, 0.1);
+        }
+
+        .key-metric {
+            text-align: center;
+            padding: 0.5rem;
+            background: rgba(15, 50, 59, 0.03);
+            border-radius: 8px;
+        }
+
+        .key-metric-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+
+        .key-metric-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0f323b;
+        }
+
+        .trend-up { color: #10B981; }
+        .trend-down { color: #EF4444; }
 
         @media (max-width: 1200px) {
             .charts-grid {
@@ -177,10 +207,24 @@
                 font-size: 2rem;
             }
 
-            .chart {
-                padding: 1.5rem;
+            .metric-card, .chart {
+                padding: 1rem;
+            }
+
+            .key-metrics {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
+    </style>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Analytics Dashboard</title>
+    <style>
+        /* ... [Previous CSS styles remain the same] ... */
     </style>
 </head>
 <body>
@@ -188,55 +232,148 @@
         <a href="{{ url_for('bank.menu') }}">Menu</a>
         <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
     </div>
+    
     <div class="dashboard">
         <h1>Tableau de Bord Analytique</h1>
         
-        <div class="summary">
-            <div class="summary-card">
-                <h3>Comptes Totals</h3>
-                <div class="value">{{ data.summary.total_accounts }}</div>
+        <!-- Summary Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h3>Vue d'ensemble des comptes</h3>
+                <div class="metric-value">{{ data.summary.total_accounts if data.summary and data.summary.total_accounts is not none else 0 }}</div>
+                <div class="key-metrics">
+                    <div class="key-metric">
+                        <div class="key-metric-label">Comptes d'Épargne</div>
+                        <div class="key-metric-value">{{ data.summary.savings_count if data.summary and data.summary.savings_count is not none else 0 }}</div>
+                    </div>
+                    <div class="key-metric">
+                        <div class="key-metric-label">Comptes Courants</div>
+                        <div class="key-metric-value">{{ data.summary.checking_count if data.summary and data.summary.checking_count is not none else 0 }}</div>
+                    </div>
+                </div>
             </div>
-            <div class="summary-card">
-                <h3>Solde Total</h3>
-                <div class="value">MAD{{ "{:,.2f}".format(data.summary.total_balance) }}</div>
+
+            <div class="metric-card">
+                <h3>Performance Financière</h3>
+                <div class="metric-value">MAD{{ "{:,.2f}".format(data.summary.total_balance if data.summary and data.summary.total_balance is not none else 0) }}</div>
+                <div class="key-metrics">
+                    <div class="key-metric">
+                        <div class="key-metric-label">Balance Moyenne</div>
+                        <div class="key-metric-value">MAD{{ "{:,.2f}".format(data.summary.avg_balance if data.summary and data.summary.avg_balance is not none else 0) }}</div>
+                    </div>
+                    <div class="key-metric">
+                        <div class="key-metric-label">Croissance Mensuelle</div>
+                        <div class="key-metric-value {{ 'trend-up' if data.metrics and data.metrics.growth_metrics and data.metrics.growth_metrics.latest_growth and data.metrics.growth_metrics.latest_growth > 0 else 'trend-down' }}">
+                            {{ "{:+.1f}%".format(data.metrics.growth_metrics.latest_growth if data.metrics and data.metrics.growth_metrics and data.metrics.growth_metrics.latest_growth is not none else 0) }}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="summary-card">
-                <h3>Solde Moyen</h3>
-                <div class="value">MAD{{ "{:,.2f}".format(data.summary.avg_balance) }}</div>
-            </div>
-            <div class="summary-card">
-                <h3>Comptes d'Épargne</h3>
-                <div class="value">{{ data.summary.savings_count }}</div>
-            </div>
-            <div class="summary-card">
-                <h3>Comptes Courants</h3>
-                <div class="value">{{ data.summary.checking_count }}</div>
+
+            <div class="metric-card">
+                <h3>Activité Utilisateurs</h3>
+                <div class="metric-value">{{ data.metrics.user_metrics.active_users if data.metrics and data.metrics.user_metrics and data.metrics.user_metrics.active_users is not none else 0 }}</div>
+                <div class="key-metrics">
+                    <div class="key-metric">
+                        <div class="key-metric-label">Âge Moyen</div>
+                        <div class="key-metric-value">{{ "{:.1f}".format(data.metrics.user_metrics.avg_user_age if data.metrics and data.metrics.user_metrics and data.metrics.user_metrics.avg_user_age is not none else 0) }}</div>
+                    </div>
+                    <div class="key-metric">
+                        <div class="key-metric-label">Professions Uniques</div>
+                        <div class="key-metric-value">{{ data.metrics.user_metrics.total_unique_jobs if data.metrics and data.metrics.user_metrics and data.metrics.user_metrics.total_unique_jobs is not none else 0 }}</div>
+                    </div>
+                </div>
             </div>
         </div>
-        
+
+        <!-- Charts -->
         <div class="charts-grid">
-            <!-- Tendances des Transactions (Pleine Largeur) -->
+            <!-- Transaction Trends -->
             <div class="chart full-width">
                 <h2>Tendances des Transactions (90 Jours)</h2>
                 <img src="data:image/png;base64,{{ data.trends_chart }}" alt="Tendances des Transactions">
+                <div class="key-metrics">
+                    <div class="key-metric">
+                        <div class="key-metric-label">Volume Total</div>
+                        <div class="key-metric-value">MAD{{ "{:,.0f}".format(data.metrics.transaction_metrics.total_volume_90days if data.metrics and data.metrics.transaction_metrics and data.metrics.transaction_metrics.total_volume_90days is not none else 0) }}</div>
+                    </div>
+                    <div class="key-metric">
+                        <div class="key-metric-label">Transaction Moyenne</div>
+                        <div class="key-metric-value">MAD{{ "{:,.0f}".format(data.metrics.transaction_metrics.avg_transaction_size if data.metrics and data.metrics.transaction_metrics and data.metrics.transaction_metrics.avg_transaction_size is not none else 0) }}</div>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Volume des Transactions Quotidiennes (Pleine Largeur) -->
+
+            <!-- Demographics -->
+            <div class="chart">
+                <h2>Démographie Utilisateurs</h2>
+                <img src="data:image/png;base64,{{ data.demographics_chart }}" alt="Démographie">
+                <div class="key-metrics">
+                    <div class="key-metric">
+                        <div class="key-metric-label">Total Utilisateurs</div>
+                        <div class="key-metric-value">{{ data.metrics.user_metrics.total_users if data.metrics and data.metrics.user_metrics and data.metrics.user_metrics.total_users is not none else 0 }}</div>
+                    </div>
+                    <div class="key-metric">
+                        <div class="key-metric-label">Utilisateurs Inactifs</div>
+                        <div class="key-metric-value">{{ data.metrics.user_metrics.inactive_users if data.metrics and data.metrics.user_metrics and data.metrics.user_metrics.inactive_users is not none else 0 }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Types -->
+            <div class="chart">
+                <h2>Types de Comptes</h2>
+                <img src="data:image/png;base64,{{ data.account_type_chart }}" alt="Types de Comptes">
+                <div class="key-metrics">
+                    <div class="key-metric">
+                        <div class="key-metric-label">Type le Plus Actif</div>
+                        <div class="key-metric-value">{{ data.metrics.account_metrics.highest_balance_type if data.metrics and data.metrics.account_metrics and data.metrics.account_metrics.highest_balance_type is not none else 'N/A' }}</div>
+                    </div>
+                    <div class="key-metric">
+                        <div class="key-metric-label">Balance Moyenne Active</div>
+                        <div class="key-metric-value">MAD{{ "{:,.0f}".format(data.metrics.account_metrics.avg_balance_active if data.metrics and data.metrics.account_metrics and data.metrics.account_metrics.avg_balance_active is not none else 0) }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Growth Trends -->
             <div class="chart full-width">
-                <h2>Volume des Transactions Quotidiennes</h2>
-                <img src="data:image/png;base64,{{ data.volume_chart }}" alt="Volume des Transactions Quotidiennes">
+                <h2>Croissance et Volume</h2>
+                <img src="data:image/png;base64,{{ data.growth_chart }}" alt="Croissance">
+                <div class="key-metrics">
+                    <div class="key-metric">
+                        <div class="key-metric-label">Croissance Moyenne</div>
+                        <div class="key-metric-value">{{ "{:.1f}%".format(data.metrics.growth_metrics.avg_monthly_growth if data.metrics and data.metrics.growth_metrics and data.metrics.growth_metrics.avg_monthly_growth is not none else 0) }}</div>
+                    </div>
+                    <div class="key-metric">
+                        <div class="key-metric-label">Volume Maximum</div>
+                        <div class="key-metric-value">{{ data.metrics.transaction_metrics.max_daily_volume if data.metrics and data.metrics.transaction_metrics and data.metrics.transaction_metrics.max_daily_volume is not none else 0 }}</div>
+                    </div>
+                    <div class="key-metric">
+                        <div class="key-metric-label">Tendance Transactions</div>
+                        <div class="key-metric-value {{ 'trend-up' if data.metrics and data.metrics.transaction_metrics and data.metrics.transaction_metrics.transaction_growth and data.metrics.transaction_metrics.transaction_growth > 0 else 'trend-down' }}">
+                            {{ "{:+.1f}%".format(data.metrics.transaction_metrics.transaction_growth if data.metrics and data.metrics.transaction_metrics and data.metrics.transaction_metrics.transaction_growth is not none else 0) }}
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Démographie des Utilisateurs -->
-            <div class="chart">
-                <h2>Démographie des Utilisateurs</h2>
-                <img src="data:image/png;base64,{{ data.demographics_chart }}" alt="Démographie des Utilisateurs">
-            </div>
-            
-            <!-- Répartition des Types de Comptes -->
-            <div class="chart">
-                <h2>Répartition des Types de Comptes</h2>
-                <img src="data:image/png;base64,{{ data.account_type_chart }}" alt="Répartition des Types de Comptes">
+
+            <!-- Daily Volume -->
+            <div class="chart full-width">
+                <h2>Volume Quotidien</h2>
+                <img src="data:image/png;base64,{{ data.volume_chart }}" alt="Volume Quotidien">
+                <div class="key-metrics">
+                    <div class="key-metric">
+                        <div class="key-metric-label">Transactions Aujourd'hui</div>
+                        <div class="key-metric-value">{{ data.metrics.transaction_metrics.max_daily_volume if data.metrics and data.metrics.transaction_metrics and data.metrics.transaction_metrics.max_daily_volume is not none else 0 }}</div>
+                    </div>
+                    <div class="key-metric">
+                        <div class="key-metric-label">Variation</div>
+                        <div class="key-metric-value {{ 'trend-up' if data.metrics and data.metrics.transaction_metrics and data.metrics.transaction_metrics.transaction_growth and data.metrics.transaction_metrics.transaction_growth > 0 else 'trend-down' }}">
+                            {{ "{:+.1f}%".format(data.metrics.transaction_metrics.transaction_growth if data.metrics and data.metrics.transaction_metrics and data.metrics.transaction_metrics.transaction_growth is not none else 0) }}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

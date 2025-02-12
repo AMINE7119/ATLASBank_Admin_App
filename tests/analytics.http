@@ -1,7 +1,13 @@
-# Analytics Tests
+@baseUrl = http://localhost:5000
+@username = admin
+@password = admin123
 
-### Get Dashboard
-GET http://localhost:5000/analytics/dashboard
+### Login first
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/x-www-form-urlencoded
 
-### Get Dashboard with Unauthorized Access
-GET http://localhost:5000/analytics/dashboard
+username={{username}}&password={{password}}
+
+### Dashboard Analytics
+GET {{baseUrl}}/analytics/dashboard
