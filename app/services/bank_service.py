@@ -1,4 +1,3 @@
-# app/services/bank_service.py
 from typing import List, Optional, Dict, Any
 from flask import session
 from werkzeug.exceptions import NotFound, Forbidden, Unauthorized
@@ -8,8 +7,6 @@ from app.dal.transaction_dao import TransactionDAO
 from app.dal.account_dao import AccountDAO
 from app.logger.app_logging import setup_logging
 from functools import wraps
-from decimal import Decimal
-from datetime import datetime
 from decimal import Decimal
 from datetime import datetime
 import decimal
@@ -23,18 +20,15 @@ class BankService:
         self.user_dao = UserDAO()
 
     def check_auth(self, f, *args, **kwargs):
-        """Handle authentication and authorization"""
         if not session.get('admin_id'):
             logger.warning(f"Unauthorized access attempt to {f.__name__}")
             raise Unauthorized("Authentication required")
         return f(*args, **kwargs)
 
     def list_accounts(self) -> List[Account]:
-        """Get all accounts with related information"""
         try:
             logger.info("Fetching all accounts")
             accounts = self.account_dao.get_all_accounts()
-            #append by balance 
             accounts.sort(key=lambda x: x.balance, reverse=True)
             logger.info(f"Successfully fetched {len(accounts)} accounts")
             return accounts
@@ -43,7 +37,6 @@ class BankService:
             raise
 
     def get_account(self, account_number: int) -> Account:
-        """Get single account with full details"""
         try:
             logger.info(f"Fetching account {account_number}")
             account = self.account_dao.get_account_by_number(account_number)
@@ -56,7 +49,6 @@ class BankService:
             raise
 
     def update_account(self, account_number: int, data: Dict[str, Any]) -> Account:
-        """Update account details"""
         try:
             logger.info(f"Updating account {account_number}")
             if not self._check_edit_permission(account_number):
@@ -66,7 +58,6 @@ class BankService:
             if not account:
                 raise NotFound(f"Account {account_number} not found")
 
-            # Validate and convert data
             update_data = {
                 'type': data['type'],
                 'balance': Decimal(str(data['balance'])),
@@ -82,23 +73,19 @@ class BankService:
             raise
 
     def create_account(self, data: Dict[str, Any]) -> Account:
-        
         try:
             logger.info("Creating new user and account")
             
-            # Validate required user fields
             required_user_fields = ['first_name', 'last_name', 'email', 'phone', 'address', 'date_of_birth', 'gender']
             missing_fields = [field for field in required_user_fields if not data.get(field)]
             if missing_fields:
                 raise ValueError(f"Missing required fields: {', '.join(missing_fields)}")
 
-            # Validate required account fields
             if not data.get('type'):
                 raise ValueError("Account type is required")
             if data['type'] not in ['savings', 'checking']:
                 raise ValueError("Invalid account type. Must be 'savings' or 'checking'")
 
-            # Convert and validate numeric fields
             try:
                 balance = Decimal(str(data.get('balance', '0')))
                 interest_rate = Decimal(str(data.get('interest_rate', '0.00')))
@@ -110,7 +97,6 @@ class BankService:
             except (ValueError, TypeError, decimal.InvalidOperation):
                 raise ValueError("Invalid numeric values provided for balance or interest rate")
 
-            # Prepare user data
             user_data = {
                 'first_name': data['first_name'],
                 'last_name': data['last_name'],
@@ -122,7 +108,6 @@ class BankService:
                 'job': data.get('job')
             }
             
-            # Create user
             try:
                 user_id = self.user_dao.create_user(user_data)
                 if not user_id:
@@ -133,7 +118,6 @@ class BankService:
                     raise ValueError("A user with this email or phone already exists")
                 raise
             
-            # Prepare account data
             account_data = {
                 'user_id': user_id,
                 'type': data['type'],
@@ -141,17 +125,14 @@ class BankService:
                 'interest_rate': interest_rate
             }
             
-            # Create account
             try:
                 account = self.account_dao.create_account(account_data)
                 if not account:
                     raise ValueError("Failed to create account")
                 logger.info(f"Created account {account.account_number} for user {user_id}")
             except ValueError as e:
-                # If account creation fails, we should still propagate the error
                 raise e
             
-            # Create initial deposit transaction if balance > 0
             if balance > 0:
                 try:
                     transaction_data = {
@@ -167,7 +148,6 @@ class BankService:
                     logger.info(f"Created initial deposit transaction: {transaction_id}")
                 except Exception as e:
                     logger.error(f"Error creating initial deposit: {e}")
-                    # We don't raise here as the account is already created
             
             return account
                 
@@ -179,7 +159,6 @@ class BankService:
             raise ValueError(f"Account creation failed: {str(e)}")
 
     def delete_account(self, account_number: int) -> None:
-        """Delete an account"""
         try:
             logger.info(f"Deleting account {account_number}")
             if not self._check_edit_permission(account_number):
@@ -199,7 +178,6 @@ class BankService:
             raise
 
     def get_account_transactions(self, account_number: int) -> List[Dict]:
-        """Get all transactions for an account"""
         try:
             logger.info(f"Fetching transactions for account {account_number}")
             if not self.account_dao.get_account_by_number(account_number):
@@ -213,17 +191,14 @@ class BankService:
             raise
 
     def _check_edit_permission(self, account_number: int) -> bool:
-        """Check if current admin has permission to edit account"""
         admin_id = session.get('admin_id')
         try:
-            # TODO: Implement actual permission checking logic
             return True
         except Exception as e:
             logger.error(f"Error checking permissions for admin {admin_id} on account {account_number}: {str(e)}")
             raise
 
     def search_accounts(self, search_term: str) -> List[Account]:
-        """Search accounts by name or account number"""
         try:
             if not search_term:
                 logger.warning("Empty search term provided")
@@ -238,8 +213,8 @@ class BankService:
         except Exception as e:
             logger.error(f"Error searching accounts: {str(e)}")
             raise
+
     def process_deposit(self, account_number: int, amount: float, description: str = None) -> bool:
-        """Process a deposit transaction"""
         try:
             if amount <= 0:
                 raise ValueError("Amount must be positive")
@@ -254,7 +229,6 @@ class BankService:
             raise
 
     def process_withdrawal(self, account_number: int, amount: float, description: str = None) -> bool:
-        """Process a withdrawal transaction"""
         try:
             if amount <= 0:
                 raise ValueError("Amount must be positive")
@@ -269,7 +243,6 @@ class BankService:
             raise
 
     def process_transfer(self, from_account: int, to_account: int, amount: float, description: str = None) -> bool:
-        """Process a transfer between accounts"""
         try:
             if amount <= 0:
                 raise ValueError("Amount must be positive")
@@ -287,11 +260,9 @@ class BankService:
             raise
 
     def get_bank_statement(self, account_number: int, start_date: str = None, end_date: str = None) -> Dict:
-        """Get bank statement for an account"""
         try:
             logger.info(f"Generating bank statement for account {account_number}")
             
-            # Convert date strings to datetime objects if provided
             start_date_obj = datetime.strptime(start_date, '%Y-%m-%d') if start_date else None
             end_date_obj = datetime.strptime(end_date, '%Y-%m-%d') if end_date else None
             

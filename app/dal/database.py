@@ -32,6 +32,6 @@ if __name__ == "__main__":
         with get_cursor() as cursor:
             cursor.execute('SELECT 1')
             print(cursor.fetchone())
-        print("Connection successful")
+        print("bien")
     except Exception as e:
-        print(f"Connection failed: {e}")
+        print(f"no connect {e}")
