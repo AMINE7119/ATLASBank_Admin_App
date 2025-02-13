@@ -222,7 +222,7 @@ class BankService:
             amount_decimal = Decimal(str(amount))
             logger.info(f"Processing deposit: Account={account_number}, Amount={amount_decimal}")
             
-            return self.transactiondao.deposit(account_number, amount_decimal, description)
+            return self.transaction_dao.deposit(account_number, amount_decimal, description)
             
         except Exception as e:
             logger.error(f"Error processing deposit: {str(e)}")

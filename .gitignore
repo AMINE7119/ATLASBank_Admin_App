@@ -5,3 +5,8 @@
 __pycache__/
 
 .env
+
+.vscode/
+
+docker-compose.yml
+dockerfile

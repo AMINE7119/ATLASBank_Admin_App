@@ -11,6 +11,7 @@ CREATE TABLE admins (
 INSERT INTO admins (username, password, email, role) 
 VALUES ('admin', 'admin123', 'admin@bank.com', 'ADMIN');
 VALUES ('amine', '069151', 'amine@bank.com', 'SUPERADMIN');
+VALUES ('mohamed', '123456', 'mohamed@bank.com', 'ADMIN');
   
 CREATE TABLE users (
    id SERIAL PRIMARY KEY,

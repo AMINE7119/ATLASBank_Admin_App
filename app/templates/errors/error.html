@@ -3,36 +3,189 @@
 <head>
     <title>{{ error.code }} - {{ error.name }}</title>
     <style>
-        .error-container {
-            text-align: center;
-            padding: 50px;
-            font-family: Arial, sans-serif;
-        }
-        .error-code {
-            font-size: 72px;
-            color: #e74c3c;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #4e6e6e, #acbccc);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .error-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #0f323b;
+            margin: 0;
+            line-height: 1;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
         .error-message {
-            font-size: 24px;
-            color: #555;
-            margin: 20px 0;
+            font-size: 1.8rem;
+            color: #0f323b;
+            margin: 1rem 0;
+            font-weight: 600;
         }
+
         .error-description {
-            color: #777;
-            margin: 20px 0;
+            color: #4e6e6e;
+            margin: 1.5rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
         }
+
         .home-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #3498db;
+            background: #0f323b;
             color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 5px;
+            display: inline-block;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-link:hover {
+            background: #164654;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(15, 50, 59, 0.2);
+        }
+
+        .home-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .home-link:hover::before {
+            left: 100%;
+        }
+
+        .circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+
+        /* Effet générique sur les cercles */
+        .circles li::before {
+            content: '!';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2em;
+            opacity: 0.3;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-container {
+                padding: 1.5rem;
+            }
+            .error-code {
+                font-size: 100px;
+            }
+            .error-message {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <ul class="circles">
+        <li style="left: 25%; width: 80px; height: 80px; animation-delay: 0s;"></li>
+        <li style="left: 10%; width: 20px; height: 20px; animation-delay: 2s;"></li>
+        <li style="left: 70%; width: 40px; height: 40px; animation-delay: 4s;"></li>
+        <li style="left: 40%; width: 60px; height: 60px; animation-delay: 0s;"></li>
+        <li style="left: 65%; width: 20px; height: 20px; animation-delay: 0s;"></li>
+        <li style="left: 75%; width: 110px; height: 110px; animation-delay: 3s;"></li>
+        <li style="left: 35%; width: 150px; height: 150px; animation-delay: 7s;"></li>
+        <li style="left: 50%; width: 25px; height: 25px; animation-delay: 15s;"></li>
+        <li style="left: 20%; width: 15px; height: 15px; animation-delay: 2s;"></li>
+        <li style="left: 85%; width: 150px; height: 150px; animation-delay: 0s;"></li>
+    </ul>
+    
     <div class="error-container">
         <h1 class="error-code">{{ error.code }}</h1>
         <h2 class="error-message">{{ error.name }}</h2>

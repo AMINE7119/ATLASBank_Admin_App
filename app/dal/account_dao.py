@@ -70,10 +70,7 @@ class AccountDAO:
     def create_account(self, data: Dict[str, Any]) -> Optional[Account]:
         with get_cursor() as cursor:
             try:
-                # Begin transaction
                 cursor.execute("BEGIN")
-                
-                # First check if user has an account of this type
                 check_query = """
                     SELECT COUNT(*) FROM accounts 
                     WHERE user_id = %s AND type = %s
@@ -81,8 +78,6 @@ class AccountDAO:
                 cursor.execute(check_query, (data['user_id'], data['type']))
                 if cursor.fetchone()[0] > 0:
                     raise ValueError(f"User already has a {data['type']} account")
-
-                # Insert new account
                 insert_query = """
                     INSERT INTO accounts (user_id, type, balance, interest_rate, status)
                     VALUES (%s, %s, %s, %s, true)
@@ -94,19 +89,13 @@ class AccountDAO:
                     data['balance'],
                     data.get('interest_rate', 0.00)
                 )
-                
                 self.sql_logger.info(f"Creating new account with values: {values}")
                 cursor.execute(insert_query, values)
-                
-                # Get the new account number immediately
                 result = cursor.fetchone()
                 if not result:
                     raise ValueError("Failed to get new account number")
-                    
                 new_account_number = result[0]
                 self.sql_logger.info(f"Created account with number: {new_account_number}")
-                
-                # Fetch the complete account details
                 fetch_query = """
                     SELECT a.number, a.user_id, a.type, 
                            a.balance, a.status, a.interest_rate, a.created_at,
@@ -117,11 +106,8 @@ class AccountDAO:
                 """
                 cursor.execute(fetch_query, (new_account_number,))
                 row = cursor.fetchone()
-                
                 if not row:
                     raise ValueError(f"Could not fetch created account {new_account_number}")
-                
-                # Create account object
                 account = Account(
                     account_number=row[0],
                     user_id=row[1],
@@ -133,19 +119,14 @@ class AccountDAO:
                 )
                 account.holder_name = f"{row[7]} {row[8]}"
                 account.holder_email = row[9]
-                
-                # Commit transaction
                 cursor.execute("COMMIT")
                 self.sql_logger.info(f"Successfully created and fetched account {new_account_number}")
-                
                 return account
-                    
             except Exception as e:
                 cursor.execute("ROLLBACK")
                 self.sql_logger.error(f"Error creating account: {e}")
                 raise
-                raise
-            raise
+
     def update_account(self, account_number: int, data: Dict[str, Any]) -> Optional[Account]:
         with get_cursor() as cursor:
             query = """
@@ -163,7 +144,6 @@ class AccountDAO:
                 data.get('interest_rate', 0.00),
                 account_number
             )
-            
             self.sql_logger.info(f"Executing query: {query} with values: {values}")
             cursor.execute(query, values)
             return self.get_account_by_number(account_number)
@@ -182,7 +162,6 @@ class AccountDAO:
                     number_search = True
                 except ValueError:
                     number_search = False
-
                 if number_search:
                     query = """
                         SELECT a.number, a.user_id, a.type, 
@@ -205,11 +184,9 @@ class AccountDAO:
                     """
                     search_pattern = f"%{search_term}%"
                     params = (search_pattern, search_pattern)
-
                 self.sql_logger.info(f"Executing search query with term: {search_term}")
                 cursor.execute(query, params)
                 accounts = []
-                
                 for row in cursor.fetchall():
                     account = Account(
                         account_number=row[0],
@@ -223,9 +200,7 @@ class AccountDAO:
                     account.holder_name = f"{row[7]} {row[8]}"
                     account.holder_email = row[9]
                     accounts.append(account)
-                
                 return accounts
-                
             except Exception as e:
                 self.sql_logger.error(f"Database error during search: {str(e)}")
                 raise
@@ -246,26 +221,20 @@ class AccountDAO:
                     WHERE (t.account_id = %s OR t.recipient_account = %s)
                 """
                 params = [account_number, account_number, account_number, account_number]
-
                 if start_date:
                     query += " AND t.date >= %s"
                     params.append(start_date)
                 if end_date:
                     query += " AND t.date <= %s"
                     params.append(end_date)
-
                 query += " ORDER BY t.date"
-
                 self.sql_logger.info(f"Executing bank statement query for account: {account_number}")
                 cursor.execute(query, params)
-                
                 transactions = []
                 running_balance = Decimal('0.00')
-                
                 for row in cursor.fetchall():
                     transaction_amount = Decimal(str(row[6]))
                     running_balance += transaction_amount
-                    
                     transactions.append({
                         'id': row[0],
                         'type': row[1],
@@ -276,10 +245,8 @@ class AccountDAO:
                         'transaction_amount': transaction_amount,
                         'running_balance': running_balance
                     })
-
                 cursor.execute("SELECT balance FROM accounts WHERE number = %s", (account_number,))
                 current_balance = cursor.fetchone()[0]
-
                 statement = {
                     'account': self.get_account_by_number(account_number),
                     'transactions': transactions,
@@ -290,9 +257,7 @@ class AccountDAO:
                     'total_deposits': sum(t['transaction_amount'] for t in transactions if t['transaction_amount'] > 0),
                     'total_withdrawals': abs(sum(t['transaction_amount'] for t in transactions if t['transaction_amount'] < 0))
                 }
-                
                 return statement
-                
             except Exception as e:
                 self.sql_logger.error(f"Error generating bank statement: {e}")
                 raise

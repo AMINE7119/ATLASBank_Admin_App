@@ -2,26 +2,19 @@
 @username = admin
 @password = admin123
 
-### Login first
-# @name login
 POST {{baseUrl}}/login
 Content-Type: application/x-www-form-urlencoded
 
 username={{username}}&password={{password}}
 
-### Test 404 Error
 GET {{baseUrl}}/bank/errors/404
 
-### Test 500 Error
 GET {{baseUrl}}/bank/errors/500
 
-### Test 403 Error
 GET {{baseUrl}}/bank/errors/403
 
-### Test 401 Error
 GET {{baseUrl}}/bank/errors/401
 
-### Test Invalid Authentication
 POST {{baseUrl}}/login
 Content-Type: application/x-www-form-urlencoded
 

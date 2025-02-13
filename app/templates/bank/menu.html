@@ -4,158 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Banque - Menu</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      background: linear-gradient(45deg, #4e6e6e, #acbccc);
-      padding: 20px;
-      color: #333;
-    }
-
-    .nav-menu {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 1rem 2rem;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      justify-content: flex-end;
-    }
-
-    .nav-menu a {
-      text-decoration: none;
-      color: #0f323b;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .nav-menu a:hover {
-      background: rgba(15, 50, 59, 0.1);
-    }
-
-    .menu-container {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 800px;
-      backdrop-filter: blur(10px);
-      margin: 0 auto;
-    }
-
-    h1 {
-      text-align: center;
-      color: #0f323b;
-      margin-bottom: 2rem;
-      font-size: 2rem;
-    }
-
-    .menu-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .menu-list li {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      border: 2px solid rgba(15, 50, 59, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .menu-list li:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .menu-list h3 {
-      color: #0f323b;
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
-
-    .menu-list a {
-      background: #0f323b;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      text-align: center;
-      width: 100%;
-    }
-
-    .menu-list a:hover {
-      background: #164854;
-      transform: translateY(-2px);
-    }
-
-    .error-buttons {
-      display: grid;
-      gap: 0.75rem;
-      width: 100%;
-    }
-
-    .error-btn {
-      font-size: 0.9rem;
-    }
-
-    .error-401 { background: #F59E0B; }
-    .error-403 { background: #EF4444; }
-    .error-404 { background: #6366F1; }
-    .error-500 { background: #DC2626; }
-
-    .error-401:hover { background: #D97706; }
-    .error-403:hover { background: #DC2626; }
-    .error-404:hover { background: #4F46E5; }
-    .error-500:hover { background: #B91C1C; }
-
-    @media (max-width: 768px) {
-      .menu-container {
-        margin: 1rem;
-        padding: 1.5rem;
-      }
-
-      .nav-menu {
-        padding: 1rem;
-        justify-content: center;
-      }
-
-      .menu-list {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
 </head>
 <body>
-  <div class="nav-menu">
-    <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
-  </div>
-
   <div class="menu-container">
     <h1>Bienvenue Admin</h1>
 
@@ -188,13 +39,16 @@
       <li>
         <h3>Test de page d'erreur</h3>
         <div class="error-buttons">
-          <a href="{{ url_for('bank.test_error', error_code=401) }}" class="error-btn error-401">Tester 401 Non autorisé</a>
-          <a href="{{ url_for('bank.test_error', error_code=403) }}" class="error-btn error-403">Tester 403 Interdit</a>
-          <a href="{{ url_for('bank.test_error', error_code=404) }}" class="error-btn error-404">Tester 404 Non trouvé</a>
-          <a href="{{ url_for('bank.test_error', error_code=500) }}" class="error-btn error-500">Tester 500 Erreur serveur</a>
+          <a href="{{ url_for('bank.test_error', error_code=401) }}" class="error-btn error-401">Tester 401 </a>
+          <a href="{{ url_for('bank.test_error', error_code=403) }}" class="error-btn error-403">Tester 403 </a>
+          <a href="{{ url_for('bank.test_error', error_code=404) }}" class="error-btn error-404">Tester 404 </a>
+          <a href="{{ url_for('bank.test_error', error_code=500) }}" class="error-btn error-500">Tester 500 </a>
         </div>
       </li>
     </ul>
+    <div class="logout-button">
+      <a href="{{ url_for('auth.logout') }}" class="logout-btn">Déconnexion</a>
+    </div>
     {% else %}
     <p>Veuillez <a href="{{ url_for('auth.login') }}">vous connecter</a> pour accéder au menu.</p>
     {% endif %}

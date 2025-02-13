@@ -10,7 +10,7 @@ services:
       - DB_PORT=5432
       - DB_NAME=bank_db
       - DB_USER=postgres
-      - DB_PASSWORD=069151  # Changed to a specific password
+      - DB_PASSWORD=069151  
     depends_on:
       - db
     volumes:
@@ -23,7 +23,7 @@ services:
     environment:
       - POSTGRES_DB=bank_db
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=069151  # Same password as above
+      - POSTGRES_PASSWORD=069151  
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:

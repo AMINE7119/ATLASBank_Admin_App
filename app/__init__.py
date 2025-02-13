@@ -4,7 +4,7 @@ from app.controllers.bank_controller import bank_bp
 from app.controllers.analytics_controller import analytics_bp
 from app.errors.error import register_error_handlers
 import secrets
-#11-2
+
 def create_app():
     app = Flask(__name__)
     app.secret_key = secrets.token_hex(32)
