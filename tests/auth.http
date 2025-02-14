@@ -2,7 +2,7 @@
 @username = admin
 @password = admin123
 
-### Login (use this first to get authenticated)
+###conexion necessaire
 # @name login
 POST {{baseUrl}}/login
 Content-Type: application/x-www-form-urlencoded

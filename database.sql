@@ -11,8 +11,9 @@ CREATE TABLE admins (
 INSERT INTO admins (username, password, email, role) 
 VALUES ('admin', 'admin123', 'admin@bank.com', 'ADMIN');
 VALUES ('amine', '069151', 'amine@bank.com', 'SUPERADMIN');
-VALUES ('mohamed', '123456', 'mohamed@bank.com', 'ADMIN');
-  
+INSERT INTO admins (username, password, email, role) 
+VALUES ('amine', '069151', 'amine@bank.com', 'SUPERADMIN');
+-- USERS
 CREATE TABLE users (
    id SERIAL PRIMARY KEY,
    first_name VARCHAR(50) NOT NULL,
@@ -26,7 +27,7 @@ CREATE TABLE users (
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Accounts table
+-- Accounts
 CREATE TABLE accounts (
   number SERIAL PRIMARY KEY,
   user_id INTEGER NOT NULL,
@@ -38,7 +39,7 @@ CREATE TABLE accounts (
   CONSTRAINT one_account_type_per_user UNIQUE (user_id, type)
 );
 
--- Transactions table
+-- Transactions
 CREATE TABLE transactions (
   id SERIAL PRIMARY KEY, 
   account_id INTEGER NOT NULL,
@@ -61,5 +62,8 @@ CREATE INDEX idx_accounts_user ON accounts(user_id);
 CREATE INDEX idx_transactions_account ON transactions(account_id);
 CREATE INDEX idx_transactions_recipient ON transactions(recipient_account);
 CREATE INDEX idx_transactions_date ON transactions(date);
+
+
+-- ALTER TABLE
 ALTER TABLE users ADD COLUMN job VARCHAR(100);
 ALTER TABLE accounts ADD COLUMN interest_rate DECIMAL(5,2);

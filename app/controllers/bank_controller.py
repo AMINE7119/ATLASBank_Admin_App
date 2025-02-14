@@ -105,7 +105,6 @@ def create():
             logger.info(f"Successfully created account number: {account.account_number}")
             flash('Account created successfully!', 'success')
             
-            # Add debug logging
             logger.info(f"Redirecting to view page for account: {account.account_number}")
             return redirect(url_for('bank.view', account_number=account.account_number))
 

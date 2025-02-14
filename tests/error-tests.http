@@ -6,15 +6,15 @@ POST {{baseUrl}}/login
 Content-Type: application/x-www-form-urlencoded
 
 username={{username}}&password={{password}}
-
+###404
 GET {{baseUrl}}/bank/errors/404
-
+###500
 GET {{baseUrl}}/bank/errors/500
-
+###403
 GET {{baseUrl}}/bank/errors/403
-
+###401
 GET {{baseUrl}}/bank/errors/401
-
+###LOGIN
 POST {{baseUrl}}/login
 Content-Type: application/x-www-form-urlencoded
 
