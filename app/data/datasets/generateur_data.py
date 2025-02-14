@@ -76,7 +76,7 @@ def generate_users(num_users=781):
     
     start_date = datetime(2024, 2, 10)
     end_date = datetime(2024, 12, 1)
-    date_range = abs((end_date - start_date).days)  # Using abs() to ensure positive range
+    date_range = abs((end_date - start_date).days)
     
     for user_id in range(1, num_users + 1):
         gender = random.choice(['M', 'F'])
@@ -93,7 +93,6 @@ def generate_users(num_users=781):
             phone = generate_phone()
         used_phones.add(phone)
         
-        # 70% users between 18-40
         if random.random() < 0.7:
             age = random.randint(18, 40)
         else:
@@ -123,16 +122,14 @@ def generate_accounts(users):
     
     for user in users:
         account_number += 1
-        # 73% checking accounts
         acc_type = 'checking' if random.random() < 0.73 else 'savings'
         
-        # Balance distribution
         rand_val = random.random()
-        if rand_val < 0.03:  # 3% with balance > 1,000,000 MAD
+        if rand_val < 0.03:
             balance = round(random.uniform(1000000, 2000000), 2)
-        elif rand_val < 0.28:  # 25% with balance > 50,000 MAD
+        elif rand_val < 0.28:
             balance = round(random.uniform(50000, 1000000), 2)
-        else:  # Rest with balance < 50,000 MAD
+        else:
             balance = round(random.uniform(1000, 50000), 2)
         
         accounts.append({
@@ -168,7 +165,6 @@ def generate_transactions(accounts):
     transactions = []
     
     for account in accounts:
-        # Generate 5-20 transactions per account
         num_transactions = random.randint(5, 20)
         start_date = datetime.strptime(account['created_at'], '%Y-%m-%d %H:%M:%S')
         
