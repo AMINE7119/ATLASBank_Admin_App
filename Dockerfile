@@ -16,5 +16,7 @@ EXPOSE 5000
 
 ENV FLASK_APP=main.py
 ENV FLASK_ENV=production
+ENV PYTHONUNBUFFERED=1
 
-CMD ["flask", "run", "--host=0.0.0.0"]
+# Utiliser gunicorn en production
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "main:app"]
